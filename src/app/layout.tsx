@@ -21,9 +21,11 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={`${onest.className} overflow-x-hidden`}>
 				<Providers>
-					<Header />
-					{children}
-					<Footer />
+					<div className='flex flex-col min-h-screen'>
+						<Header />
+						<main className='flex-1'>{children}</main>
+						<Footer />
+					</div>
 				</Providers>
 			</body>
 		</html>

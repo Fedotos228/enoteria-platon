@@ -22,7 +22,7 @@ export const NAVIGATION_ITEMS: INavigation[] = [
 	},
 	{
 		title: 'Contacte',
-		url: '/contact',
+		url: '/contacts',
 	},
 ]
 

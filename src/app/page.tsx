@@ -1,6 +1,5 @@
 'use client'
 import About from '@/components/blocks/About'
-import Founders from '@/components/blocks/Founders'
 import Hero from '@/components/blocks/Hero'
 import NewsGrid from '@/components/blocks/NewsGrid'
 import ProductsGrid from '@/components/blocks/ProductsGrid'
@@ -12,7 +11,6 @@ export default function Home() {
 			<Hero />
 			<Container>
 				<About />
-				<Founders />
 				<ProductsGrid />
 				<NewsGrid />
 			</Container>
