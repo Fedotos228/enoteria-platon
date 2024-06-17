@@ -1,4 +1,6 @@
-import { products } from '@/constants/data'
+'use client'
+
+import useProductBySlug from '@/hooks/queries/useProductBySlug'
 import Image from 'next/image'
 import ProductGallery from '../elements/ProductGallery'
 
@@ -7,7 +9,7 @@ export default function ProductSingle({
 }: {
   slug: string
 }) {
-  const product = products.find(product => product.slug === slug)
+  const { data: product } = useProductBySlug(slug)
 
   return (
     <div>

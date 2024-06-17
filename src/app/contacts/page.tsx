@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 export default function page() {
 	return (
 		<div>
-			<Introduction>
+			<Introduction background='/images/Banner.png'>
 				<h1 className='text-3xl text-white text-center leading-[160%]'>
 					Contacte
 				</h1>

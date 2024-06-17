@@ -15,6 +15,10 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
+				hostname: 'enoteria-platon-298abb099da9.herokuapp.com',
+			},
+			{
+				protocol: 'https',
 				hostname: 'placehold.co',
 			},
 		],
