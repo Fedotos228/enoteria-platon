@@ -30,3 +30,23 @@ export const productBySlugQuery = qs.stringify({
   },
   encodeValuesOnly: true,
 })
+
+export const productByCategoryQuery = (categories: string[]) => qs.stringify({
+  fields: ['title', 'slug', 'price', 'discount'],
+  populate: {
+    thumbnail: {
+      fields: ['url'],
+    },
+    subcategory: {
+      fields: ['title', 'slug'],
+    }
+  },
+  filters: {
+    subcategory: {
+      slug: {
+        $eq: categories
+      }
+    },
+  },
+  encodeValuesOnly: true,
+})
