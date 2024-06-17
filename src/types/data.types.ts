@@ -1,11 +1,11 @@
 export interface IProduct {
-  createdAt: string
+  createdAt?: string
   title: string
   slug: string
   description?: string
   discount?: number
   price: number
-  publishedAt: string
+  publishedAt?: string
   thumbnail: string
   gallery?: {
     id: number
