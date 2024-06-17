@@ -1,15 +1,17 @@
 export interface IProduct {
-  slug: string
+  createdAt: string
   title: string
+  slug: string
+  description?: string
+  discount?: number
   price: number
+  publishedAt: string
   thumbnail: string
   gallery?: {
     id: number
     url: string
   }[]
   category: string
-  discount?: number
-  desc?: string
 }
 
 export interface INews {

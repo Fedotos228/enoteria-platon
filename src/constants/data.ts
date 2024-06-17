@@ -1,4 +1,4 @@
-import { ICategory, IFounders, INews, IProduct, ISocials } from '@/types/data.types'
+import { ICategory, IFounders, INews, ISocials } from '@/types/data.types'
 
 export const news: INews[] = [
   {
@@ -15,7 +15,7 @@ export const news: INews[] = [
   },
 ]
 
-export const products: IProduct[] = [
+export const products: any[] = [
   {
     slug: 'enoteria-platon-rosu',
     title: 'Enoteria platon rosu',
@@ -53,7 +53,7 @@ export const products: IProduct[] = [
     ],
     discount: 10,
     category: 'rosu',
-    desc: '12 luni și 21 de zile au fost necesare pentru a crea acest sepaj din 3 soiuri de același Calibru: Fetească Neagră, Merlot și Cabernet Sauvignon. Stejarul românesc accentuează stilul autentic urmărit de vinificator- un vin intens, cu arome de vișine coapte, afine, coacăză neagră, simțite în gust și în postgust, completate de ciocolată neagră, piper negru și nuanțe de tabac.',
+    description: '12 luni și 21 de zile au fost necesare pentru a crea acest sepaj din 3 soiuri de același Calibru: Fetească Neagră, Merlot și Cabernet Sauvignon. Stejarul românesc accentuează stilul autentic urmărit de vinificator- un vin intens, cu arome de vișine coapte, afine, coacăză neagră, simțite în gust și în postgust, completate de ciocolată neagră, piper negru și nuanțe de tabac.',
   },
   {
     slug: 'wine-2',

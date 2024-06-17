@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button'
-import { IProduct } from '@/types/data.types'
+import { imageStrapUrl } from '@/lib/utils'
 import { CirclePercent } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Button } from '../ui/button'
 import { Card, CardFooter } from '../ui/card'
 
 const backgroundImage = {
@@ -12,7 +12,8 @@ const backgroundImage = {
   overflow: 'hidden',
 }
 
-export default function ProductCard({ slug, thumbnail, title, price, discount }: IProduct) {
+export default function ProductCard({ product }: any) {
+  const { title, price, thumbnail, discount, slug } = product.attributes
   let discountPrice
 
   if (discount) {
@@ -23,7 +24,7 @@ export default function ProductCard({ slug, thumbnail, title, price, discount }:
     <Card className='shadow-xl'>
       <div style={backgroundImage} className='relative flex items-center justify-center w-full h-[280px] rounded-t-lg'>
         <Image
-          src={thumbnail}
+          src={imageStrapUrl(thumbnail)}
           alt={title}
           width={220}
           height={250}
