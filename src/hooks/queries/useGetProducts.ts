@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 export default function useGetProducts() {
   return useQuery({
     queryKey: ['products'],
-    queryFn: async () => await instance.get(`/products/${homeProductQuery}`),
+    queryFn: async () => await instance.get(`/products?${homeProductQuery}`),
     select: (data) => data.data.data
   })
 }

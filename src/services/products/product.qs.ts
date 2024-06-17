@@ -2,10 +2,10 @@ import qs from 'qs'
 
 export const homeProductQuery = qs.stringify(
   {
-    fields: ['title'],
+    fields: ['title', 'slug'],
     populate: {
       thumbnail: {
-        fields: 'url'
+        fields: ['url'],
       },
     },
   },

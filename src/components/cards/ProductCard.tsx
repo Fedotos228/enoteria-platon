@@ -25,7 +25,7 @@ export default function ProductCard({ product }: any) {
 				style={backgroundImage}
 				className='relative flex items-center justify-center w-full h-[280px] rounded-t-lg'
 			>
-				<Image src={thumbnail} alt={title} width={220} height={250} />
+				<Image src={process.env.NEXT_PUBLIC_BASE_URL + thumbnail?.data?.attributes?.url} alt={title} width={220} height={250} />
 				{discount && (
 					<div className='absolute bottom-2 left-2 flex items-center gap-1 bg-red-500/70 px-2 py-1 rounded-md'>
 						<CirclePercent color='white' opacity='70' />
