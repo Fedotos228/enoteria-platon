@@ -1,5 +1,6 @@
-import { setFilters } from './slices/filter.slice'
+import { setFilters, toggleCategory } from './slices/filter.slice'
 
 export const rootActions = {
+  toggleCategory,
   setFilters
 }

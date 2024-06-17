@@ -1,17 +1,14 @@
 'use client'
-import { categorie } from '@/constants/data'
-import { useState } from 'react'
+import useGetCategories from '@/hooks/queries/useGetCategories'
+import { useActions } from '@/hooks/useActions'
 import { Checkbox } from '../ui/checkbox'
 
 export default function FilterSidebar() {
-  const [selected, setSelected] = useState<string[]>([])
+  const { data: category } = useGetCategories()
+  const { toggleCategory, setFilters } = useActions()
 
   const handleSelectCategory = (slug: string) => {
-    if (selected.includes(slug)) {
-      setSelected(selected.filter((item) => item !== slug))
-    } else {
-      setSelected([...selected, slug])
-    }
+    toggleCategory(slug)
   }
 
   return (
@@ -19,20 +16,20 @@ export default function FilterSidebar() {
       <h4 className='mb-4'>Filtre</h4>
       <div>
         {
-          categorie.map((categorie) => (
-            <div key={categorie.slug} className='mb-7'>
-              <h5 className='mb-3'>{categorie.title}</h5>
+          category?.map((categorie: any) => (
+            <div key={categorie.attributes.slug} className='mb-7'>
+              <h5 className='mb-3'>{categorie.attributes.title}</h5>
 
               <ul>
                 {
-                  categorie.subcategories.map((subcategory) => (
-                    <li key={subcategory.slug} className="flex items-center space-x-2 mb-3">
-                      <Checkbox id={subcategory.slug} className='bg-[#E1D7D3] border border-[#FFFFFF]/80' onClick={() => handleSelectCategory(subcategory.slug)} />
+                  categorie?.attributes?.subcategories.data.map((subcategory: any) => (
+                    <li key={subcategory.attributes.slug} className="flex items-center space-x-2 mb-3">
+                      <Checkbox id={subcategory.attributes.slug} className='bg-[#E1D7D3] border border-[#FFFFFF]/80' onClick={() => handleSelectCategory(subcategory.attributes.slug)} />
                       <label
-                        htmlFor={subcategory.slug}
-                        className={`${categorie.slug === 'culoare' ? `circle ${subcategory.slug}` : ''} text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+                        htmlFor={subcategory.attributes.slug}
+                        className={`${categorie.attributes.slug === 'coloare' ? `circle ${subcategory.attributes.slug}` : ''} text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
                       >
-                        {subcategory.name}
+                        {subcategory.attributes.title}
                       </label>
                     </li>
                   ))

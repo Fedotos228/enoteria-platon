@@ -1,5 +1,5 @@
 import { instance } from '../api/axios'
-import { productSlugQuery } from './product.qs'
+import { productByCategoryQuery, productSlugQuery } from './product.qs'
 
 class ProductsService {
   async getProducts() {
@@ -25,6 +25,11 @@ class ProductsService {
   }
   async getProductBySlug(slug: string) {
     return instance.get(`/products/${slug}`)
+  }
+  async getProductsByCategory(category: string[]) {
+    console.log('category', category)
+
+    return instance.get(`/products?${productByCategoryQuery(category)}`)
   }
 }
 
