@@ -12,11 +12,11 @@ const backgroundImage = {
 }
 
 export default function ProductCard({ product }: any) {
-	const { title, price, thumbnail, discount, slug } = product.attributes
+	const { title, price_mdl, thumbnail, discount, slug } = product.attributes
 	let discountPrice
 
 	if (discount) {
-		discountPrice = price - (price * discount) / 100
+		discountPrice = price_mdl - (price_mdl * discount) / 100
 	}
 
 	return (
@@ -25,7 +25,7 @@ export default function ProductCard({ product }: any) {
 				style={backgroundImage}
 				className='relative flex items-center justify-center w-full h-[280px] rounded-t-lg'
 			>
-				<Image src={process.env.NEXT_PUBLIC_BASE_URL + thumbnail?.data?.attributes?.url} alt={title} width={220} height={250} />
+				<Image src={process.env.NEXT_PUBLIC_BASE_URL + thumbnail?.data?.attributes?.url} alt={title} width={320} height={350} />
 				{discount && (
 					<div className='absolute bottom-2 left-2 flex items-center gap-1 bg-red-500/70 px-2 py-1 rounded-md'>
 						<CirclePercent color='white' opacity='70' />
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: any) {
 						<p className='text-button'>{discountPrice} lei</p>
 					)}
 					<p className={`${discount && 'line-through opacity-50 '}`}>
-						{price} lei
+						{price_mdl} lei
 					</p>
 				</div>
 				<Button>Adaugă</Button>
