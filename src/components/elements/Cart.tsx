@@ -33,13 +33,13 @@ export default function Cart() {
 			<>
 				<div
 					onClick={toggleCart}
-					className={`fixed inset-0 backdrop-blur-md transition-all duration-300 bg-opacity-75 ${
+					className={`fixed inset-0 backdrop-blur-md transition-all z-30 duration-300 bg-opacity-75 ${
 						cartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
 					}`}
 				></div>
 
 				<div
-					className={`pointer-events-none transition-all duration-300 fixed inset-y-0 flex max-w-full xs:max-w-lg bg-background ${
+					className={`pointer-events-none transition-all duration-300 fixed z-50 inset-y-0 flex max-w-full xs:max-w-lg bg-background ${
 						cartOpen ? 'right-0' : '-right-full xs:-right-[512px]'
 					}`}
 				>
@@ -81,14 +81,14 @@ export default function Cart() {
 							<p className='mt-0.5 text-sm text-muted-foreground'>
 								Transportul și taxele calculate la finalizarea
 							</p>
-							<Button className='w-full px-6 mt-5 py-3 h-fit text-base font-medium'>
+							<Button className='w-full px-6 mt-5 py-3 h-fit text-base !text-bordo-foreground font-medium'>
 								Finalizează comanda
 							</Button>
 
 							<Button
 								variant='link'
 								onClick={toggleCart}
-								className='text-button mt-3 w-full'
+								className='!text-bordo mt-3 w-full'
 							>
 								Continuă cumpărăturile
 								<span aria-hidden='true'> &rarr;</span>

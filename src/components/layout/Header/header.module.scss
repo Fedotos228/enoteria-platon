@@ -19,9 +19,6 @@
 	padding: 30px 0px;
 	width: 100%;
 	animation: stickyHeader 0.4s ease-in-out;
-	* {
-		color: #000;
-	}
 }
 
 .headerWhite {
@@ -31,6 +28,9 @@
 	width: 100%;
 	* {
 		color: #000;
+	}
+	@media (max-width: 768px) {
+		padding: 20px 0px;
 	}
 }
 

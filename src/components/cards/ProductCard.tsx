@@ -50,7 +50,7 @@ export default function ProductCard({
 			<CardFooter className='justify-between'>
 				<div className='flex gap-1 font-semibold'>
 					{discount && (
-						<p className='text-button'>{discountPrice} lei</p>
+						<p className='text-bordo'>{discountPrice} lei</p>
 					)}
 					<p className={`${discount && 'line-through opacity-50 '}`}>
 						{price} lei

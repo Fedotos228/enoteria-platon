@@ -36,7 +36,7 @@ export default function CartProduct() {
 						</Button>
 					</div>
 
-					<Button variant='link' className='text-button'>
+					<Button variant='link' className='!text-bordo'>
 						Remove
 					</Button>
 				</div>
