@@ -9,7 +9,7 @@ class ProductsService {
     return instance.get(`/products/${slug}`)
   }
   async getProductsByFetch() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products?${productSlugQuery}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products?${productSlugQuery}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

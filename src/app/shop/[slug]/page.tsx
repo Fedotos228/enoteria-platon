@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export default function ProductSiglePage({ params }: ProductSiglePageProps) {
-  const title = params.slug.replace(/-/g, ' ')
+  const title = params.slug.replace(/-/g, ' ').split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+
   return (
     <Container>
       <Banner title={title} />
