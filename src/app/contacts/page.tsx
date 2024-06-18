@@ -1,7 +1,7 @@
 import Introduction from '@/components/blocks/Introduction'
 import Socials from '@/components/elements/Socials'
+import { ContactForm } from '@/components/forms/ContactForm'
 import Container from '@/components/layout/Container'
-import { Button } from '@/components/ui/button'
 import {
 	Card,
 	CardContent,
@@ -9,9 +9,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { Mail, MapPin, PhoneCall } from 'lucide-react'
 
 export default function page() {
@@ -32,7 +29,7 @@ export default function page() {
 									Informatii de contact
 								</CardTitle>
 							</CardHeader>
-							<CardContent className='gap-12 flex flex-col my-16'>
+							<CardContent className='gap-12 flex flex-col my-20'>
 								<p className='text-white flex items-center gap-4'>
 									<PhoneCall /> 0723 456 789
 								</p>
@@ -52,61 +49,7 @@ export default function page() {
 							</CardFooter>
 						</Card>
 
-						<form
-							action=''
-							className='grid xs:grid-cols-2 gap-5 w-full md:w-[55%]'
-						>
-							<div className='grid gap-1.5'>
-								<Label htmlFor='lastname'>Numele</Label>
-								<Input
-									className='h-12'
-									type='lastname'
-									id='lastname'
-									placeholder='ex. Popescu'
-								/>
-							</div>
-							<div className='grid gap-1.5'>
-								<Label htmlFor='firstname'>Prenumele</Label>
-								<Input
-									className='h-12'
-									type='firstname'
-									id='firstname'
-									placeholder='ex. Ion'
-								/>
-							</div>
-							<div className='grid gap-1.5'>
-								<Label htmlFor='email'>Email</Label>
-								<Input
-									className='h-12'
-									type='email'
-									id='email'
-									inputMode='email'
-									placeholder='ex. example@example.com'
-								/>
-							</div>
-							<div className='grid gap-1.5'>
-								<Label htmlFor='phone'>Telefon</Label>
-								<Input
-									className='h-12'
-									type='phone'
-									id='phone'
-									inputMode='tel'
-									placeholder='ex. +37367525214'
-								/>
-							</div>
-							<div className='grid gap-1.5 xs:col-span-2'>
-								<Label htmlFor='message'>Mesaj</Label>
-								<Textarea />
-							</div>
-
-							<Button
-								className='xs:col-start-2'
-								type='submit'
-								size='lg'
-							>
-								Trimite
-							</Button>
-						</form>
+						<ContactForm />
 					</CardContent>
 				</Card>
 			</Container>

@@ -6,7 +6,7 @@ import Container from './Container'
 
 export default function Footer() {
 	return (
-		<div className='bg-[#222024] sm:p-14'>
+		<footer className='bg-[#222024] sm:pt-14'>
 			<Container>
 				<div className='flex items-start justify-between'>
 					<div className='flex flex-col justify-between gap-5'>
@@ -26,10 +26,10 @@ export default function Footer() {
 						<FooterColumn title='Contacte' items={contacts} />
 					</div>
 				</div>
-				<p className='text-gray-300 text-sm text-center mt-10'>
-					&copy; 2022 Enoteria Platon. Toate drepturile rezervate.
-				</p>
 			</Container>
-		</div>
+			<div className='text-gray-300 bg-[#1a181c] text-sm py-4 text-center mt-10'>
+				&copy; 2022 Enoteria Platon. Toate drepturile rezervate.
+			</div>
+		</footer>
 	)
 }
