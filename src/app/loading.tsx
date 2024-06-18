@@ -1,6 +1,5 @@
+import Loader from '@/components/elements/Loader'
 
 export default function Loading() {
-  return (
-    <div>Loading...</div>
-  )
+  return <Loader loading={false} />
 }

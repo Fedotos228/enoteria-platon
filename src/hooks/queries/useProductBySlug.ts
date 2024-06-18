@@ -5,6 +5,6 @@ export default function useProductBySlug(slug: string) {
   return useQuery({
     queryKey: ['product', slug],
     queryFn: () => productsService.getProductBySlug(slug),
-    select: (data) => data.data
+    select: (data) => data.data.data
   })
 }
