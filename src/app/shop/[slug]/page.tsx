@@ -1,8 +1,7 @@
 import Banner from '@/components/blocks/Banner'
 import ProductSingle from '@/components/blocks/ProductSingle'
 import Container from '@/components/layout/Container'
-import { products } from '@/constants/data'
-import { IProduct } from '@/types/data.types'
+import { productsService } from '@/services/products/products.service'
 
 export type ProductSiglePageProps = {
   params: {
@@ -11,19 +10,19 @@ export type ProductSiglePageProps = {
 }
 
 export async function generateStaticParams() {
-  const data: IProduct[] = await Promise.resolve(products)
+  const { data } = await productsService.getProductsByFetch()
 
-  return data.map((product) => ({
-    slug: product.slug,
+  return data.map((product: any) => ({
+    slug: product.attributes.slug,
   }))
 }
 
 export default function ProductSiglePage({ params }: ProductSiglePageProps) {
-  const product = products.find((product) => product.slug === params.slug)
+  const title = params.slug.replace(/-/g, ' ').split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
   return (
     <Container>
-      <Banner title={product?.title} />
+      <Banner title={title} />
       <ProductSingle slug={params.slug} />
     </Container>
   )
