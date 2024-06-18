@@ -1,5 +1,5 @@
 import Loader from '@/components/elements/Loader'
 
 export default function Loading() {
-  return <Loader loading={false} />
+	return <Loader loading={false} />
 }
