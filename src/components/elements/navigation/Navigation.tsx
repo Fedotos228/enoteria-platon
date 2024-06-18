@@ -43,7 +43,7 @@ export default function Navigation({
 					<Link
 						href={item.url}
 						key={i}
-						className='text-white hover:text-buttonHover transition-colors duration-300 md:text-base text-lg md:text-background text-foreground'
+						className='text-white hover:text-bordo-hover transition-colors duration-300 md:text-base text-lg md:text-background text-foreground'
 					>
 						{item.title}
 					</Link>

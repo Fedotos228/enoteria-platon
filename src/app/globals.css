@@ -36,8 +36,9 @@
 
 		--radius: 0.625rem;
 
-		--button: 0, 48%, 43%, 1;
-		--button-hover: 0, 50%, 49%, 1;
+		--bordo: 0, 48%, 43%;
+		--bordo-hover: 0, 50%, 49%, 1;
+		--bordo-foreground: 210, 40%, 98%;
 	}
 }
 

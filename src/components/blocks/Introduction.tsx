@@ -19,7 +19,7 @@ export default function Introduction({
 								backgroundColor: `#A33939`,
 						  }
 				}
-				className='flex flex-col items-center justify-center py-16 mt-5 mb-8 rounded-xl w-full bg-cover bg-center'
+				className='flex flex-col items-center justify-center py-10 md:py-16 mt-5 mb-8 rounded-xl w-full bg-cover bg-center'
 			>
 				{children}
 			</div>

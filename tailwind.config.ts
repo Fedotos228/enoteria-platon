@@ -29,8 +29,11 @@ const config = {
 				background: 'hsl(var(--background))',
 				body: 'hsl(var(--body))',
 				foreground: 'hsl(var(--foreground))',
-				button: 'hsl(var(--button))',
-				buttonHover: 'hsl(var(--button-hover))',
+				bordo: {
+					DEFAULT: 'hsl(var(--bordo))',
+					foreground: 'hsl(var(--bordo-foreground))',
+					hover: 'hsl(var(--bordo-hover))',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
