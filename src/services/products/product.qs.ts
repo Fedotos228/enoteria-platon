@@ -26,14 +26,14 @@ export const productBySlugQuery = qs.stringify(
         fields: ['url'],
       },
       gallery: {
-        fields: ['url'],
+        fields: ['id', 'url'],
       },
+      subcategories: {
+        fields: ['title', 'slug'],
+      }
     },
     encodeValuesOnly: true,
   },
-  {
-    encodeValuesOnly: true, // prettify URL
-  }
 )
 
 export const productByCategoryQuery = (categories: string[]) => qs.stringify(
