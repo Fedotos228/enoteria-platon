@@ -25,9 +25,7 @@ export default function ShopGrid() {
 		<div className='grid grid-cols-3 gap-5'>
 			{
 				Array.from({ length: 6 }).map((_, i) => (
-					<div className='grid grid-cols-3 gap-5'>
-						<Skeleton key={i} className='h-[400px] w-full' />
-					</div>
+					<Skeleton key={i} className='h-[400px] w-full' />
 				))
 			}
 		</div>
