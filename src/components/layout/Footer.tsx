@@ -6,7 +6,7 @@ import Container from './Container'
 
 export default function Footer() {
 	return (
-		<footer className='bg-[#222024] sm:pt-14'>
+		<footer className='bg-[#222024] sm:pt-14 mt-5'>
 			<Container>
 				<div className='flex items-start justify-between'>
 					<div className='flex flex-col justify-between gap-5'>

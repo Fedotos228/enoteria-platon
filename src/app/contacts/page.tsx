@@ -13,12 +13,8 @@ import { Mail, MapPin, PhoneCall } from 'lucide-react'
 
 export default function page() {
 	return (
-		<div className='mb-20'>
-			<Introduction background='/images/Banner.png'>
-				<h1 className='text-xl xs:text-2xl md:text-3xl text-white text-center leading-[160%]'>
-					Contacte
-				</h1>
-			</Introduction>
+		<div>
+			<Introduction background='/images/Banner.png' title='Contacte' />
 
 			<Container>
 				<Card>
