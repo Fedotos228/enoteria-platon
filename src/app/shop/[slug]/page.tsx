@@ -1,4 +1,4 @@
-import Banner from '@/components/blocks/Banner'
+import Introduction from '@/components/blocks/Introduction'
 import ProductSingle from '@/components/blocks/ProductSingle'
 import Container from '@/components/layout/Container'
 import { productsService } from '@/services/products/products.service'
@@ -18,11 +18,14 @@ export async function generateStaticParams() {
 }
 
 export default function ProductSiglePage({ params }: ProductSiglePageProps) {
-  const title = params.slug.replace(/-/g, ' ').split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  const title = params.slug
+    .replace(/-/g, ' ')
+    .split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 
   return (
     <Container>
-      <Banner title={title} />
+      <Introduction title={title} />
       <ProductSingle slug={params.slug} />
     </Container>
   )

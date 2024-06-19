@@ -48,7 +48,7 @@ export const productByCategoryQuery = (categories: string[]) => qs.stringify(
       }
     },
     filters: {
-      subcategory: {
+      subcategories: {
         slug: {
           $eq: categories
         }

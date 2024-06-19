@@ -1,28 +1,28 @@
-import Container from '../layout/Container'
+import { Damion } from 'next/font/google'
+
+const damion = Damion({
+	weight: '400',
+	subsets: ['latin']
+})
+
 
 export default function Introduction({
-	children,
 	background,
+	title
 }: Readonly<{
-	children: React.ReactNode
-	background?: string
+	background?: string,
+	title: string
 }>) {
 	return (
-		<Container>
-			<div
-				style={
-					background
-						? {
-								background: `url(${background}) 50% 50% / cover no-repeat`,
-						  }
-						: {
-								backgroundColor: `#A33939`,
-						  }
-				}
-				className='flex flex-col items-center justify-center py-16 mt-5 mb-8 rounded-xl w-full bg-cover bg-center'
-			>
-				{children}
-			</div>
-		</Container>
+		<div
+			style={{
+				background: `url(${background ? background : "/images/Banner.png"}) 50% 50% / cover no-repeat`,
+			}}
+			className='flex flex-col items-center justify-center py-16 mt-5 mb-8 rounded-xl w-full bg-cover bg-center'
+		>
+			<h1 className={`${damion.className} text-3xl text-white text-center leading-[160%]`}>
+				{title}
+			</h1>
+		</div>
 	)
 }
