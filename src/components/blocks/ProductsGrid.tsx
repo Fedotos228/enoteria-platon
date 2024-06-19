@@ -12,7 +12,7 @@ export default function ProductsGrid() {
 		data &&
 		data.length && (
 			<section>
-				<SectionHeader title='Vinurile noastre' link='/' />
+				<SectionHeader title='Vinurile noastre' link='/shop' />
 
 				<Grid>
 					{data?.slice(0, 4).map((product: any) => (

@@ -1,17 +1,18 @@
 'use client'
 import useGetCategories from '@/hooks/queries/useGetCategories'
+import useGetFilteredProducts from '@/hooks/queries/useGetFilteredProducts'
 import { useActions } from '@/hooks/useActions'
 import { Checkbox } from '../ui/checkbox'
 
 export default function FilterSidebar() {
 	const { data: category } = useGetCategories()
 	const { toggleCategory, setFilters } = useActions()
+	const { refetch } = useGetFilteredProducts()
 
 	const handleSelectCategory = (slug: string) => {
 		toggleCategory(slug)
+		refetch()
 	}
-
-	console.log(category)
 
 	return (
 		<div>
@@ -41,12 +42,11 @@ export default function FilterSidebar() {
 											htmlFor={
 												subcategory.attributes.slug
 											}
-											className={`${
-												categorie.attributes.slug ===
+											className={`${categorie.attributes.slug ===
 												'coloare'
-													? `circle ${subcategory.attributes.slug}`
-													: ''
-											} text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+												? `circle ${subcategory.attributes.slug}`
+												: ''
+												} text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
 										>
 											{subcategory.attributes.title}
 										</label>
@@ -63,11 +63,11 @@ export default function FilterSidebar() {
 
 {
 	/* <li
-  className={` checkbox-control mb-2`}
-  key={subcategory.slug}
+	className={` checkbox-control mb-2`}
+	key={subcategory.slug}
 
 >
-  <input type='checkbox' id={subcategory.slug} onClick={() => handleSelectCategory(subcategory.slug)} />
-  <label className={` text-sm`} htmlFor={subcategory.slug}>{subcategory.name}</label>
+	<input type='checkbox' id={subcategory.slug} onClick={() => handleSelectCategory(subcategory.slug)} />
+	<label className={` text-sm`} htmlFor={subcategory.slug}>{subcategory.name}</label>
 </li> */
 }

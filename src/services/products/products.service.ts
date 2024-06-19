@@ -27,8 +27,6 @@ class ProductsService {
     return instance.get(`/products/${slug}?${productBySlugQuery}`)
   }
   async getProductsByCategory(category: string[]) {
-    console.log('category', category)
-
     return instance.get(`/products?${productByCategoryQuery(category)}`)
   }
 }
