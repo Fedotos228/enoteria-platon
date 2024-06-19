@@ -12,7 +12,7 @@ export default function Home() {
 			<Container>
 				<About />
 				<ProductsGrid />
-				<NewsGrid />
+				<NewsGrid sectionTitle='Noutati' sectionLink='/news' />
 			</Container>
 		</>
 	)

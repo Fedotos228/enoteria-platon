@@ -15,7 +15,7 @@ import {
 import { Skeleton } from '../ui/skeleton'
 
 export default function ShopGrid() {
-	const { data, isLoading, isFetched, isRefetching } = useGetFilteredProducts()
+	const { data, isLoading, isFetched } = useGetFilteredProducts()
 	const pagination: IPagination = data?.meta?.pagination
 	const productsData = data?.data
 
