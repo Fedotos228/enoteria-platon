@@ -3,10 +3,18 @@ import NewsCard from '../cards/NewsCard'
 import Grid from '../elements/Grid'
 import SectionHeader from '../elements/SectionHeader'
 
-export default function NewsGrid() {
+export default function NewsGrid({
+	sectionTitle,
+	sectionLink,
+	className,
+}: {
+	sectionTitle?: string
+	sectionLink?: string
+	className?: string
+}) {
 	return (
-		<section>
-			<SectionHeader title='Noutati' link='/' />
+		<section className={className}>
+			<SectionHeader title={sectionTitle} link={sectionLink} />
 
 			<Grid>
 				{news.slice(0, 8).map(item => (
