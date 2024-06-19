@@ -1,3 +1,10 @@
+import { Damion } from 'next/font/google'
+
+const damion = Damion({
+	weight: '400',
+	subsets: ['latin'],
+})
+
 export default function IntroductionTitle({
 	children,
 	className,
@@ -7,7 +14,7 @@ export default function IntroductionTitle({
 }) {
 	return (
 		<h1
-			className={`text-xl xs:text-2xl md:text-3xl text-white text-center font-semibold leading-[160%] ${className}`}
+			className={`${damion.className} text-2xl xs:text-4xl md:text-4xl text-white text-center font-semibold leading-[160%] ${className}`}
 		>
 			{children}
 		</h1>

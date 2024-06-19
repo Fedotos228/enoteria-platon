@@ -30,6 +30,7 @@ export default function ProductSiglePage({ params }: ProductSiglePageProps) {
 			<Introduction>
 				<IntroductionTitle>{title}</IntroductionTitle>
 			</Introduction>
+
 			<ProductSingle slug={params.slug} />
 		</Container>
 	)

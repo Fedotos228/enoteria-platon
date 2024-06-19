@@ -1,3 +1,4 @@
+import { Damion } from 'next/font/google'
 import ScrollBottomButton from '../elements/ScrollBottomButton'
 import { Button } from '../ui/button'
 
@@ -7,6 +8,11 @@ const heroBackground = {
 	backgroundPosition: 'center',
 }
 
+const damion = Damion({
+	weight: '400',
+	subsets: ['latin']
+})
+
 export default function Hero() {
 	return (
 		<div
@@ -14,7 +20,7 @@ export default function Hero() {
 			className='flex items-center justify-center h-screen w-full'
 		>
 			<div className='flex flex-col gap-8'>
-				<h1 className='text-4xl text-white text-center leading-[160%]'>
+				<h1 className={`${damion.className} text-4xl text-white text-center leading-[160%]`}>
 					A traditional winery & vineyard, <br />
 					enjoy the experience
 				</h1>
