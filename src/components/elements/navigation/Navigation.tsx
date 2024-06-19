@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { NAVIGATION_ITEMS } from '@/constants/navigation'
 import { X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 interface INavigationProps {
 	isOpen: boolean
@@ -14,6 +15,8 @@ export default function Navigation({
 	setIsOpen,
 	screenWidth,
 }: INavigationProps) {
+	const pathname = usePathname()
+
 	return (
 		<>
 			{screenWidth < 767 && (
@@ -39,15 +42,22 @@ export default function Navigation({
 						<X size={24} />
 					</Button>
 				)}
-				{NAVIGATION_ITEMS.map((item, i) => (
-					<Link
-						href={item.url}
-						key={i}
-						className='text-white hover:text-bordo-hover transition-colors duration-300 md:text-base text-lg md:text-background text-foreground'
-					>
-						{item.title}
-					</Link>
-				))}
+				{NAVIGATION_ITEMS.map(
+					(item, i) =>
+						item.url && (
+							<Link
+								href={item.url}
+								key={i}
+								className={`text-white hover:text-bordo-hover transition-colors duration-300 md:text-base text-lg md:text-background text-foreground ${
+									pathname === item.url
+										? 'font-semibold !text-bordo'
+										: ''
+								}`}
+							>
+								{item.title}
+							</Link>
+						),
+				)}
 			</nav>
 		</>
 	)
