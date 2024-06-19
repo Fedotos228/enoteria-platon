@@ -6,7 +6,7 @@ import { INews } from '../../types/data.types'
 export default function NewsCard(news: INews) {
 	return (
 		<Link href='/'>
-			<Card className='border-0 shadow-xl hover:scale-105 transition-transform duration-300'>
+			<Card className='border-0 shadow-xl hover:scale-[1.02] transition-transform duration-300'>
 				<Image
 					src={news.image}
 					alt={news.slug}

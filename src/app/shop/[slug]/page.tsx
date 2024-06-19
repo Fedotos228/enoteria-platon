@@ -1,5 +1,6 @@
-import Banner from '@/components/blocks/Banner'
+import Introduction from '@/components/blocks/Introduction'
 import ProductSingle from '@/components/blocks/ProductSingle'
+import IntroductionTitle from '@/components/elements/IntroductionTitle'
 import Container from '@/components/layout/Container'
 import { productsService } from '@/services/products/products.service'
 
@@ -26,7 +27,9 @@ export default function ProductSiglePage({ params }: ProductSiglePageProps) {
 
 	return (
 		<Container>
-			<Banner title={title} />
+			<Introduction>
+				<IntroductionTitle>{title}</IntroductionTitle>
+			</Introduction>
 			<ProductSingle slug={params.slug} />
 		</Container>
 	)

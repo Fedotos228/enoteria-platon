@@ -1,7 +1,8 @@
+import { cn } from '@/lib/utils'
 import { CirclePercent } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '../ui/button'
+import { Button, buttonVariants } from '../ui/button'
 import { Card, CardFooter } from '../ui/card'
 
 const backgroundImage = {
@@ -69,7 +70,16 @@ export default function ProductCard({ product }: any) {
 				{price_mdl ? (
 					<Button>Adaugă</Button>
 				) : (
-					<Button>Află prețul</Button>
+					<Link
+						href='/contacts'
+						className={`${cn(
+							buttonVariants({
+								variant: 'default',
+							}),
+						)} relative z-10`}
+					>
+						Află prețul
+					</Link>
 				)}
 				{/* <Button className='bg-green-700'>Adaugat (5)</Button> */}
 			</CardFooter>

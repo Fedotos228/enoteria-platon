@@ -1,4 +1,5 @@
 import Introduction from '@/components/blocks/Introduction'
+import IntroductionTitle from '@/components/elements/IntroductionTitle'
 import Socials from '@/components/elements/Socials'
 import { ContactForm } from '@/components/forms/ContactForm'
 import Container from '@/components/layout/Container'
@@ -15,9 +16,7 @@ export default function page() {
 	return (
 		<div className='mb-20'>
 			<Introduction background='/images/Banner.png'>
-				<h1 className='text-xl xs:text-2xl md:text-3xl text-white text-center leading-[160%]'>
-					Contacte
-				</h1>
+				<IntroductionTitle>Contacte</IntroductionTitle>
 			</Introduction>
 
 			<Container>
