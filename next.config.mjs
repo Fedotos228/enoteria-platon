@@ -16,6 +16,7 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'enoteria-platon-298abb099da9.herokuapp.com',
+				port: '1337',
 			},
 			{
 				protocol: 'https',
