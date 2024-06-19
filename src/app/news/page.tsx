@@ -1,6 +1,5 @@
 import Introduction from '@/components/blocks/Introduction'
 import NewsGrid from '@/components/blocks/NewsGrid'
-import IntroductionTitle from '@/components/elements/IntroductionTitle'
 import Container from '@/components/layout/Container'
 import {
 	Pagination,
@@ -13,11 +12,16 @@ import {
 } from '@/components/ui/pagination'
 
 export default function page() {
+
+	let content = {
+		title: 'Contacte',
+		background: {
+			data: null
+		}
+	}
 	return (
 		<>
-			<Introduction>
-				<IntroductionTitle>Noutăți</IntroductionTitle>
-			</Introduction>
+			<Introduction content={content} />
 
 			<Container className='mb-20'>
 				<NewsGrid className='mb-14' />
