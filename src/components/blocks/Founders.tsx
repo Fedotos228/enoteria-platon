@@ -1,26 +1,37 @@
-import { founders } from '@/constants/data'
+'use client'
+import { MediaType, imageStrapUrl } from '@/lib/utils'
+import { blocksService } from '@/services/blocks/blocks.service'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
+import Container from '../layout/Container'
+import BlockRendererClient from './BlockRendererClient'
 
 export default function Founders() {
+  const { data: founder } = useQuery({
+    queryKey: ['founder'],
+    queryFn: () => blocksService.getFounder(),
+    select: data => data.data.data.attributes
+  })
+
+  console.log(founder)
+
   return (
-    <>
-      <h2 className='mx-auto text-center mb-6'>Echipa</h2>
-      <div className='grid grid-cols-2 gap-5'>
+    <Container>
+      <div className='flex items-center gap-5'>
+        <div>
+          <h3>{founder?.name}</h3>
+          <p>{founder?.subtitle}</p>
+          <BlockRendererClient content={founder?.description} />
+        </div>
         {
-          founders.map(founders => (
-            <div className='flex items-center flex-col gap-4 bg-white rounded-2xl p-4 shadow-lg' key={founders.name}>
-              <Image
-                src={founders.image}
-                alt={founders.name}
-                width={550}
-                height={350}
-              />
-              <h2>{founders.name}</h2>
-              <p>{founders.position}</p>
-            </div>
-          ))
+          founder?.image && <Image
+            src={imageStrapUrl(founder?.image, MediaType.Single)}
+            alt={founder?.name}
+            width={600}
+            height={300}
+          />
         }
       </div>
-    </>
+    </Container>
   )
 }

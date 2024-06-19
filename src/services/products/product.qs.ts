@@ -15,7 +15,7 @@ export const homeProductQuery = qs.stringify(
 )
 
 export const productSlugQuery = qs.stringify({
-  fields: ['slug']
+  fields: ['title', 'slug']
 })
 
 export const productBySlugQuery = qs.stringify(
