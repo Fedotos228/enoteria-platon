@@ -36,7 +36,7 @@ export default function NewsGrid({
 			<SectionHeader title={sectionTitle} link={sectionLink} />
 
 			<Grid>
-				{news.slice(0, 8).map((item: any) => (
+				{news?.slice(0, 8).map((item: any) => (
 					<NewsCard key={item?.attributes?.slug} post={item?.attributes} />
 				))}
 			</Grid>

@@ -3,13 +3,41 @@ import { articlesQuery, articlesQueryBySlug, articlesQueryOnlySlugAndTitle } fro
 
 class NewsService {
   async getNews() {
-    return await instance.get(`/articles?${articlesQuery}`)
+    return await instance.get(`/news?${articlesQuery}`)
   }
   async getOnlySlugAnTitleNews() {
-    return await instance.get(`/articles?${articlesQueryOnlySlugAndTitle}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news?${articlesQueryOnlySlugAndTitle}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`
+      }
+    })
+
+    if (!res.ok) {
+      throw new Error('getOnlySlugAnTitleNews Failed to fetch')
+    }
+
+    return res.json()
   }
   async getNewsBySlug(slug: string) {
-    return instance.get(`/articles/${slug}?${articlesQueryBySlug}`)
+    return await instance.get(`/news/${slug}?${articlesQueryBySlug}`)
+  }
+
+  async getNewsBySlugFetch(slug: string) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${slug}?${articlesQueryBySlug}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`
+      }
+    })
+
+    if (!res.ok) {
+      throw new Error('getOnlySlugAnTitleNews Failed to fetch')
+    }
+
+    return res.json()
   }
 }
 

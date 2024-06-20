@@ -13,12 +13,12 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
-  const { data } = await newsService.getNewsBySlug(slug)
+  const { data } = await newsService.getNewsBySlugFetch(slug)
 
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: data.data.attributes.title,
+    title: data.attributes.title,
     // openGraph: {
     // 	images: ['/some-specific-page-image.jpg', ...previousImages],
     // },
@@ -28,11 +28,11 @@ export async function generateMetadata(
 export async function generateStaticParams() {
   const { data } = await newsService.getOnlySlugAnTitleNews()
 
-  return data.data.map((product: any) => ({
-    slug: product.attributes.slug,
+  return data.map((aricle: any) => ({
+    slug: aricle.attributes.slug,
   }))
 }
 
-export default function SingleProductLayout({ children }: PropsWithChildren<unknown>) {
+export default function SingleArticleLayout({ children }: PropsWithChildren<unknown>) {
   return children
 }
