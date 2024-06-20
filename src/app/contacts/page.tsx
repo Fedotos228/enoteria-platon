@@ -1,5 +1,4 @@
 import Introduction from '@/components/blocks/Introduction'
-import IntroductionTitle from '@/components/elements/IntroductionTitle'
 import Socials from '@/components/elements/Socials'
 import { ContactForm } from '@/components/forms/ContactForm'
 import Container from '@/components/layout/Container'
@@ -13,11 +12,17 @@ import {
 import { Mail, MapPin, PhoneCall } from 'lucide-react'
 
 export default function page() {
+	let content = {
+		title: 'Contacte',
+		background: {
+			data: null
+		}
+	}
+
+
 	return (
 		<div className='mb-20'>
-			<Introduction background='/images/Banner.png'>
-				<IntroductionTitle>Contacte</IntroductionTitle>
-			</Introduction>
+			<Introduction content={content} />
 
 			<Container>
 				<Card>

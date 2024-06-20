@@ -1,22 +1,9 @@
+'use client'
+
 import Introduction from '@/components/blocks/Introduction'
 import ProductSingle from '@/components/blocks/ProductSingle'
-import IntroductionTitle from '@/components/elements/IntroductionTitle'
 import Container from '@/components/layout/Container'
-import { productsService } from '@/services/products/products.service'
-
-export type ProductSiglePageProps = {
-	params: {
-		slug: string
-	}
-}
-
-export async function generateStaticParams() {
-	const { data } = await productsService.getProductsByFetch()
-
-	return data.map((product: any) => ({
-		slug: product.attributes.slug,
-	}))
-}
+import { ProductSiglePageProps } from './layout'
 
 export default function ProductSiglePage({ params }: ProductSiglePageProps) {
 	const title = params.slug
@@ -25,12 +12,17 @@ export default function ProductSiglePage({ params }: ProductSiglePageProps) {
 		.map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ')
 
+	let content = {
+		title: title,
+		background: {
+			data: null
+		}
+	}
+
+
 	return (
 		<Container>
-			<Introduction>
-				<IntroductionTitle>{title}</IntroductionTitle>
-			</Introduction>
-
+			<Introduction content={content} />
 			<ProductSingle slug={params.slug} />
 		</Container>
 	)

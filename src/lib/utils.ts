@@ -13,6 +13,7 @@ export function cn(...inputs: ClassValue[]) {
 export const isClient = typeof window !== 'undefined'
 
 export function imageStrapUrl(image: any, type: MediaType) {
+	if (!image) return ''
 	switch (type) {
 		case MediaType.Single:
 			return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url

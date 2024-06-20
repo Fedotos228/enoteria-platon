@@ -14,9 +14,15 @@ const nextConfig = {
 				port: '1337',
 			},
 			{
-				protocol: 'https',
-				hostname: 'enoteria-platon-298abb099da9.herokuapp.com',
+				protocol: 'http',
+				hostname: 'localhost',
 				port: '1337',
+			},
+			{
+				protocol: 'https',
+				hostname: '**.herokuapp.com',
+				port: '',
+				pathname: '/uploads/**',
 			},
 			{
 				protocol: 'https',

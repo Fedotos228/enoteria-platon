@@ -44,7 +44,7 @@ export default function ProductSingleDetails({ title, price, description, subcat
         </Button>
       </div>
       <BlockRendererClient
-        description={description}
+        content={description}
       />
       {/* <ul>
         {subcategories?.data?.map((category: any) => (
