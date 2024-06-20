@@ -3,15 +3,7 @@
 import useGetFilteredProducts from '@/hooks/queries/useGetFilteredProducts'
 import { IPagination } from '@/types/strapi.types'
 import ProductCard from '../cards/ProductCard'
-import {
-	Pagination,
-	PaginationContent,
-	PaginationEllipsis,
-	PaginationItem,
-	PaginationLink,
-	PaginationNext,
-	PaginationPrevious,
-} from '../ui/pagination'
+import PaginationComponent from '../elements/PaginationComponent'
 import { Skeleton } from '../ui/skeleton'
 
 export default function ShopGrid() {
@@ -59,7 +51,7 @@ export default function ShopGrid() {
 	}
 
 	return (
-		<div>
+		<section>
 			<div className='flex items-center justify-between gap-3 mb-8'>
 				<div className='flex items-center gap-4'>
 					<h5 className='cursor-pointer'>Vinuri</h5>
@@ -73,39 +65,9 @@ export default function ShopGrid() {
 				{content}
 			</>
 
-			{
-				content !== productsNotFound && (
-					<div className='mt-20'>
-						<Pagination>
-							<PaginationContent>
-								<PaginationItem>
-									<PaginationPrevious href='#' />
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationLink isActive href='#'>
-										1
-									</PaginationLink>
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationLink href='#'>2</PaginationLink>
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationEllipsis />
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationLink href='#'>3</PaginationLink>
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationLink href='#'>4</PaginationLink>
-								</PaginationItem>
-								<PaginationItem>
-									<PaginationNext href='#' />
-								</PaginationItem>
-							</PaginationContent>
-						</Pagination>
-					</div>
-				)
-			}
-		</div>
+			{content !== productsNotFound && (
+				<PaginationComponent />
+			)}
+		</section>
 	)
 }

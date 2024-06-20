@@ -4,6 +4,7 @@ import {
   BlocksRenderer,
   type BlocksContent,
 } from "@strapi/blocks-react-renderer"
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function BlockRendererClient({
@@ -15,7 +16,7 @@ export default function BlockRendererClient({
   return <BlocksRenderer
     content={content}
     blocks={{
-      paragraph: ({ children }) => <p className="max-w-prose">{children}</p>,
+      paragraph: ({ children }) => <p className="mb-3">{children}</p>,
       heading: ({ children, level }) => {
         switch (level) {
           case 1:
@@ -35,10 +36,23 @@ export default function BlockRendererClient({
         }
       },
       link: ({ children, url }) => <Link href={url}>{children}</Link>,
+      image: ({ image }) => {
+        console.log(image)
+        return (
+          <Image
+            src={image.url}
+            width={image.width}
+            height={image.height}
+            alt={image.alternativeText || ""}
+            className='mx-auto mb-5'
+          />
+        )
+      },
     }}
     modifiers={{
       bold: ({ children }) => <strong>{children}</strong>,
       italic: ({ children }) => <span className="italic">{children}</span>,
     }}
+
   />
 }
