@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 export default function ShopPage() {
 	const { data } = useQuery({
 		queryKey: ['shop'],
-		queryFn: () => blocksService.getShop(),
+		queryFn: () => blocksService.getPage('shop'),
 		select: data => data.data.data.attributes
 	})
 
