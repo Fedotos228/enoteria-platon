@@ -1,6 +1,6 @@
 'use client'
 
-import { contacts, NAVIGATION_ITEMS } from '@/constants/navigation'
+import { NAVIGATION_ITEMS } from '@/constants/navigation'
 import { blocksService } from '@/services/blocks/blocks.service'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
