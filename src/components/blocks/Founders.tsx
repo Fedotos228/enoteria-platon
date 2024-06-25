@@ -13,14 +13,12 @@ export default function Founders() {
     select: data => data.data.data.attributes
   })
 
-  console.log(founder)
-
   return (
     <Container>
       <div className='flex items-center gap-5'>
         <div>
-          <h3>{founder?.name}</h3>
-          <p>{founder?.subtitle}</p>
+          <h3 className='mb-2'>{founder?.name}</h3>
+          <p className='text-gray-500 mb-4'>{founder?.subtitle}</p>
           <BlockRendererClient content={founder?.description} />
         </div>
         {

@@ -13,7 +13,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
-  const { data } = await newsService.getNewsBySlugFetch(slug)
+  const { data } = await newsService.getNewsMeta(slug)
 
   const previousImages = (await parent).openGraph?.images || []
 
@@ -26,7 +26,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const { data } = await newsService.getOnlySlugAnTitleNews()
+  const { data } = await newsService.getNewsSlugAndTitle()
 
   return data.map((aricle: any) => ({
     slug: aricle.attributes.slug,

@@ -16,7 +16,7 @@ export default function ShopPage() {
 
 	return (
 		<>
-			<Introduction content={data?.components[0]} />
+			<Introduction content={data?.introdunction} />
 			<Container>
 				<div className='shop-grid mb-20'>
 					<FilterSidebar />
