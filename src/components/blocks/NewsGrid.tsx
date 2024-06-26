@@ -19,14 +19,18 @@ export default function NewsGrid({
 	className?: string
 }) {
 	const pathname = usePathname()
+	const newsPage = pathname.includes('/news')
 	const { data, isLoading } = useGetNews()
 	const { data: news, meta } = data || {}
 	const { pagination } = meta || {}
 
 	if (isLoading) return <Loader loading={isLoading} />
 
+	let slicedNewsGrid = news?.slice(0, 4)
+
+
 	if (pathname.includes('/news')) {
-		// fa control ca pe home sa apara doar 4 si pe /news mai multe
+		slicedNewsGrid = news
 	}
 
 	if (!news) return null
@@ -36,12 +40,12 @@ export default function NewsGrid({
 			<SectionHeader title={sectionTitle} link={sectionLink} />
 
 			<Grid>
-				{news?.slice(0, 8).map((item: any) => (
+				{slicedNewsGrid.map((item: any) => (
 					<NewsCard key={item?.attributes?.slug} post={item?.attributes} />
 				))}
 			</Grid>
 
-			<PaginationComponent />
+			{newsPage && news.lenght > 8 && <PaginationComponent />}
 		</section>
 	)
 }

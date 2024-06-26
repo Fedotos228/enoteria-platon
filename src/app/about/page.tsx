@@ -17,7 +17,6 @@ export default function AbouPage() {
 
 
 	const sectionComponents: { [key: string]: React.ComponentType<any> } = {
-		'blocks.introduction': Introduction,
 		'blocks.simple-block': SimpleBlock,
 	}
 
@@ -28,7 +27,7 @@ export default function AbouPage() {
 				const Component = sectionComponents[blocks.__component]
 				return Component ? <Component key={index} content={blocks} /> : null
 			})}
-			<Founders />
+			<Founders classname='mt-10' />
 		</>
 	)
 }

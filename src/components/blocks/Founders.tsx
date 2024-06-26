@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Container from '../layout/Container'
 import BlockRendererClient from './BlockRendererClient'
 
-export default function Founders() {
+export default function Founders({ classname }: { classname?: string }) {
   const { data: founder } = useQuery({
     queryKey: ['founder'],
     queryFn: () => blocksService.getFounder(),
@@ -14,22 +14,24 @@ export default function Founders() {
   })
 
   return (
-    <Container>
-      <div className='flex items-center gap-5'>
-        <div>
-          <h3 className='mb-2'>{founder?.name}</h3>
-          <p className='text-gray-500 mb-4'>{founder?.subtitle}</p>
-          <BlockRendererClient content={founder?.description} />
+    <div className={classname}>
+      <Container>
+        <div className='flex items-center gap-5'>
+          <div>
+            <h3 className='mb-2'>{founder?.name}</h3>
+            <p className='text-gray-500 mb-4'>{founder?.subtitle}</p>
+            <BlockRendererClient content={founder?.description} />
+          </div>
+          {
+            founder?.image && <Image
+              src={imageStrapUrl(founder?.image, MediaType.Single)}
+              alt={founder?.name}
+              width={600}
+              height={300}
+            />
+          }
         </div>
-        {
-          founder?.image && <Image
-            src={imageStrapUrl(founder?.image, MediaType.Single)}
-            alt={founder?.name}
-            width={600}
-            height={300}
-          />
-        }
-      </div>
-    </Container>
+      </Container>
+    </div>
   )
 }
