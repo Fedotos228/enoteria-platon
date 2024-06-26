@@ -2,10 +2,10 @@
 
 import Introduction from "@/components/blocks/Introduction"
 import Container from "@/components/layout/Container"
-import ProductSingle from "@/components/single/ProductSingle"
 import { ProductSiglePageProps } from "./layout"
+import MerchSingle from '@/components/single/MerchSingle'
 
-export default function ProductSiglePage({ params }: ProductSiglePageProps) {
+export default function MerchSiglePage({ params }: ProductSiglePageProps) {
   const title = params.slug
     .replace(/-/g, " ")
     .split(" ")
@@ -23,7 +23,7 @@ export default function ProductSiglePage({ params }: ProductSiglePageProps) {
     <>
       <Introduction content={content} />
       <Container>
-        <ProductSingle slug={params.slug} />
+        <MerchSingle slug={params.slug} />
       </Container>
     </>
   )

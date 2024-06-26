@@ -1,21 +1,23 @@
-import { cn } from "@/lib/utils";
-import { CirclePercent } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button, buttonVariants } from "../ui/button";
-import { Card, CardFooter } from "../ui/card";
+import { cn } from "@/lib/utils"
+import { CirclePercent } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button, buttonVariants } from "../ui/button"
+import { Card, CardFooter } from "../ui/card"
 
 const backgroundImage = {
   backgroundImage: "url(/images/bg.png)",
   backgroundSize: "cover",
   backgroundPosition: "center",
   overflow: "hidden",
-};
+}
 
-export default function ProductCard({ product }: any) {
-  const { title, price_mdl, thumbnail, discount, slug } = product.attributes;
+export default function ProductCard({ product, type }: any) {
+  if (!product) return null
 
-  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl;
+  const { title, price_mdl, thumbnail, discount, slug } = product.attributes
+
+  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl
 
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
@@ -41,7 +43,7 @@ export default function ProductCard({ product }: any) {
           </div>
         )}
       </div>
-      <Link href={`shop/${slug}`} className="after:absolute after:inset-0">
+      <Link href={`${type}/${slug}`} className="after:absolute after:inset-0">
         <h6 className="m-4">{title}</h6>
       </Link>
       <CardFooter className="flex-wrap justify-between gap-2">
@@ -73,5 +75,5 @@ export default function ProductCard({ product }: any) {
         {/* <Button className='bg-green-700'>Adaugat (5)</Button> */}
       </CardFooter>
     </Card>
-  );
+  )
 }
