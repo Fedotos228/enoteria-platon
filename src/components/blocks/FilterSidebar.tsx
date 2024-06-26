@@ -3,7 +3,7 @@ import useGetCategories from "@/hooks/queries/useGetCategories";
 import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts";
 import { useActions } from "@/hooks/useActions";
 import useScreenSize from "@/hooks/useScreenSize";
-import { ListRestart, SlidersHorizontal, TextSearch } from "lucide-react";
+import { SlidersHorizontal, TextSearch } from "lucide-react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet";
@@ -18,13 +18,6 @@ export default function FilterSidebar() {
     toggleCategory(slug);
     refetch();
   };
-
-  const clearFilters = () => {
-    setFilters([]);
-    refetch();
-  };
-
-  console.log(category);
 
   return width > 767 ? (
     <div>
@@ -44,6 +37,7 @@ export default function FilterSidebar() {
                     <Checkbox
                       id={subcategory.attributes.slug}
                       className="border border-[#FFFFFF]/80 bg-[#E1D7D3]"
+                      checked={subcategory.attributes.slug}
                       onClick={() =>
                         handleSelectCategory(subcategory.attributes.slug)
                       }
@@ -67,61 +61,64 @@ export default function FilterSidebar() {
       </div>
     </div>
   ) : (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" className="gap-3">
-          <SlidersHorizontal size={20} />
-          Filtre
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="flex flex-col">
-        <div className="flex-1">
-          {category?.map((categorie: any) => (
-            <div key={categorie.attributes.slug} className="mb-7">
-              <h5 className="mb-3">{categorie.attributes.title}</h5>
+    <>
+      <span></span>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="gap-3 md:hidden">
+            <SlidersHorizontal size={20} />
+            Filtre
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="flex flex-col">
+          <div className="flex-1">
+            {category?.map((categorie: any) => (
+              <div key={categorie.attributes.slug} className="mb-7">
+                <h5 className="mb-3">{categorie.attributes.title}</h5>
 
-              <ul>
-                {categorie?.attributes?.subcategories.data.map(
-                  (subcategory: any) => (
-                    <li
-                      key={subcategory.attributes.slug}
-                      className="mb-3 flex items-center space-x-2"
-                    >
-                      <Checkbox
-                        id={subcategory.attributes.slug}
-                        className="border border-[#FFFFFF]/80 bg-[#E1D7D3]"
-                        onClick={() =>
-                          toggleCategory(subcategory.attributes.slug)
-                        }
-                      />
-                      <label
-                        htmlFor={subcategory.attributes.slug}
-                        className={`${
-                          categorie.attributes.slug === "coloare"
-                            ? `circle ${subcategory.attributes.slug}`
-                            : ""
-                        } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+                <ul>
+                  {categorie?.attributes?.subcategories.data.map(
+                    (subcategory: any) => (
+                      <li
+                        key={subcategory.attributes.slug}
+                        className="mb-3 flex items-center space-x-2"
                       >
-                        {subcategory.attributes.title}
-                      </label>
-                    </li>
-                  ),
-                )}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <SheetFooter className="sticky bottom-0 flex-row gap-2">
-          <Button className="flex-1" onClick={() => refetch()}>
-            <TextSearch size={20} />
-            Caută
-          </Button>
-          <Button variant="outline" size="icon" onClick={clearFilters}>
+                        <Checkbox
+                          id={subcategory.attributes.slug}
+                          className="border border-[#FFFFFF]/80 bg-[#E1D7D3]"
+                          onClick={() =>
+                            toggleCategory(subcategory.attributes.slug)
+                          }
+                        />
+                        <label
+                          htmlFor={subcategory.attributes.slug}
+                          className={`${
+                            categorie.attributes.slug === "coloare"
+                              ? `circle ${subcategory.attributes.slug}`
+                              : ""
+                          } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+                        >
+                          {subcategory.attributes.title}
+                        </label>
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <SheetFooter className="sticky bottom-0 flex-row gap-2">
+            <Button className="flex-1" onClick={() => refetch()}>
+              <TextSearch size={20} />
+              Caută
+            </Button>
+            {/* <Button variant="outline" size="icon" onClick={clearFilters}>
             <ListRestart size={20} />
-          </Button>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+          </Button> */}
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }
 

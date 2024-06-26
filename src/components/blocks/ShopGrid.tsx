@@ -14,7 +14,7 @@ export default function ShopGrid() {
   const loading = isLoading || !isFetched;
 
   const loadingSkeleton = (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
       {Array.from({ length: 6 }).map((_, i) => (
         <Skeleton key={i} className="h-[400px] w-full" />
       ))}
@@ -59,9 +59,13 @@ export default function ShopGrid() {
           <span>|</span>
           <h5 className="cursor-pointer opacity-40">Merchandise</h5>
         </div>
-        <p>
-          Afișez {pagination?.total} din {pagination?.pageSize} de produse
-        </p>
+        {pagination ? (
+          <p>
+            Afișez {pagination?.total} din {pagination?.pageSize} de produse
+          </p>
+        ) : (
+          <Skeleton className="h-6 w-48" />
+        )}
       </div>
 
       {content}
