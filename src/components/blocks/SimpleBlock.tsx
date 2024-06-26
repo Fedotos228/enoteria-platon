@@ -6,6 +6,8 @@ import BlockRendererClient from './BlockRendererClient'
 export default function SimpleBlock({ content }: any) {
   const { title, description, image } = content
 
+  if (!content) return null
+
   return (
     <Container>
       <div className='flex items-center gap-5'>

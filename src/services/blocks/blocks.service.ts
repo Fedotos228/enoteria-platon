@@ -12,14 +12,11 @@ const foundersQuery = qs.stringify(
 )
 
 class BlocksService {
-  async getAboutBlocks() {
-    return await instance.get(`/about?populate=deep`)
-  }
   async getFounder() {
     return await instance.get(`/founder?${foundersQuery}`)
   }
-  async getShop() {
-    return await instance.get(`/shop?populate=deep`)
+  async getPage(page: string) {
+    return await instance.get(`/${page}?populate=deep`)
   }
 }
 

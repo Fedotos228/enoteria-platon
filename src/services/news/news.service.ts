@@ -5,7 +5,7 @@ class NewsService {
   async getNews() {
     return await instance.get(`/news?${articlesQuery}`)
   }
-  async getOnlySlugAnTitleNews() {
+  async getNewsSlugAndTitle() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news?${articlesQueryOnlySlugAndTitle}`, {
       method: 'GET',
       headers: {
@@ -24,7 +24,7 @@ class NewsService {
     return await instance.get(`/news/${slug}?${articlesQueryBySlug}`)
   }
 
-  async getNewsBySlugFetch(slug: string) {
+  async getNewsMeta(slug: string) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${slug}?${articlesQueryBySlug}`, {
       method: 'GET',
       headers: {

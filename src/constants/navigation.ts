@@ -1,42 +1,42 @@
 export interface INavigation {
 	title: string
-	url: string
+	href: string
 }
 
 export const NAVIGATION_ITEMS: INavigation[] = [
 	{
 		title: 'Acasă',
-		url: '/',
+		href: '/',
 	},
 	{
 		title: 'Despre noi',
-		url: '/about',
+		href: '/about',
 	},
 	{
 		title: 'Shop',
-		url: '/shop',
+		href: '/shop',
 	},
 	{
 		title: 'Noutăți',
-		url: '/news',
+		href: '/news',
 	},
 	{
 		title: 'Contacte',
-		url: '/contacts',
+		href: '/contacts',
 	},
 ]
 
 export const contacts: INavigation[] = [
 	{
 		title: '+373 6515211',
-		url: 'tel:+3736515211',
+		href: 'tel:+3736515211',
 	},
 	{
 		title: 'hello@enoteriaplaton.com',
-		url: 'mailto:hello@enoteriaplaton.com',
+		href: 'mailto:hello@enoteriaplaton.com',
 	},
 	{
 		title: 'str. Mihai Eminescu 12, Chișinău',
-		url: 'https://goo.gl/maps/6b9vWmzZ8zJ2',
+		href: 'https://goo.gl/maps/6b9vWmzZ8zJ2',
 	},
 ]
