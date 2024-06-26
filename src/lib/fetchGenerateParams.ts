@@ -14,7 +14,7 @@ export async function fetchGenerateParams(req: string) {
   })
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data")
+    throw new Error("Failed to fetch data to generate params")
   }
 
   return res.json()

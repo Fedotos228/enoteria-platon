@@ -14,7 +14,7 @@ export async function fetchSlugForMeta(req: string, slug: string) {
   })
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data")
+    throw new Error("Failed to fetch data for meta")
   }
 
   return res.json()
