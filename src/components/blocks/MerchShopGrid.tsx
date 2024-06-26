@@ -33,11 +33,19 @@ export default function MerchShopGrid() {
       <div>
 
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
-        {merch?.data.map((product: any) => (
-          <ProductCard key={product.attributes.slug} product={product} type='merch' />
-        ))}
-      </div>
+      {
+        merch?.data.length === 0 ? (
+          <h3 className="max-w-full text-center font-medium">
+            Nu am găsit niciun produs
+          </h3>
+        ) : (
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
+            {merch?.data.map((product: any) => (
+              <ProductCard key={product.attributes.slug} product={product} type='merch' />
+            ))}
+          </div>
+        )
+      }
     </div>
   )
 }
