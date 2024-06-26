@@ -1,11 +1,6 @@
-import qs from 'qs'
-
-export const slugQuery = qs.stringify({
-  fields: ['title', 'slug']
-})
 
 export async function fetchGenerateParams(req: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${req}?${slugQuery}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${req}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
