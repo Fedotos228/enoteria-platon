@@ -3,7 +3,7 @@ import useGetCategories from "@/hooks/queries/useGetCategories";
 import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts";
 import { useActions } from "@/hooks/useActions";
 import useScreenSize from "@/hooks/useScreenSize";
-import { ListRestart, SlidersHorizontal, TextSearch } from "lucide-react";
+import { SlidersHorizontal, TextSearch } from "lucide-react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet";
@@ -18,13 +18,6 @@ export default function FilterSidebar() {
     toggleCategory(slug);
     refetch();
   };
-
-  const clearFilters = () => {
-    setFilters([]);
-    refetch();
-  };
-
-  console.log(category);
 
   return width > 767 ? (
     <div>
@@ -44,6 +37,7 @@ export default function FilterSidebar() {
                     <Checkbox
                       id={subcategory.attributes.slug}
                       className="border border-[#FFFFFF]/80 bg-[#E1D7D3]"
+                      checked={subcategory.attributes.slug}
                       onClick={() =>
                         handleSelectCategory(subcategory.attributes.slug)
                       }
@@ -116,9 +110,9 @@ export default function FilterSidebar() {
             <TextSearch size={20} />
             Caută
           </Button>
-          <Button variant="outline" size="icon" onClick={clearFilters}>
+          {/* <Button variant="outline" size="icon" onClick={clearFilters}>
             <ListRestart size={20} />
-          </Button>
+          </Button> */}
         </SheetFooter>
       </SheetContent>
     </Sheet>
