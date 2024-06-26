@@ -14,7 +14,7 @@ export default function Founders({ classname }: { classname?: string }) {
   })
 
   return (
-    <div className={classname}>
+    <section className={classname}>
       <Container>
         <div className='flex items-center gap-5'>
           <div>
@@ -32,6 +32,6 @@ export default function Founders({ classname }: { classname?: string }) {
           }
         </div>
       </Container>
-    </div>
+    </section>
   )
 }

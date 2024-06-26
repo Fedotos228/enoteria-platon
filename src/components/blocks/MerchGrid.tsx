@@ -5,9 +5,10 @@ export default function MerchGrid() {
   return (
     <section>
       <SectionHeader title="Merchandiseul" link='/' />
-
       <Grid>
-        <div></div>
+        <div>
+
+        </div>
       </Grid>
     </section>
   )

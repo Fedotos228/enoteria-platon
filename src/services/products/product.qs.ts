@@ -8,6 +8,10 @@ export const homeProductQuery = qs.stringify(
         fields: ['url'],
       },
     },
+    pagination: {
+      page: 1,
+      pageSize: 4
+    }
   },
   {
     encodeValuesOnly: true, // prettify URL

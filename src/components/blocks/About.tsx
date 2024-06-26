@@ -27,12 +27,13 @@ export default function About({ content }: Props) {
 	const { title, description, image } = content
 
 	return (
-		<section className='flex items-center gap-5'>
+		<section className='grid grid-cols-[480px_1fr] items-center gap-5'>
 			<Image
 				src={imageStrapUrl(image, MediaType.Single)}
 				alt='Vineyard'
-				width={315}
-				height={315}
+				width={580}
+				height={580}
+				className='max-w-[580px] w-full'
 			/>
 			<div>
 				<h2 className='mb-5'>

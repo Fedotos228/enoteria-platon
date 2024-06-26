@@ -1,4 +1,5 @@
 import { Damion } from 'next/font/google'
+import Link from 'next/link'
 import ScrollBottomButton from '../elements/ScrollBottomButton'
 import { Button } from '../ui/button'
 
@@ -26,7 +27,9 @@ export default function Hero() {
 				</h1>
 
 				<Button className='text-base w-fit mx-auto' size='lg'>
-					Vinurile noastre
+					<Link href='/shop'>
+						Vinurile noastre
+					</Link>
 				</Button>
 			</div>
 			<ScrollBottomButton />

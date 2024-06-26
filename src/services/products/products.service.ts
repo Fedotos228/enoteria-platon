@@ -1,9 +1,9 @@
 import { instance } from '../api/axios'
-import { productByCategoryQuery, productBySlugQuery, productSlugQuery } from './product.qs'
+import { homeProductQuery, productByCategoryQuery, productBySlugQuery, productSlugQuery } from './product.qs'
 
 class ProductsService {
   async getProducts() {
-    return ''
+    return instance.get(`/products?${homeProductQuery}`)
   }
   async getProductsBySlug(slug: string) {
     return instance.get(`/products/${slug}`)

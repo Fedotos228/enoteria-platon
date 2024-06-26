@@ -25,10 +25,10 @@ export default function Home() {
 			<Hero />
 			<Container>
 				<About content={data?.simpleBlock} />
-				<Founders />
 				<ProductsGrid />
-				<NewsLetter />
+				<Founders />
 				<NewsGrid sectionTitle='Noutati' sectionLink='/news' />
+				<NewsLetter />
 			</Container>
 		</>
 	)
