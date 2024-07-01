@@ -15,7 +15,7 @@ export default function Cart() {
 
 	useEffect(() => {
 		calculateTotal()
-	}, [products])
+	}, [products, calculateTotal])
 
 	console.log(products)
 

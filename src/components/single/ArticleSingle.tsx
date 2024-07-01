@@ -47,7 +47,7 @@ export default function ArticleSingle({ slug }: { slug: string }) {
           >
             {
               data?.attributes?.gallery.data.map((image: any) => (
-                <SwiperSlide>
+                <SwiperSlide key={image.id}>
                   <Image
                     src={imageStrapUrl(image, MediaType.Multiple)}
                     alt={data?.attributes?.slug}

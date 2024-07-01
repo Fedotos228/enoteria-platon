@@ -20,7 +20,7 @@ export const articlesQueryBySlug = qs.stringify({
       fields: ['url'],
     },
     gallery: {
-      fields: ['url'],
+      fields: ['id', 'url'],
     }
   }
 })

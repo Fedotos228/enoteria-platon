@@ -1,3 +1,5 @@
+'use client'
+
 import { useActions } from '@/hooks/useActions'
 import { cn } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
@@ -14,8 +16,8 @@ const backgroundImage = {
 }
 
 export default function ProductCard({ product, type }: any) {
-  if (!product) return null
   const { addCart } = useActions()
+  if (!product) return null
 
   const { title, price_mdl, thumbnail, discount, slug } = product.attributes
 
