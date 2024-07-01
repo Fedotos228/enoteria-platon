@@ -18,6 +18,9 @@ export const articlesQueryBySlug = qs.stringify({
   populate: {
     image: {
       fields: ['url'],
+    },
+    gallery: {
+      fields: ['url'],
     }
   }
 })

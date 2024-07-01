@@ -3,7 +3,7 @@ import { allMerchQuery, homeMerchQuery, merchSlugQuery } from './merch.qs'
 
 class MerchService {
   async getHomeMerch() {
-    return await instance.get(`/merchandises${homeMerchQuery}`)
+    return await instance.get(`/merchandises?${homeMerchQuery}`)
   }
 
   async getAllMerch() {

@@ -1,3 +1,4 @@
+import { useActions } from '@/hooks/useActions'
 import { cn } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
 import Image from "next/image"
@@ -14,6 +15,7 @@ const backgroundImage = {
 
 export default function ProductCard({ product, type }: any) {
   if (!product) return null
+  const { addCart } = useActions()
 
   const { title, price_mdl, thumbnail, discount, slug } = product.attributes
 
@@ -59,7 +61,12 @@ export default function ProductCard({ product, type }: any) {
           )}
         </div>
         {price_mdl ? (
-          <Button className="relative z-10 ml-auto">Adaugă</Button>
+          <Button
+            className="relative z-10 ml-auto"
+            onClick={() => addCart(product.attributes)}
+          >
+            Adaugă
+          </Button>
         ) : (
           <Link
             href="/contacts"

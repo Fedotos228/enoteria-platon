@@ -6,13 +6,16 @@ import Image from 'next/image'
 import Loader from '../elements/Loader'
 import ProductGallery from '../elements/ProductGallery'
 import { Card } from '../ui/card'
+import MerchSingleDetails from '../blocks/MerchSingleDetails'
 
 export default function MerchSingle({ slug }: { slug: string }) {
   const { data: merch, isLoading } = useMerchBySlug(slug)
   if (isLoading) return <Loader loading={isLoading} />
 
 
-  const { title, gallery, thumbnail, subcategories, description, price_mdl } = merch
+  const { title, gallery, price_mdl, discount, thumbnail, colors, sizes } = merch
+
+  console.log(merch)
 
   return (
     <Card className='p-4'>
@@ -29,6 +32,7 @@ export default function MerchSingle({ slug }: { slug: string }) {
             />
           )
         )}
+        <MerchSingleDetails title={title} price={price_mdl} discount={discount} colors={colors} sizes={sizes} />
       </div>
     </Card>
   )

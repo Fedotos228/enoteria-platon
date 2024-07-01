@@ -7,7 +7,7 @@ export default function Loader({
 	loading,
 	theme = 'light',
 }: {
-	loading: boolean
+	loading?: boolean
 	theme?: 'light' | 'dark' | 'universal'
 }) {
 	useEffect(() => {

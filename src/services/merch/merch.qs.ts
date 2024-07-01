@@ -31,6 +31,8 @@ export const merchSlugQuery = qs.stringify({
     gallery: {
       fields: ['id', 'url'],
     },
+    colors: '*',
+    sizes: '*',
   },
   encodeValuesOnly: true,
 })

@@ -15,14 +15,14 @@ export default function ShopToggler() {
     <div className="flex items-center gap-4">
       {
         links.map((link, i) => (
-          <>
-            <h5 key={link.slug} className={`cursor-pointer text-black ${pathname !== link.href && 'opacity-40'}`}>
+          <div key={link.slug} className='flex gap-4'>
+            <h5 className={`cursor-pointer text-black ${pathname !== link.href && 'opacity-40'}`}>
               <Link href={link.href}>
                 {link.title}
               </Link>
             </h5>
             {i === 0 && <span>|</span>}
-          </>
+          </div>
         ))
       }
     </div>

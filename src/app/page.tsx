@@ -3,6 +3,7 @@
 import About from '@/components/blocks/About'
 import Founders from '@/components/blocks/Founders'
 import Hero from '@/components/blocks/Hero'
+import MerchGrid from '@/components/blocks/MerchGrid'
 import NewsGrid from '@/components/blocks/NewsGrid'
 import NewsLetter from '@/components/blocks/NewsLetter'
 import ProductsGrid from '@/components/blocks/ProductsGrid'
@@ -29,6 +30,7 @@ export default function Home() {
 				<Founders />
 				<NewsGrid sectionTitle='Noutati' sectionLink='/news' />
 				<NewsLetter />
+				<MerchGrid />
 			</Container>
 		</>
 	)

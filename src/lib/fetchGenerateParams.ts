@@ -8,8 +8,6 @@ export async function fetchGenerateParams(req: string) {
     }
   })
 
-  console.log(res)
-
   if (!res.ok) {
     throw new Error("Failed to fetch data to generate params")
   }
