@@ -16,6 +16,7 @@ export default function SimpleBlock({ content }: any) {
           alt={title}
           width={600}
           height={300}
+          className='max-w-[580px] w-full'
         />}
         <div>
           <BlockRendererClient content={description} />

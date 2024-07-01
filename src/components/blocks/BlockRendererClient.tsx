@@ -37,7 +37,6 @@ export default function BlockRendererClient({
       },
       link: ({ children, url }) => <Link href={url}>{children}</Link>,
       image: ({ image }) => {
-        console.log(image)
         return (
           <Image
             src={image.url}

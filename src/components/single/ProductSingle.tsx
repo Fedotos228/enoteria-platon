@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import useProductBySlug from "@/hooks/queries/useProductBySlug";
-import { MediaType, imageStrapUrl } from "@/lib/utils";
-import Image from "next/image";
-import Loader from "../elements/Loader";
-import ProductGallery from "../elements/ProductGallery";
-import { Card } from "../ui/card";
-import ProductSingleDetails from "./ProductSingleDetails";
-import ProductsGrid from "./ProductsGrid";
+import useProductBySlug from "@/hooks/queries/useProductBySlug"
+import { MediaType, imageStrapUrl } from "@/lib/utils"
+import Image from "next/image"
+import ProductSingleDetails from "../blocks/ProductSingleDetails"
+import ProductsGrid from "../blocks/ProductsGrid"
+import Loader from "../elements/Loader"
+import ProductGallery from "../elements/ProductGallery"
+import { Card } from "../ui/card"
 
 export default function ProductSingle({ slug }: { slug: string }) {
-  const { data: product, isLoading } = useProductBySlug(slug);
-  if (isLoading) return <Loader loading={isLoading} />;
+  const { data: product, isLoading } = useProductBySlug(slug)
+  if (isLoading) return <Loader loading={isLoading} />
 
   const { title, gallery, thumbnail, subcategories, description, price_mdl } =
-    product?.attributes;
+    product?.attributes
 
   return (
     <Card className="p-4">
@@ -42,5 +42,5 @@ export default function ProductSingle({ slug }: { slug: string }) {
       {/* TIPA AICI ARUNCI CA PROPS PRODUSELE CARE SA SE AFISEZE */}
       {/* <ProductsGrid products={relatedProducts} sectionTitle='Produse asemănătoare'/> */}
     </Card>
-  );
+  )
 }

@@ -14,7 +14,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
-  const { data } = await fetchSlugForMeta('products', slug)
+  const { data } = await fetchSlugForMeta('merchandises', slug)
 
   const previousImages = (await parent).openGraph?.images || []
 
@@ -27,13 +27,13 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const { data } = await fetchGenerateParams('products')
+  const { data } = await fetchGenerateParams('merchandises')
 
   return data.map((product: any) => ({
     slug: product.attributes.slug,
   }))
 }
 
-export default function SingleProductLayout({ children }: PropsWithChildren<unknown>) {
+export default function SingleMerchLayout({ children }: PropsWithChildren<unknown>) {
   return children
 }

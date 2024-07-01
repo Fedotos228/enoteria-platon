@@ -1,11 +1,23 @@
+'use client'
+
+import { useActions } from '@/hooks/useActions'
 import { formatMDLPrice } from '@/lib/utils'
+import { useAppSelector } from '@/store/store'
 import { ShoppingCart, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import CartProduct from '../cards/CartProduct'
 import { Button } from '../ui/button'
 
 export default function Cart() {
+	const { products, total, amount } = useAppSelector(state => state.cart)
 	const [cartOpen, setCartOpen] = useState<boolean>(false)
+	const { clearCart, calculateTotal } = useActions()
+
+	useEffect(() => {
+		calculateTotal()
+	}, [products, calculateTotal])
+
+	console.log(products)
 
 	const toggleCart = () => {
 		setCartOpen(!cartOpen)
@@ -20,28 +32,31 @@ export default function Cart() {
 	}, [cartOpen])
 
 	return (
-		<div className=''>
+		<div >
 			<Button
-				className='text-background hover:bg-accent/10 hover:text-accent'
+				className='relative text-background hover:bg-accent/10 hover:text-accent'
 				variant='ghost'
 				size='icon'
 				onClick={toggleCart}
 			>
 				<ShoppingCart />
+				{amount > 0 && (
+					<span className='absolute top-0 right-0 bg-bordo rounded-full w-5 h-5 !text-white text-sm text-center'>
+						{amount}
+					</span>
+				)}
 			</Button>
 
 			<>
 				<div
 					onClick={toggleCart}
-					className={`fixed inset-0 backdrop-blur-md transition-all z-30 duration-300 bg-opacity-75 ${
-						cartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-					}`}
+					className={`fixed inset-0 backdrop-blur-md transition-all z-30 duration-300 bg-opacity-75 ${cartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+						}`}
 				></div>
 
 				<div
-					className={`pointer-events-none transition-all duration-300 fixed z-50 inset-y-0 flex max-w-full xs:max-w-lg bg-background ${
-						cartOpen ? 'right-0' : '-right-full xs:-right-[512px]'
-					}`}
+					className={`pointer-events-none transition-all duration-300 fixed z-50 inset-y-0 flex max-w-full xs:max-w-lg bg-background ${cartOpen ? 'right-0' : '-right-full xs:-right-[512px]'
+						}`}
 				>
 					<div className='pointer-events-auto w-full flex h-full flex-col overflow-y-scroll shadow-xl'>
 						<div className='flex-1 overflow-y-auto p-4 sm:px-6'>
@@ -66,7 +81,17 @@ export default function Cart() {
 										role='list'
 										className='-my-6 divide-y divide-gray-200'
 									>
-										<CartProduct />
+										{
+											products.length > 0 ? (
+												products?.map(product => (
+													<CartProduct key={product.slug} product={product} />
+												))
+											) : (
+												<p className='text-center text-muted-foreground'>
+													Coșul este gol
+												</p>
+											)
+										}
 									</ul>
 								</div>
 							</div>
@@ -75,13 +100,16 @@ export default function Cart() {
 						<div className='border-t p-4 sm:px-6'>
 							<div className='flex justify-between font-medium'>
 								<p>Subtotal</p>
-								<p>{formatMDLPrice(2452)}</p>
+								<p>{formatMDLPrice(total)}</p>
 								{/* <p>{formatRONPrice(2452)}</p> */}
 							</div>
 							<p className='mt-0.5 text-sm text-muted-foreground'>
 								Transportul și taxele calculate la finalizarea
 							</p>
-							<Button className='w-full px-6 mt-5 py-3 h-fit text-base !text-bordo-foreground font-medium'>
+							<Button
+								className='w-full px-6 mt-5 py-3 h-fit text-base !text-bordo-foreground font-medium'
+								onClick={() => clearCart()}
+							>
 								Finalizează comanda
 							</Button>
 

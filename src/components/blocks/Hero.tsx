@@ -1,6 +1,5 @@
 import { Damion } from 'next/font/google'
 import Link from 'next/link'
-import ScrollBottomButton from '../elements/ScrollBottomButton'
 import { Button } from '../ui/button'
 
 const heroBackground = {
@@ -32,7 +31,6 @@ export default function Hero() {
 					</Link>
 				</Button>
 			</div>
-			<ScrollBottomButton />
 		</div>
 	)
 }

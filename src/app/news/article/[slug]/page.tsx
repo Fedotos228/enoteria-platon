@@ -1,4 +1,4 @@
-import ArticleSingle from '@/components/blocks/ArticleSingle'
+import ArticleSingle from '@/components/single/ArticleSingle'
 import Container from '@/components/layout/Container'
 
 type ArticleSingleProps = {
