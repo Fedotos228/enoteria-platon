@@ -28,6 +28,7 @@ export default function ProductsGrid({
 					<ProductCard
 						key={product.attributes.slug}
 						product={product}
+						type='product'
 					/>
 				))}
 			</Grid>
@@ -45,6 +46,7 @@ export default function ProductsGrid({
 						<ProductCard
 							key={product.attributes.slug}
 							product={product}
+							type='product'
 						/>
 					))}
 				</Grid>

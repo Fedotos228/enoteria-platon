@@ -23,7 +23,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Hero />
+			<Hero content={data?.hero} />
 			<Container>
 				<About content={data?.simpleBlock} />
 				<ProductsGrid />

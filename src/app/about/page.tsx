@@ -15,7 +15,6 @@ export default function AbouPage() {
 
 	if (isLoading) return <Loader loading={isLoading} />
 
-
 	const sectionComponents: { [key: string]: React.ComponentType<any> } = {
 		'blocks.simple-block': SimpleBlock,
 	}

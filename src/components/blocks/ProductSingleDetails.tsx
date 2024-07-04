@@ -1,30 +1,36 @@
-"use client";
+"use client"
 
-import { formatMDLPrice } from "@/lib/utils";
-import { type BlocksContent } from "@strapi/blocks-react-renderer";
-import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
-import { Button } from "../ui/button";
-import BlockRendererClient from "./BlockRendererClient";
+import { formatMDLPrice } from "@/lib/utils"
+import { type BlocksContent } from "@strapi/blocks-react-renderer"
+import { Minus, Plus } from "lucide-react"
+import { useState } from "react"
+import { Button } from "../ui/button"
+import BlockRendererClient from "./BlockRendererClient"
 
 type ProductSingleDetailsProps = {
-  title: string;
-  price: number;
-  description: BlocksContent;
-  subcategories: any;
-};
+  title: string
+  price: number
+  description: BlocksContent
+  details: {
+    id: number
+    title: string
+    desc: string
+  }[]
+  subcategories: any
+}
 
 export default function ProductSingleDetails({
   title,
   price,
   description,
   subcategories,
+  details
 }: ProductSingleDetailsProps) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1)
 
-  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1);
+  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1)
 
-  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1);
+  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1)
 
   return (
     <div>
@@ -54,6 +60,17 @@ export default function ProductSingleDetails({
         </div>
         <Button>Adaugă în coș</Button>
       </div>
+      <div>
+        <h5 className="mb-5">Descriere</h5>
+        {
+          details && details.map(details => (
+            <div key={details.id} className='flex items-center gap-1 mb-3'>
+              <h6 className='max-w-48 w-full'>{details.title}</h6>
+              <p>{details.desc}</p>
+            </div>
+          ))
+        }
+      </div>
       <BlockRendererClient content={description} />
       {/* <ul>
         {subcategories?.data?.map((category: any) => (
@@ -61,5 +78,5 @@ export default function ProductSingleDetails({
         ))}
       </ul> */}
     </div>
-  );
+  )
 }

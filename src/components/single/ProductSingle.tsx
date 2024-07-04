@@ -13,7 +13,7 @@ export default function ProductSingle({ slug }: { slug: string }) {
   const { data: product, isLoading } = useProductBySlug(slug)
   if (isLoading) return <Loader loading={isLoading} />
 
-  const { title, gallery, thumbnail, subcategories, description, price_mdl } =
+  const { title, gallery, thumbnail, subcategories, description, price_mdl, details } =
     product?.attributes
 
   return (
@@ -36,6 +36,7 @@ export default function ProductSingle({ slug }: { slug: string }) {
           price={price_mdl}
           description={description}
           subcategories={subcategories}
+          details={details}
         />
       </div>
       <ProductsGrid sectionTitle="Produse asemănătoare" />

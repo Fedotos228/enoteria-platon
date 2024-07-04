@@ -1,29 +1,38 @@
-import { Damion } from 'next/font/google'
+import { MediaType, imageStrapUrl } from '@/lib/utils'
+import { BlocksContent } from '@strapi/blocks-react-renderer'
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import BlockRendererClient from './BlockRendererClient'
 
-const heroBackground = {
-	backgroundImage: 'url(/images/hero.png)',
-	backgroundSize: 'cover',
-	backgroundPosition: 'center',
+type HeroProps = {
+	id: number
+	title: BlocksContent
+	background: {
+		data: {
+			attributes: {
+				url: string
+			}
+		}
+	}
 }
 
-const damion = Damion({
-	weight: '400',
-	subsets: ['latin']
-})
+export default function Hero({ content }: { content: HeroProps }) {
+	if (!content) return null
 
-export default function Hero() {
+	const heroBackground = {
+		backgroundImage: `url(${imageStrapUrl(content.background, MediaType.Single)})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat'
+	}
+
 	return (
 		<div
-			style={heroBackground}
+			style={heroBackground && heroBackground}
 			className='flex items-center justify-center h-screen w-full'
 		>
 			<div className='flex flex-col gap-8'>
-				<h1 className={`${damion.className} text-4xl text-white text-center leading-[160%]`}>
-					A traditional winery & vineyard, <br />
-					enjoy the experience
-				</h1>
+				<BlockRendererClient content={content && content?.title} />
 
 				<Button className='text-base w-fit mx-auto' size='lg'>
 					<Link href='/shop'>

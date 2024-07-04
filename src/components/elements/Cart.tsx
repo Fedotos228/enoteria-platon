@@ -15,9 +15,7 @@ export default function Cart() {
 
 	useEffect(() => {
 		calculateTotal()
-	}, [products, calculateTotal])
-
-	console.log(products)
+	}, [products])
 
 	const toggleCart = () => {
 		setCartOpen(!cartOpen)

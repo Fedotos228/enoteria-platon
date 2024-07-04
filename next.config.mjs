@@ -22,7 +22,6 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: '**.herokuapp.com',
 				port: '',
-				pathname: '/uploads/**',
 			},
 			{
 				protocol: 'https',
