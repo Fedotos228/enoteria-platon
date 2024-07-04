@@ -1,7 +1,6 @@
 "use client";
 
 import Introduction from "@/components/blocks/Introduction";
-import Loader from "@/components/elements/Loader";
 import Container from "@/components/layout/Container";
 import CartInfoCard from "@/components/cards/CartInfoCard";
 import { CheckoutForm } from "@/components/forms/CheckoutForm";
