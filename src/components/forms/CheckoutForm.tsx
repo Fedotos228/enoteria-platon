@@ -5,6 +5,7 @@ import { useAppSelector } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Control, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useEffect } from 'react';
 
 import { AddressForm } from "./blocks/AddressForm";
 import { PaymentForm } from "./blocks/PaymentForm";
@@ -18,7 +19,7 @@ import {
 } from "./schemas/CheckoutFormSchema";
 
 export function CheckoutForm() {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products, total, shipping } = useAppSelector((state) => state.cart);
   const { clearCart } = useActions();
   
   const defaultValues: FormSchemaType = {
@@ -46,6 +47,13 @@ export function CheckoutForm() {
     defaultValues,
   });
 
+
+  useEffect(() => {
+    const totalPrice = total + shipping;
+    form.setValue('totalPrice', totalPrice);
+    form.setValue('shipping', shipping);
+    form.setValue('subTotalPrice', total);
+  }, [form, total, shipping]);
 
   function onSubmit(data: FormSchemaType) {
     if(products.length === 0) {
