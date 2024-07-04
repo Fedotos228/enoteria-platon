@@ -25,7 +25,7 @@ export default function ShopGrid() {
   const productsMap = (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
       {productsData?.map((product: any) => (
-        <ProductCard key={product.attributes.slug} product={product} type='shop' />
+        <ProductCard key={product.attributes.slug} product={product} type='product' />
       ))}
     </div>
   )
