@@ -74,13 +74,11 @@ const cartSlice = createSlice({
       state.amount = amount
       state.total = total
     },
-    addShippingTax: (state) => {
-      let defaultShipPrice = 50;
-      // logic for fc
-      state.shipping = defaultShipPrice;
-    }
+    calculateShipping: (state) => {
+      state.shipping = state.products.length === 0 ? 0 : 50;
+    },
   },
 })
 
-export const { clearCart, addCart, removeCart, increaseQuantity, decreaseQuantity, calculateTotal, addShippingTax } = cartSlice.actions
+export const { clearCart, addCart, removeCart, increaseQuantity, decreaseQuantity, calculateTotal, calculateShipping } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

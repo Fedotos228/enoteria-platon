@@ -47,25 +47,31 @@ export function PaymentForm({ control }: PaymentFormProps) {
                   value={field.value}
                   onValueChange={field.onChange}
                 >
-                  <div className="flex items-center">
-                    <RadioGroupItem
-                      value="card"
-                      id="card"
-                      className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
-                    />
-                    <Label htmlFor="card">Card de credit/debit</Label>
-                    <RadioGroupItem
-                      value="paypal"
-                      id="paypal"
-                      className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
-                    />
-                    <Label htmlFor="paypal">Paypal</Label>
-                    <RadioGroupItem
-                      value="cash"
-                      id="cash"
-                      className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
-                    />
-                    <Label htmlFor="cash">Cash</Label>
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="flex items-center">
+                        <RadioGroupItem
+                        value="card"
+                        id="card"
+                        className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
+                        />
+                        <Label htmlFor="card">Card de credit/debit</Label>
+                    </div>
+                    <div className="flex items-center">
+                        <RadioGroupItem
+                        value="paypal"
+                        id="paypal"
+                        className="me-1 sm:ms-8 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
+                        />
+                        <Label htmlFor="paypal">Paypal</Label>
+                    </div>
+                    <div className="flex items-center">
+                        <RadioGroupItem
+                        value="cash"
+                        id="cash"
+                        className="me-1 sm:ms-8 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
+                        />
+                        <Label htmlFor="cash">Cash</Label>
+                    </div>
                   </div>
                 </RadioGroup>
               </FormControl>
@@ -109,7 +115,7 @@ export function PaymentForm({ control }: PaymentFormProps) {
                 </FormItem>
               )}
             />
-            <div className="col-span-2 grid grid-cols-3 gap-4">
+            <div className="col-span-2 grid sm:grid-cols-3 gap-4">
               <FormField
                 control={control}
                 name="expiryMonth"

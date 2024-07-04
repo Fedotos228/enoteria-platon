@@ -1,23 +1,25 @@
 "use client";
 
+import { useActions } from '@/hooks/useActions'
+import { useAppSelector } from "@/store/store";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Control, useForm } from "react-hook-form";
+import { toast } from "sonner";
+
 import { AddressForm } from "./blocks/AddressForm";
 import { PaymentForm } from "./blocks/PaymentForm";
 import { Form } from "@/components/ui/form";
 import { Button } from "../ui/button";
-import { toast } from "sonner";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Control, useForm } from "react-hook-form";
 import {
   FormSchema,
   FormSchemaType,
   PaymentFormSchemaType,
   AddressFormSchemaType,
 } from "./schemas/CheckoutFormSchema";
-import { useAppSelector } from "@/store/store";
 
 export function CheckoutForm() {
-  const { products, total, shipping } = useAppSelector((state) => state.cart);
+  const { products } = useAppSelector((state) => state.cart);
+  const { clearCart } = useActions();
   
   const defaultValues: FormSchemaType = {
     firstname: "",
@@ -33,14 +35,15 @@ export function CheckoutForm() {
     expiryMonth: "",
     expiryYear: "",
     cvv: "",
-    shipping: shipping,
-    subTotalPrice: total,
-    totalPrice: total + shipping,
+    shipping: 0,
+    subTotalPrice: 0,
+    totalPrice: 0,
   }
+
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
 
@@ -54,7 +57,9 @@ export function CheckoutForm() {
         position: "top-center",
       });
     }
-    console.log(data); // Aici se poate de adaugat logica cu trimite data
+    // Add logic to send data here
+    console.log(data); 
+    clearCart();
     form.reset(defaultValues);
   }
 

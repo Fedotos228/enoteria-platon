@@ -2,7 +2,7 @@
 
 import Introduction from "@/components/blocks/Introduction";
 import Container from "@/components/layout/Container";
-import CartInfoCard from "@/components/cards/CartInfoCard";
+import CartInfo from "@/components/elements/CartInfo";
 import { CheckoutForm } from "@/components/forms/CheckoutForm";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -28,7 +28,7 @@ export default function PageCheckout() {
 
         <Card className="w-full self-start border-transparent bg-transparent py-8 shadow-transparent lg:w-[35%]">
           <CardContent className="p-0 lg:p-6">
-            <CartInfoCard />
+            <CartInfo />
           </CardContent>
         </Card>
       </Container>

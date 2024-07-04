@@ -12,10 +12,11 @@ import Link from 'next/link'
 export default function Cart() {
 	const { products, total, amount } = useAppSelector(state => state.cart)
 	const [cartOpen, setCartOpen] = useState<boolean>(false)
-	const { clearCart, calculateTotal } = useActions()
+	const { clearCart, calculateTotal, calculateShipping } = useActions()
 
 	useEffect(() => {
 		calculateTotal()
+		calculateShipping()
 	}, [products])
 
 	const toggleCart = () => {
