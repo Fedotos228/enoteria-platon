@@ -1,5 +1,6 @@
 import {
   addCart,
+  addShippingTax,
   calculateTotal,
   clearCart,
   decreaseQuantity,
@@ -17,7 +18,8 @@ const cartActions = {
   removeCart,
   increaseQuantity,
   decreaseQuantity,
-  calculateTotal
+  calculateTotal,
+  addShippingTax
 }
 
 const filterActions = {

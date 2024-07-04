@@ -36,3 +36,20 @@ export const formatMDLPrice = (price: number) => {
     minimumFractionDigits: 0,
   });
 };
+
+// temporary
+export function generateYears(startYear: number, endYear: number) {
+  const years = [];
+  for (let year = endYear; year >= startYear; year--) {
+    years.push(year.toString());
+  }
+  return years;
+}
+
+export function generateMonths() {
+  const months = [];
+  for (let month = 1; month <= 12; month++) {
+    months.push(month.toString().padStart(2, '0')); 
+  }
+  return months;
+}
