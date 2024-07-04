@@ -34,6 +34,9 @@ export const productBySlugQuery = qs.stringify(
       },
       subcategories: {
         fields: ['title', 'slug'],
+      },
+      details: {
+        fields: ['title', 'desc'],
       }
     },
     encodeValuesOnly: true,

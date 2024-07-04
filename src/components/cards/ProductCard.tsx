@@ -15,7 +15,12 @@ const backgroundImage = {
   overflow: "hidden",
 }
 
-export default function ProductCard({ product, type }: any) {
+type ProductCardProps = {
+  product: any
+  type: 'product' | 'merch'
+}
+
+export default function ProductCard({ product, type }: ProductCardProps) {
   const { addCart } = useActions()
   if (!product) return null
 
@@ -47,7 +52,7 @@ export default function ProductCard({ product, type }: any) {
           </div>
         )}
       </div>
-      <Link href={`${type}/${slug}`} className="after:absolute after:inset-0">
+      <Link href={type === 'merch' ? `shop/merch/${slug}` : `shop/${slug}`} className="after:absolute after:inset-0">
         <h6 className="m-4">{title}</h6>
       </Link>
       <CardFooter className="flex-wrap justify-between gap-2">

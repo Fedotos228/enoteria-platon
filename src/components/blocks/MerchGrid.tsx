@@ -21,7 +21,7 @@ export default function MerchGrid() {
       <SectionHeader title="Merchandiseul" link='/' />
       <Grid>
         {merch?.slice(0, 4).map((merch: any) => (
-          <ProductCard key={merch.attributes.slug} product={merch} />
+          <ProductCard key={merch.attributes.slug} product={merch} type='merch' />
         ))}
       </Grid>
     </section>

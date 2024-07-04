@@ -1,16 +1,22 @@
-
 "use client"
+
 import {
   BlocksRenderer,
   type BlocksContent,
 } from "@strapi/blocks-react-renderer"
+import { Damion } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+
+const damion = Damion({
+  weight: '400',
+  subsets: ['latin']
+})
 
 export default function BlockRendererClient({
   content,
 }: {
-  readonly content: BlocksContent
+  readonly content: BlocksContent,
 }) {
   if (!content) return null
   return <BlocksRenderer
@@ -20,7 +26,7 @@ export default function BlockRendererClient({
       heading: ({ children, level }) => {
         switch (level) {
           case 1:
-            return <h1>{children}</h1>
+            return <h1 className={`${damion.className} text-4xl text-white text-center leading-[160%]`}>{children}</h1>
           case 2:
             return <h2>{children}</h2>
           case 3:
