@@ -14,7 +14,7 @@ export default function ShopGrid() {
   const loading = isLoading || !isFetched;
 
   const loadingSkeleton = (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
       {Array.from({ length: 6 }).map((_, i) => (
         <Skeleton key={i} className="h-[400px] w-full" />
       ))}
@@ -22,13 +22,7 @@ export default function ShopGrid() {
   );
 
   const productsMap = (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
-      {productsData?.map((product: any) => (
-        <ProductCard key={product.attributes.slug} product={product} />
-      ))}
-      {productsData?.map((product: any) => (
-        <ProductCard key={product.attributes.slug} product={product} />
-      ))}
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
       {productsData?.map((product: any) => (
         <ProductCard key={product.attributes.slug} product={product} />
       ))}
