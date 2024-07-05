@@ -7,14 +7,16 @@ import { ShoppingCart, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import CartProduct from '../cards/CartProduct'
 import { Button } from '../ui/button'
+import Link from 'next/link'
 
 export default function Cart() {
 	const { products, total, amount } = useAppSelector(state => state.cart)
 	const [cartOpen, setCartOpen] = useState<boolean>(false)
-	const { clearCart, calculateTotal } = useActions()
+	const { clearCart, calculateTotal, calculateShipping } = useActions()
 
 	useEffect(() => {
 		calculateTotal()
+		calculateShipping()
 	}, [products])
 
 	const toggleCart = () => {
@@ -106,9 +108,9 @@ export default function Cart() {
 							</p>
 							<Button
 								className='w-full px-6 mt-5 py-3 h-fit text-base !text-bordo-foreground font-medium'
-								onClick={() => clearCart()}
+								onClick={toggleCart}
 							>
-								Finalizează comanda
+								<Link href='/checkout' className='!text-bordo-foreground'>Finalizează comanda</Link>
 							</Button>
 
 							<Button

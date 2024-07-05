@@ -19,12 +19,14 @@ interface CartState {
   products: IProduct[]
   amount: number
   total: number
+  shipping: number
 }
 
 const initialState: CartState = {
   products: [],
   amount: 0,
   total: 0,
+  shipping: 0
 }
 
 const cartSlice = createSlice({
@@ -71,9 +73,12 @@ const cartSlice = createSlice({
 
       state.amount = amount
       state.total = total
-    }
+    },
+    calculateShipping: (state) => {
+      state.shipping = state.products.length === 0 ? 0 : 50;
+    },
   },
 })
 
-export const { clearCart, addCart, removeCart, increaseQuantity, decreaseQuantity, calculateTotal } = cartSlice.actions
+export const { clearCart, addCart, removeCart, increaseQuantity, decreaseQuantity, calculateTotal, calculateShipping } = cartSlice.actions
 export const cartReducer = cartSlice.reducer
