@@ -19,9 +19,9 @@ const nextConfig = {
 				port: '1337',
 			},
 			{
-				protocol: 'https',
-				hostname: '**.herokuapp.com',
-				port: '',
+				protocol: "https",
+				hostname: "**.herokuapp.com",
+				pathname: '/uploads/**',
 			},
 			{
 				protocol: 'https',

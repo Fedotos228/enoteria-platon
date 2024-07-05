@@ -14,7 +14,7 @@ export const homeProductQuery = qs.stringify(
     }
   },
   {
-    encodeValuesOnly: true, // prettify URL
+    encodeValuesOnly: true,
   }
 )
 
