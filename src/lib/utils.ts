@@ -14,16 +14,15 @@ export const isClient = typeof window !== "undefined"
 
 export function imageStrapUrl(image: any, type: MediaType) {
   if (!image) return ""
-  if (process.env.NODE_ENV === 'production') {
+
+  if (process.env.NODE_ENV !== 'development') {
     switch (type) {
       case MediaType.Single:
         return image?.data?.attributes?.url
       case MediaType.Multiple:
         return image?.attributes?.url
     }
-  } 
-  
-  if(process.env.NODE_ENV !== 'development') {
+  } else {
     switch (type) {
       case MediaType.Single:
         return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url
