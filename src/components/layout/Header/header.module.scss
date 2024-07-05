@@ -6,9 +6,10 @@
   z-index: 49;
   padding: 30px 0px;
   width: 100%;
+  background-color: transparent;
 }
 
-.sticky {
+.headerFixed {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +19,11 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   padding: 30px 0px;
   width: 100%;
-  animation: stickyHeader 0.4s ease-in-out;
+  background-color: #fff;
+  * {
+    color: #000;
+  }
+  animation: stickyHeader 0.36s ease-in-out;
 }
 
 .headerWhite {
@@ -39,7 +44,7 @@
 
 @keyframes stickyHeader {
   0% {
-    transform: translateY(-40%);
+    transform: translateY(-70%);
   }
   100% {
     transform: translateY(0);

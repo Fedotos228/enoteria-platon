@@ -27,6 +27,7 @@ export default function MerchSingleDetails({
   colors,
   sizes,
 }: MerchSingleDetailsProps) {
+
   return (
     <div>
       <h4 className="mb-2">{title}</h4>
