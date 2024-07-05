@@ -1,7 +1,7 @@
 'use client'
 
 import { useActions } from '@/hooks/useActions'
-import { cn } from "@/lib/utils"
+import { MediaType, cn, imageStrapUrl } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -36,10 +36,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
       >
         {thumbnail?.data?.attributes?.url && (
           <Image
-            src={
-              process.env.NEXT_PUBLIC_BASE_URL +
-              thumbnail?.data?.attributes?.url
-            }
+            src={imageStrapUrl(thumbnail, MediaType.Single)}
             alt={title}
             width={320}
             height={350}
