@@ -32,11 +32,7 @@ export default function ProductSingle({ slug }: { slug: string }) {
           )
         )}
         <ProductSingleDetails
-          title={title}
-          price={price_mdl}
-          description={description}
-          subcategories={subcategories}
-          details={details}
+          product={product?.attributes}
         />
       </div>
       <ProductsGrid sectionTitle="Produse asemănătoare" />

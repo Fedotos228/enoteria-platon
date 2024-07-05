@@ -77,13 +77,8 @@ export function CheckoutForm() {
         className="grid w-full grid-cols-1 py-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        {/* unknown - permite evitarea problemelor de tipuri și asigură că tipul este compatibil cu cel așteptat de AddressForm si PaymentForm */}
-        <AddressForm
-          control={form.control}
-        />
-        <PaymentForm
-          control={form.control}
-        />
+        <AddressForm control={form.control}/>
+        <PaymentForm control={form.control} />
         <Button className="ml-auto inline-block px-6" type="submit" size="sm">
           Achită
         </Button>

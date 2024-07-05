@@ -1,5 +1,6 @@
 "use client"
 
+import { useActions } from '@/hooks/useActions'
 import { formatMDLPrice } from "@/lib/utils"
 import { type BlocksContent } from "@strapi/blocks-react-renderer"
 import { Minus, Plus } from "lucide-react"
@@ -9,6 +10,7 @@ import BlockRendererClient from "./BlockRendererClient"
 
 type ProductSingleDetailsProps = {
   title: string
+  slug: string
   price: number
   description: BlocksContent
   details: {
@@ -20,12 +22,10 @@ type ProductSingleDetailsProps = {
 }
 
 export default function ProductSingleDetails({
-  title,
-  price,
-  description,
-  subcategories,
-  details
-}: ProductSingleDetailsProps) {
+  product
+}: { product: ProductSingleDetailsProps }) {
+  const { title, slug, price, description, details, subcategories } = product
+  const { addCart } = useActions()
   const [quantity, setQuantity] = useState(1)
 
   const increment = () => quantity < 999 && setQuantity((prev) => prev + 1)
@@ -58,7 +58,7 @@ export default function ProductSingleDetails({
             <Plus size={16} />
           </Button>
         </div>
-        <Button>Adaugă în coș</Button>
+        <Button onClick={() => addCart(product)}>Adaugă în coș</Button>
       </div>
       <div>
         <h5 className="mb-5">Descriere</h5>

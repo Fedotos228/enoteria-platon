@@ -20,8 +20,7 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: '**.herokuapp.com',
-				port: '',
+				hostname: 'res.cloudinary.com',
 			},
 			{
 				protocol: 'https',
