@@ -32,6 +32,7 @@ export function imageStrapUrl(image: any, type: MediaType) {
   }
 }
 export const formatRONPrice = (price: number) => {
+  if (!price) return null
   return price.toLocaleString("ro-RO", {
     style: "currency",
     currency: "RON",
@@ -40,6 +41,7 @@ export const formatRONPrice = (price: number) => {
 }
 
 export const formatMDLPrice = (price: number) => {
+  if (!price) return null
   return price.toLocaleString("ro-RO", {
     style: "currency",
     currency: "MDL",
