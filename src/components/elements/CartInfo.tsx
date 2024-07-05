@@ -8,7 +8,6 @@ import AcceptedCards from "../cards/AcceptedCards";
 
 export default function CartInfoCard() {
   const { products, total, shipping } = useAppSelector((state) => state.cart);
-  const cards = useAppSelector((state) => state.cards)
 
   const calculateTotalPrice = (subtotal: number, shipping: number) => {
     return subtotal > 0 ? subtotal + shipping : 0;
