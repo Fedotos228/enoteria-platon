@@ -48,3 +48,19 @@ export const formatMDLPrice = (price: number) => {
     minimumFractionDigits: 0,
   })
 }
+
+export function generateYears(start: number, end: number) {
+  const years = [];
+  for (let year = end; year >= start; year--) {
+    years.push(year.toString());
+  }
+  return years;
+}
+
+export function generateMonths() {
+  const months = [];
+  for (let month = 1; month <= 12; month++) {
+    months.push(month.toString().padStart(2, '0')); 
+  }
+  return months;
+}
