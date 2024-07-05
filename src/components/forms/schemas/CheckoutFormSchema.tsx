@@ -46,12 +46,12 @@ export const CashPaymentSchema = z.object({
   cvv: z.string().optional(),
 });
 
-export const PaymentFormSchema = z.object({
-  paymentMethod: z.enum(["card", "paypal", "cash"]),
-  ...CashPaymentSchema.shape, // default Schema
-});
+// export const PaymentFormSchema = z.object({
+//   paymentMethod: z.enum(["card", "paypal", "cash"]),
+//   ...CashPaymentSchema.shape, // default Schema
+// });
 
-export const FormSchema = z
+export const CheckoutFormSchema = z
   .object({
     ...AddressFormSchema.shape,
     paymentMethod: z.enum(["card", "paypal", "cash"]),
@@ -72,6 +72,6 @@ export const FormSchema = z
     ]),
   );
 
-export type PaymentFormSchemaType = z.infer<typeof PaymentFormSchema>;
-export type AddressFormSchemaType = z.infer<typeof AddressFormSchema>;
-export type FormSchemaType = z.infer<typeof FormSchema>;
+// export type PaymentFormSchemaType = z.infer<typeof PaymentFormSchema>;
+// export type AddressFormSchemaType = z.infer<typeof AddressFormSchema>;
+export type CheckoutFormSchemaType = z.infer<typeof CheckoutFormSchema>;

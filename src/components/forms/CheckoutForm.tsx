@@ -12,17 +12,17 @@ import { PaymentForm } from "./blocks/PaymentForm";
 import { Form } from "@/components/ui/form";
 import { Button } from "../ui/button";
 import {
-  FormSchema,
-  FormSchemaType,
-  PaymentFormSchemaType,
-  AddressFormSchemaType,
+  CheckoutFormSchema,
+  CheckoutFormSchemaType,
+  // PaymentFormSchemaType,
+  // AddressFormSchemaType,
 } from "./schemas/CheckoutFormSchema";
 
 export function CheckoutForm() {
   const { products, total, shipping } = useAppSelector((state) => state.cart);
   const { clearCart } = useActions();
   
-  const defaultValues: FormSchemaType = {
+  const defaultValues: CheckoutFormSchemaType = {
     firstname: "",
     lastname: "",
     email: "",
@@ -42,8 +42,8 @@ export function CheckoutForm() {
   }
 
 
-  const form = useForm<FormSchemaType>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<CheckoutFormSchemaType>({
+    resolver: zodResolver(CheckoutFormSchema),
     defaultValues,
   });
 
@@ -55,7 +55,7 @@ export function CheckoutForm() {
     form.setValue('subTotalPrice', total);
   }, [form, total, shipping]);
 
-  function onSubmit(data: FormSchemaType) {
+  function onSubmit(data: CheckoutFormSchemaType) {
     if(products.length === 0) {
       toast.error("Nu există produse în coșul de cumpărături!", {
         position: "top-center",
@@ -79,10 +79,10 @@ export function CheckoutForm() {
       >
         {/* unknown - permite evitarea problemelor de tipuri și asigură că tipul este compatibil cu cel așteptat de AddressForm si PaymentForm */}
         <AddressForm
-          control={form.control as unknown as Control<AddressFormSchemaType>}
+          control={form.control}
         />
         <PaymentForm
-          control={form.control as unknown as Control<PaymentFormSchemaType>}
+          control={form.control}
         />
         <Button className="ml-auto inline-block px-6" type="submit" size="sm">
           Achită

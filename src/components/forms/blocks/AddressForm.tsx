@@ -1,7 +1,7 @@
 "use client";
 
 import { Control } from "react-hook-form";
-import { AddressFormSchemaType } from "../schemas/CheckoutFormSchema";
+import { CheckoutFormSchemaType } from "../schemas/CheckoutFormSchema";
 
 import {
   FormField,
@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Label } from "@radix-ui/react-label";
 
 interface AddressFormProps {
-  control: Control<AddressFormSchemaType>;
+  control: Control<CheckoutFormSchemaType>;
 }
 
 export function AddressForm({ control }: AddressFormProps) {

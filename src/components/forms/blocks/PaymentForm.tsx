@@ -1,7 +1,7 @@
 "use client";
 
 import { Control, useWatch } from "react-hook-form";
-import { PaymentFormSchemaType } from "../schemas/CheckoutFormSchema";
+import { CheckoutFormSchemaType } from "../schemas/CheckoutFormSchema";
 import {
   FormField,
   FormItem,
@@ -16,7 +16,7 @@ import { Select, SelectItem } from "@/components/ui/select";
 import { generateMonths, generateYears } from "@/lib/utils";
 
 interface PaymentFormProps {
-  control: Control<PaymentFormSchemaType>;
+  control: Control<CheckoutFormSchemaType>;
 }
 
 export function PaymentForm({ control }: PaymentFormProps) {
