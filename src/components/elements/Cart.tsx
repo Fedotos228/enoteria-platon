@@ -18,8 +18,6 @@ export default function Cart({ scrolledHeader }: { scrolledHeader?: boolean }) {
   const { clearCart, calculateShipping, toggleCart } = useActions();
   const total = useSelector(selectCartTotal);
 
-  console.log(total);
-
   useEffect(() => {
     calculateShipping();
   }, [calculateShipping]);
@@ -34,7 +32,6 @@ export default function Cart({ scrolledHeader }: { scrolledHeader?: boolean }) {
 
   return (
     <div>
-      {quantity}
       <Button
         className={`relative text-background hover:bg-accent/10 hover:text-accent`}
         variant="ghost"
