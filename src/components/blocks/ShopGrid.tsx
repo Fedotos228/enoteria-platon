@@ -4,6 +4,7 @@ import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts";
 import { IPagination } from "@/types/strapi.types";
 import ProductCard from "../cards/ProductCard";
 import PaginationComponent from "../elements/PaginationComponent";
+import ShopToggler from "../elements/ShopToggler";
 import { Skeleton } from "../ui/skeleton";
 
 export default function ShopGrid() {
@@ -14,7 +15,7 @@ export default function ShopGrid() {
   const loading = isLoading || !isFetched;
 
   const loadingSkeleton = (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
       {Array.from({ length: 6 }).map((_, i) => (
         <Skeleton key={i} className="h-[400px] w-full" />
       ))}
@@ -22,9 +23,13 @@ export default function ShopGrid() {
   );
 
   const productsMap = (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
       {productsData?.map((product: any) => (
-        <ProductCard key={product.attributes.slug} product={product} />
+        <ProductCard
+          key={product.attributes.slug}
+          product={product}
+          type="product"
+        />
       ))}
     </div>
   );
@@ -48,11 +53,7 @@ export default function ShopGrid() {
   return (
     <section className="mt-0">
       <div className="mb-8 flex flex-col items-center justify-between gap-3 xs:flex-row">
-        <div className="flex items-center gap-4">
-          <h5 className="cursor-pointer">Vinuri</h5>
-          <span>|</span>
-          <h5 className="cursor-pointer opacity-40">Merchandise</h5>
-        </div>
+        <ShopToggler />
         {pagination ? (
           <p>
             Afișez {pagination?.total} din {pagination?.pageSize} de produse
@@ -64,7 +65,9 @@ export default function ShopGrid() {
 
       {content}
 
-      {content !== productsNotFound && <PaginationComponent />}
+      {content !== productsNotFound && productsData > 8 && (
+        <PaginationComponent />
+      )}
     </section>
   );
 }

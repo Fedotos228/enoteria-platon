@@ -25,7 +25,13 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className={isHome ? styles.header : styles.headerWhite}
+      className={
+        isHome
+          ? scrolledHeader
+            ? styles.headerWhite
+            : styles.header
+          : styles.headerWhite
+      }
     >
       <Container className="flex items-center justify-between">
         <Link href="/">
@@ -46,13 +52,13 @@ export default function Header() {
           screenWidth={width}
         />
         <div className="flex items-center gap-3">
-          <Cart />
+          <Cart scrolledHeader />
           {width <= 767 && (
             <Button
               size="icon"
               variant="ghost"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-background hover:bg-accent/10 hover:text-accent md:hidden"
+              className={`text-background hover:bg-accent/10 hover:text-accent md:hidden`}
             >
               <Menu size={24} />
             </Button>

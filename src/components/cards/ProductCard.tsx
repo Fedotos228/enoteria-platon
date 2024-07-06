@@ -1,4 +1,7 @@
-import { cn } from "@/lib/utils";
+"use client";
+
+import { useActions } from "@/hooks/useActions";
+import { MediaType, cn, imageStrapUrl } from "@/lib/utils";
 import { CirclePercent } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,10 +15,25 @@ const backgroundImage = {
   overflow: "hidden",
 };
 
-export default function ProductCard({ product }: any) {
+type ProductCardProps = {
+  product: any;
+  type: "product" | "merch";
+};
+
+export default function ProductCard({ product, type }: ProductCardProps) {
+  const { addToCart } = useActions();
+  if (!product) return null;
+
   const { title, price_mdl, thumbnail, discount, slug } = product.attributes;
 
   const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl;
+
+  //   const handleItemsCount = (id: string) => {
+  // 	const item = productsInCart.find((item: any) => item._id === id)
+  // 	if (item) {
+  // 		return `(${item.quantity})`
+  // 	}
+  // }
 
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
@@ -25,10 +43,7 @@ export default function ProductCard({ product }: any) {
       >
         {thumbnail?.data?.attributes?.url && (
           <Image
-            src={
-              process.env.NEXT_PUBLIC_BASE_URL +
-              thumbnail?.data?.attributes?.url
-            }
+            src={imageStrapUrl(thumbnail, MediaType.Single)}
             alt={title}
             width={320}
             height={350}
@@ -41,7 +56,10 @@ export default function ProductCard({ product }: any) {
           </div>
         )}
       </div>
-      <Link href={`shop/${slug}`} className="after:absolute after:inset-0">
+      <Link
+        href={type === "merch" ? `shop/merch/${slug}` : `shop/${slug}`}
+        className="after:absolute after:inset-0"
+      >
         <h6 className="m-4">{title}</h6>
       </Link>
       <CardFooter className="flex-wrap justify-between gap-2">
@@ -57,7 +75,12 @@ export default function ProductCard({ product }: any) {
           )}
         </div>
         {price_mdl ? (
-          <Button className="relative z-10 ml-auto">Adaugă</Button>
+          <Button
+            className="relative z-10 ml-auto"
+            onClick={() => addToCart(product.attributes)}
+          >
+            Adaugă
+          </Button>
         ) : (
           <Link
             href="/contacts"
@@ -70,7 +93,7 @@ export default function ProductCard({ product }: any) {
             Află prețul
           </Link>
         )}
-        {/* <Button className='bg-green-700'>Adaugat (5)</Button> */}
+        {/* <Button className='bg-green-700'>Adauga (5) {handleItemsCount(product._id)}</Button> */}
       </CardFooter>
     </Card>
   );

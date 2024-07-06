@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import Introduction from "@/components/blocks/Introduction";
-import ProductSingle from "@/components/blocks/ProductSingle";
-import Container from "@/components/layout/Container";
-import { ProductSiglePageProps } from "./layout";
+import Introduction from "@/components/blocks/Introduction"
+import Container from "@/components/layout/Container"
+import ProductSingle from "@/components/single/ProductSingle"
+import { ProductSiglePageProps } from "./layout"
 
 export default function ProductSiglePage({ params }: ProductSiglePageProps) {
   const title = params.slug
     .replace(/-/g, " ")
     .split(" ")
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .join(" ")
 
   let content = {
     title: title,
     background: {
       data: null,
     },
-  };
+  }
 
   return (
     <>
@@ -26,5 +26,5 @@ export default function ProductSiglePage({ params }: ProductSiglePageProps) {
         <ProductSingle slug={params.slug} />
       </Container>
     </>
-  );
+  )
 }

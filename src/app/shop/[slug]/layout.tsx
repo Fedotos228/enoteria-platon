@@ -1,4 +1,5 @@
-import { productsService } from '@/services/products/products.service'
+import { fetchGenerateParams } from '@/lib/fetchGenerateParams'
+import { fetchSlugForMeta } from '@/lib/fetchSlugForMeta'
 import { Metadata, ResolvingMetadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
@@ -13,7 +14,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
-  const { data } = await productsService.getProductBySlugFetch(slug)
+  const { data } = await fetchSlugForMeta('products', slug)
 
   const previousImages = (await parent).openGraph?.images || []
 
@@ -26,7 +27,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const { data } = await productsService.getProductsByFetch()
+  const { data } = await fetchGenerateParams('products')
 
   return data.map((product: any) => ({
     slug: product.attributes.slug,

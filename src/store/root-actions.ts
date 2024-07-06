@@ -1,6 +1,34 @@
-import { setFilters, toggleCategory } from './slices/filter.slice'
+import {
+  addToCart,
+  calculateShipping,
+  calculateTotal,
+  clearCart,
+  decreaseQuantity,
+  increaseQuantity,
+  removeProduct,
+  selectCartTotal,
+  toggleCart,
+} from "./slices/cart.slice";
+import { setFilters, toggleCategory } from "./slices/filter.slice";
+
+const cartActions = {
+  clearCart,
+  addToCart,
+  removeProduct,
+  increaseQuantity,
+  decreaseQuantity,
+  calculateTotal,
+  calculateShipping,
+  selectCartTotal,
+  toggleCart,
+};
+
+const filterActions = {
+  toggleCategory,
+  setFilters,
+};
 
 export const rootActions = {
-  toggleCategory,
-  setFilters
-}
+  ...cartActions,
+  ...filterActions,
+};

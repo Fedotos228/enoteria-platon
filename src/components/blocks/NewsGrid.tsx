@@ -1,47 +1,91 @@
-'use client'
+"use client";
 
+import useGetNews from "@/hooks/queries/useGetNews";
+import useScreenSize from "@/hooks/useScreenSize";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import NewsCard from "../cards/NewsCard";
+import Grid from "../elements/Grid";
+import Loader from "../elements/Loader";
+import PaginationComponent from "../elements/PaginationComponent";
+import SectionHeader from "../elements/SectionHeader";
 
-import useGetNews from '@/hooks/queries/useGetNews'
-import { usePathname } from 'next/navigation'
-import NewsCard from '../cards/NewsCard'
-import Grid from '../elements/Grid'
-import Loader from '../elements/Loader'
-import PaginationComponent from '../elements/PaginationComponent'
-import SectionHeader from '../elements/SectionHeader'
+interface INewsGrid {
+  gridSize: number;
+  newsNumber: number;
+}
 
 export default function NewsGrid({
-	sectionTitle,
-	sectionLink,
-	className,
+  sectionTitle,
+  sectionLink,
+  className,
 }: {
-	sectionTitle?: string
-	sectionLink?: string
-	className?: string
+  sectionTitle?: string;
+  sectionLink?: string;
+  className?: string;
 }) {
-	const pathname = usePathname()
-	const { data, isLoading } = useGetNews()
-	const { data: news, meta } = data || {}
-	const { pagination } = meta || {}
+  const [newsGrid, setNewsGrid] = useState<INewsGrid>({
+    gridSize: 4,
+    newsNumber: 4,
+  });
+  const pathname = usePathname();
+  const newsPage = pathname.includes("/news");
+  const { data, isLoading } = useGetNews();
+  const { data: news, meta } = data || {};
+  const { width } = useScreenSize();
+  const { pagination } = meta || {};
 
-	if (isLoading) return <Loader loading={isLoading} />
+  useEffect(() => {
+    if (width > 992) {
+      setNewsGrid({
+        gridSize: 4,
+        newsNumber: 4,
+      });
+    }
 
-	if (pathname.includes('/news')) {
-		// fa control ca pe home sa apara doar 4 si pe /news mai multe
-	}
+    if (width < 992) {
+      setNewsGrid({
+        gridSize: 3,
+        newsNumber: 3,
+      });
+    }
 
-	if (!news) return null
+    if (width < 768) {
+      setNewsGrid({
+        gridSize: 2,
+        newsNumber: 4,
+      });
+    }
 
-	return (
-		<section className={className}>
-			<SectionHeader title={sectionTitle} link={sectionLink} />
+    if (width < 480) {
+      setNewsGrid({
+        gridSize: 1,
+        newsNumber: 4,
+      });
+    }
+  }, [width]);
 
-			<Grid>
-				{news?.slice(0, 8).map((item: any) => (
-					<NewsCard key={item?.attributes?.slug} post={item?.attributes} />
-				))}
-			</Grid>
+  if (isLoading) return <Loader loading={isLoading} />;
 
-			<PaginationComponent />
-		</section>
-	)
+  let slicedNewsGrid = news?.slice(0, newsGrid.newsNumber);
+
+  if (pathname.includes("/news")) {
+    slicedNewsGrid = news;
+  }
+
+  if (!news) return null;
+
+  return (
+    <section className={className}>
+      <SectionHeader title={sectionTitle} link={sectionLink} />
+
+      <Grid gridSize={newsGrid.gridSize}>
+        {slicedNewsGrid.map((item: any) => (
+          <NewsCard key={item?.attributes?.slug} post={item?.attributes} />
+        ))}
+      </Grid>
+
+      {newsPage && news.lenght > 8 && <PaginationComponent />}
+    </section>
+  );
 }

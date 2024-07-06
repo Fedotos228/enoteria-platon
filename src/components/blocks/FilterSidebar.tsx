@@ -1,23 +1,23 @@
-"use client";
-import useGetCategories from "@/hooks/queries/useGetCategories";
-import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts";
-import { useActions } from "@/hooks/useActions";
-import useScreenSize from "@/hooks/useScreenSize";
-import { SlidersHorizontal, TextSearch } from "lucide-react";
-import { Button } from "../ui/button";
-import { Checkbox } from "../ui/checkbox";
-import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet";
+"use client"
+import useGetCategories from "@/hooks/queries/useGetCategories"
+import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts"
+import { useActions } from "@/hooks/useActions"
+import useScreenSize from "@/hooks/useScreenSize"
+import { SlidersHorizontal, TextSearch } from "lucide-react"
+import { Button } from "../ui/button"
+import { Checkbox } from "../ui/checkbox"
+import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet"
 
 export default function FilterSidebar() {
-  const { data: category } = useGetCategories();
-  const { toggleCategory, setFilters } = useActions();
-  const { width } = useScreenSize();
-  const { refetch } = useGetFilteredProducts();
+  const { data: category } = useGetCategories()
+  const { toggleCategory, setFilters } = useActions()
+  const { width } = useScreenSize()
+  const { refetch } = useGetFilteredProducts()
 
   const handleSelectCategory = (slug: string) => {
-    toggleCategory(slug);
-    refetch();
-  };
+    toggleCategory(slug)
+    refetch()
+  }
 
   return width > 767 ? (
     <div>
@@ -37,18 +37,16 @@ export default function FilterSidebar() {
                     <Checkbox
                       id={subcategory.attributes.slug}
                       className="border border-[#FFFFFF]/80 bg-[#E1D7D3]"
-                      checked={subcategory.attributes.slug}
                       onClick={() =>
                         handleSelectCategory(subcategory.attributes.slug)
                       }
                     />
                     <label
                       htmlFor={subcategory.attributes.slug}
-                      className={`${
-                        categorie.attributes.slug === "coloare"
-                          ? `circle ${subcategory.attributes.slug}`
-                          : ""
-                      } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+                      className={`${categorie.attributes.slug === "coloare"
+                        ? `circle ${subcategory.attributes.slug}`
+                        : ""
+                        } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
                     >
                       {subcategory.attributes.title}
                     </label>
@@ -92,11 +90,10 @@ export default function FilterSidebar() {
                         />
                         <label
                           htmlFor={subcategory.attributes.slug}
-                          className={`${
-                            categorie.attributes.slug === "coloare"
-                              ? `circle ${subcategory.attributes.slug}`
-                              : ""
-                          } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
+                          className={`${categorie.attributes.slug === "coloare"
+                            ? `circle ${subcategory.attributes.slug}`
+                            : ""
+                            } text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
                         >
                           {subcategory.attributes.title}
                         </label>
@@ -119,16 +116,16 @@ export default function FilterSidebar() {
         </SheetContent>
       </Sheet>
     </>
-  );
+  )
 }
 
 {
   /* <li
-	className={` checkbox-control mb-2`}
-	key={subcategory.slug}
+  className={` checkbox-control mb-2`}
+  key={subcategory.slug}
 
 >
-	<input type='checkbox' id={subcategory.slug} onClick={() => handleSelectCategory(subcategory.slug)} />
-	<label className={` text-sm`} htmlFor={subcategory.slug}>{subcategory.name}</label>
+  <input type='checkbox' id={subcategory.slug} onClick={() => handleSelectCategory(subcategory.slug)} />
+  <label className={` text-sm`} htmlFor={subcategory.slug}>{subcategory.name}</label>
 </li> */
 }

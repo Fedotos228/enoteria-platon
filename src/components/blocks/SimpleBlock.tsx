@@ -14,8 +14,9 @@ export default function SimpleBlock({ content }: any) {
         {image && <Image
           src={imageStrapUrl(image, MediaType.Single)}
           alt={title}
-          width={500}
+          width={600}
           height={300}
+          className='max-w-[580px] w-full'
         />}
         <div>
           <BlockRendererClient content={description} />

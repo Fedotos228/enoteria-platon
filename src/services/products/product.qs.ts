@@ -8,9 +8,13 @@ export const homeProductQuery = qs.stringify(
         fields: ['url'],
       },
     },
+    pagination: {
+      page: 1,
+      pageSize: 4
+    }
   },
   {
-    encodeValuesOnly: true, // prettify URL
+    encodeValuesOnly: true,
   }
 )
 
@@ -30,6 +34,9 @@ export const productBySlugQuery = qs.stringify(
       },
       subcategories: {
         fields: ['title', 'slug'],
+      },
+      details: {
+        fields: ['title', 'desc'],
       }
     },
     encodeValuesOnly: true,

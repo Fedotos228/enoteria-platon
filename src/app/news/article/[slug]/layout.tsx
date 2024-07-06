@@ -1,4 +1,5 @@
-import { newsService } from '@/services/news/news.service'
+import { fetchGenerateParams } from '@/lib/fetchGenerateParams'
+import { fetchSlugForMeta } from '@/lib/fetchSlugForMeta'
 import { Metadata, ResolvingMetadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
@@ -13,7 +14,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
-  const { data } = await newsService.getNewsMeta(slug)
+  const { data } = await fetchSlugForMeta('news', slug)
 
   const previousImages = (await parent).openGraph?.images || []
 
@@ -26,7 +27,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  const { data } = await newsService.getNewsSlugAndTitle()
+  const { data } = await fetchGenerateParams('news')
 
   return data.map((aricle: any) => ({
     slug: aricle.attributes.slug,
