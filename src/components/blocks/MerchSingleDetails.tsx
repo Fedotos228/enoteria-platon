@@ -1,64 +1,81 @@
-import { formatMDLPrice } from '@/lib/utils'
-import { Button } from '../ui/button'
-import { Label } from '../ui/label'
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
-
-type ColorTypes = {
-  id: number,
-  title: string,
-  hex: string
-}
-
-type MerchSingleDetailsProps = {
-  title: string
-  price: number
-  discount: number
-  colors: ColorTypes[]
-  sizes: {
-    id: number,
-    name: string
-  }[]
-}
+import { useActions } from "@/hooks/useActions";
+import { formatMDLPrice } from "@/lib/utils";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
+import {
+  ColorTypes,
+  ISelectedOptions,
+  MerchSingleDetailsProps,
+} from "./models/merchSingle.types";
 
 export default function MerchSingleDetails({
-  title,
-  price,
-  discount,
-  colors,
-  sizes,
-}: MerchSingleDetailsProps) {
+  merch,
+}: {
+  merch: MerchSingleDetailsProps;
+}) {
+  const [selectedOptions, setSelectedOptions] = useState<ISelectedOptions>({
+    color: undefined,
+    size: undefined,
+  });
+  const { addToCart } = useActions();
+
+  const handleOptionChange = (type: string, value: any) => {
+    setSelectedOptions((prev) => ({ ...prev, [type]: value }));
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedOptions.color) {
+      return toast.warning("Selectează o culoare");
+    }
+
+    if (!selectedOptions.size) {
+      return toast.warning("Selectează o mărime");
+    }
+
+    if (selectedOptions.color && selectedOptions.size) {
+      addToCart(merch);
+      return toast.success("Produsul a fost adăugat în coș");
+    }
+  };
+
   return (
     <div>
-      <h4 className="mb-2">{title}</h4>
-      <h5 className="mb-6">{formatMDLPrice(price)}</h5>
-      <div className='mb-10'>
-        <h6 className='text-bordo mb-3'>Culoare</h6>
-        <RadioGroup className='flex gap-3'>
-          {colors && colors.map((color: ColorTypes) => (
-            <RadioGroupItem
-              key={color.title}
-              id={color.title}
-              value={color.title}
-              className={`w-6 h-6 rounded-sm text-primary-foreground border ${color.hex === '#FFF' && 'data-[state=checked]:text-black'}`}
-              style={{ backgroundColor: color.hex, borderColor: color.hex === '#FFF' ? '#000' : color.hex }}
-            />
-          ))}
-        </RadioGroup>
+      <h4 className="mb-2">{merch.title}</h4>
+      <h5 className="mb-6">{formatMDLPrice(merch.price)}</h5>
+
+      <div className="mb-8">
+        <h6 className="mb-3 text-bordo">Culoare</h6>
+
+        <div className="flex flex-wrap items-center gap-3">
+          {merch.colors &&
+            merch.colors.map((color: ColorTypes) => (
+              <div
+                key={color.hex}
+                onClick={() => handleOptionChange("color", color)}
+                className={`h-12 w-12 cursor-pointer rounded border ring-offset-1 transition-all duration-300 hover:scale-105 bg-[${color.hex}] ${selectedOptions.color?.id === color.id && "ring-2 ring-bordo"}`}
+              ></div>
+            ))}
+        </div>
       </div>
-      <div className='mb-12'>
-        <h6 className='text-bordo mb-3'>Mărime</h6>
-        <RadioGroup className='flex gap-3'>
-          {sizes && sizes.map((size) => (
-            <div className="flex items-center space-x-2" key={size.id}>
-              <RadioGroupItem className='w-6 h-6 rounded-sm transition-all bg-[#CFCFCF] text-primary-foreground data-[state=checked]:bg-[#3B3640] border border-white/70' value={size.name} id={size.name} />
-              <Label htmlFor="r1">{size.name}</Label>
-            </div>
-          ))}
-        </RadioGroup>
+      <div className="mb-12">
+        <h6 className="mb-3 text-bordo">Mărime</h6>
+        <div className="flex flex-wrap items-center gap-3">
+          {merch.sizes &&
+            merch.sizes.map((size) => (
+              <div
+                key={size.id}
+                onClick={() => handleOptionChange("size", size)}
+                className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded border p-2 font-semibold transition-all hover:scale-105 ${selectedOptions.size?.id === size.id && "border-bordo bg-bordo text-white"}`}
+              >
+                {size.name}
+              </div>
+            ))}
+        </div>
       </div>
-      <Button>
+      <Button onClick={handleAddToCart} size={"lg"}>
         Adaugă în coș
       </Button>
     </div>
-  )
+  );
 }
