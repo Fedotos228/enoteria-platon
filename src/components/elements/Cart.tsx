@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import CartProduct from "../cards/CartProduct";
 import { Button } from "../ui/button";
 
-export default function Cart({ scrolledHeader }: { scrolledHeader?: boolean }) {
+export default function Cart() {
   const { products, quantity, isCartOpen } = useAppSelector(
     (state) => state.cart,
   );
@@ -82,7 +82,7 @@ export default function Cart({ scrolledHeader }: { scrolledHeader?: boolean }) {
                     ))
                   ) : (
                     <div className="my-auto">
-                      <p className="mt-20 text-center text-xl font-medium text-muted-foreground">
+                      <p className="mt-20 text-center text-xl font-medium !text-muted-foreground">
                         Coșul este gol.
                       </p>
 

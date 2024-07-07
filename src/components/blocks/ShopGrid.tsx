@@ -35,7 +35,7 @@ export default function ShopGrid() {
   );
 
   const productsNotFound = (
-    <h3 className="max-w-full text-center font-medium">
+    <h3 className="mt-14 max-w-full text-center font-medium">
       Nu am găsit niciun produs
     </h3>
   );

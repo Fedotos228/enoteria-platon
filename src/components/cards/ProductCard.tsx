@@ -57,7 +57,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         )}
       </div>
       <Link
-        href={type === "merch" ? `shop/merch/${slug}` : `shop/${slug}`}
+        href={type === "merch" ? `/shop/merch/${slug}` : `shop/${slug}`}
         className="after:absolute after:inset-0"
       >
         <h6 className="m-4">{title}</h6>
