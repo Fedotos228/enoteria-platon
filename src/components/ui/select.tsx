@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
+import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import React, { useState } from "react";
 
 const Select = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Root>,

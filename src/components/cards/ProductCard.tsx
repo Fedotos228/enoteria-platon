@@ -1,32 +1,39 @@
-'use client'
+"use client";
 
-import { useActions } from '@/hooks/useActions'
-import { MediaType, cn, imageStrapUrl } from "@/lib/utils"
-import { CirclePercent } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button, buttonVariants } from "../ui/button"
-import { Card, CardFooter } from "../ui/card"
+import { useActions } from "@/hooks/useActions";
+import { MediaType, cn, imageStrapUrl } from "@/lib/utils";
+import { CirclePercent } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button, buttonVariants } from "../ui/button";
+import { Card, CardFooter } from "../ui/card";
 
 const backgroundImage = {
   backgroundImage: "url(/images/bg.png)",
   backgroundSize: "cover",
   backgroundPosition: "center",
   overflow: "hidden",
-}
+};
 
 type ProductCardProps = {
-  product: any
-  type: 'product' | 'merch'
-}
+  product: any;
+  type: "product" | "merch";
+};
 
 export default function ProductCard({ product, type }: ProductCardProps) {
-  const { addCart } = useActions()
-  if (!product) return null
+  const { addToCart } = useActions();
+  if (!product) return null;
 
-  const { title, price_mdl, thumbnail, discount, slug } = product.attributes
+  const { title, price_mdl, thumbnail, discount, slug } = product.attributes;
 
-  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl
+  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl;
+
+  //   const handleItemsCount = (id: string) => {
+  // 	const item = productsInCart.find((item: any) => item._id === id)
+  // 	if (item) {
+  // 		return `(${item.quantity})`
+  // 	}
+  // }
 
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
@@ -49,7 +56,10 @@ export default function ProductCard({ product, type }: ProductCardProps) {
           </div>
         )}
       </div>
-      <Link href={type === 'merch' ? `shop/merch/${slug}` : `shop/${slug}`} className="after:absolute after:inset-0">
+      <Link
+        href={type === "merch" ? `shop/merch/${slug}` : `shop/${slug}`}
+        className="after:absolute after:inset-0"
+      >
         <h6 className="m-4">{title}</h6>
       </Link>
       <CardFooter className="flex-wrap justify-between gap-2">
@@ -67,7 +77,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         {price_mdl ? (
           <Button
             className="relative z-10 ml-auto"
-            onClick={() => addCart(product.attributes)}
+            onClick={() => addToCart(product.attributes)}
           >
             Adaugă
           </Button>
@@ -83,8 +93,8 @@ export default function ProductCard({ product, type }: ProductCardProps) {
             Află prețul
           </Link>
         )}
-        {/* <Button className='bg-green-700'>Adaugat (5)</Button> */}
+        {/* <Button className='bg-green-700'>Adauga (5) {handleItemsCount(product._id)}</Button> */}
       </CardFooter>
     </Card>
-  )
+  );
 }

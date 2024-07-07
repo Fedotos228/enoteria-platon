@@ -1,36 +1,38 @@
-"use client"
+"use client";
 
-import { useActions } from '@/hooks/useActions'
-import { formatMDLPrice } from "@/lib/utils"
-import { type BlocksContent } from "@strapi/blocks-react-renderer"
-import { Minus, Plus } from "lucide-react"
-import { useState } from "react"
-import { Button } from "../ui/button"
-import BlockRendererClient from "./BlockRendererClient"
+import { useActions } from "@/hooks/useActions";
+import { formatMDLPrice } from "@/lib/utils";
+import { type BlocksContent } from "@strapi/blocks-react-renderer";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import BlockRendererClient from "./BlockRendererClient";
 
 type ProductSingleDetailsProps = {
-  title: string
-  slug: string
-  price: number
-  description: BlocksContent
+  title: string;
+  slug: string;
+  price: number;
+  description: BlocksContent;
   details: {
-    id: number
-    title: string
-    desc: string
-  }[]
-  subcategories: any
-}
+    id: number;
+    title: string;
+    desc: string;
+  }[];
+  subcategories: any;
+};
 
 export default function ProductSingleDetails({
-  product
-}: { product: ProductSingleDetailsProps }) {
-  const { title, slug, price, description, details, subcategories } = product
-  const { addCart } = useActions()
-  const [quantity, setQuantity] = useState(1)
+  product,
+}: {
+  product: ProductSingleDetailsProps;
+}) {
+  const { title, slug, price, description, details, subcategories } = product;
+  const { addToCart } = useActions();
+  const [quantity, setQuantity] = useState(1);
 
-  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1)
+  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1);
 
-  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1)
+  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1);
 
   return (
     <div>
@@ -58,18 +60,17 @@ export default function ProductSingleDetails({
             <Plus size={16} />
           </Button>
         </div>
-        <Button onClick={() => addCart(product)}>Adaugă în coș</Button>
+        <Button onClick={() => addToCart(product)}>Adaugă în coș</Button>
       </div>
       <div>
         <h5 className="mb-5">Descriere</h5>
-        {
-          details && details.map(details => (
-            <div key={details.id} className='flex items-center gap-1 mb-3'>
-              <h6 className='max-w-48 w-full'>{details.title}</h6>
+        {details &&
+          details.map((details) => (
+            <div key={details.id} className="mb-3 flex items-center gap-1">
+              <h6 className="w-full max-w-48">{details.title}</h6>
               <p>{details.desc}</p>
             </div>
-          ))
-        }
+          ))}
       </div>
       <BlockRendererClient content={description} />
       {/* <ul>
@@ -78,5 +79,5 @@ export default function ProductSingleDetails({
         ))}
       </ul> */}
     </div>
-  )
+  );
 }
