@@ -63,12 +63,18 @@ const cartSlice = createSlice({
       const itemSlug = state.products.findIndex(
         (product) => product.slug === action.payload.slug,
       );
+
       if (itemSlug >= 0) {
-        state.products[itemSlug].quantity += 1;
+        state.products[itemSlug].quantity += action.payload.quantity || 1;
       } else {
-        state.products.push({ ...action.payload, quantity: 1 });
+        state.products.push({
+          ...action.payload,
+          quantity: action.payload.quantity || 1,
+        });
       }
-      state.quantity += 1;
+      state.quantity += action.payload.quantity || 1;
+
+      console.log(state.quantity);
     },
 
     // increaseQuantity: (state, action) => {

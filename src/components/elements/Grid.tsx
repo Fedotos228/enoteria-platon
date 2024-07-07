@@ -8,7 +8,10 @@ export default function Grid({
   gridSize?: number;
 }) {
   return (
-    <div className={`grid grid-cols-${gridSize} gap-4 md:gap-5`}>
+    <div
+      className={`grid gap-4 md:gap-5`}
+      style={{ gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))` }}
+    >
       {children}
     </div>
   );

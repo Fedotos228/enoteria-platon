@@ -6,7 +6,7 @@ export type ColorTypes = {
 
 export type MerchSingleDetailsProps = {
   title: string;
-  price: number;
+  price_mdl: number;
   discount: number;
   colors: ColorTypes[];
   sizes: {

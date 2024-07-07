@@ -28,7 +28,7 @@ export default function CartProduct({ product }: any) {
       <div className="flex flex-1 flex-col">
         <div className="flex justify-between gap-2 font-medium">
           <Link href={"/" + product.slug}>{product.title}</Link>
-          <p>{formatMDLPrice(price)}</p>
+          <p>{formatMDLPrice(Number(price))}</p>
         </div>
         {/* <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
           <span className="circle rosu"></span> Roșu

@@ -30,6 +30,8 @@ export default function Cart() {
     }
   }, [isCartOpen]);
 
+  console.log(products);
+
   return (
     <div>
       <Button

@@ -42,7 +42,7 @@ export default function MerchSingleDetails({
   return (
     <div>
       <h4 className="mb-2">{merch.title}</h4>
-      <h5 className="mb-6">{formatMDLPrice(merch.price)}</h5>
+      <h5 className="mb-6">{formatMDLPrice(Number(merch.price_mdl))}</h5>
 
       <div className="mb-8">
         <h6 className="mb-3 text-bordo">Culoare</h6>
@@ -53,7 +53,8 @@ export default function MerchSingleDetails({
               <div
                 key={color.hex}
                 onClick={() => handleOptionChange("color", color)}
-                className={`h-12 w-12 cursor-pointer rounded border ring-offset-1 transition-all duration-300 hover:scale-105 bg-[${color.hex}] ${selectedOptions.color?.id === color.id && "ring-2 ring-bordo"}`}
+                style={{ backgroundColor: color.hex }}
+                className={`h-12 w-12 cursor-pointer rounded border ring-offset-1 transition-all duration-300 hover:scale-105 ${selectedOptions.color?.id === color.id && "ring-2 ring-bordo"}`}
               ></div>
             ))}
         </div>
