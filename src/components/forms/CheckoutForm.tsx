@@ -16,10 +16,13 @@ import {
   CheckoutFormSchema,
   CheckoutFormSchemaType,
 } from "./schemas/CheckoutFormSchema"
+import { useSelector } from 'react-redux'
+import { selectCartTotal } from '@/store/slices/cart.slice'
 
 export function CheckoutForm() {
   const { mutate: createOrder, isPending, isSuccess, isError } = useCreateOrder()
-  const { products, total, shipping } = useAppSelector((state) => state.cart)
+  const { products, shipping } = useAppSelector((state) => state.cart)
+  const total = useSelector(selectCartTotal)
   const { clearCart } = useActions()
 
   const defaultValues: CheckoutFormSchemaType = {
@@ -66,18 +69,10 @@ export function CheckoutForm() {
     createOrder(order)
 
     if (isSuccess) {
-      toast.success("Comanda a fost plasată cu succes!", {
-        position: "top-center",
-      })
       clearCart()
       form.reset(defaultValues)
     }
 
-    if (isError) {
-      toast.error(`A apărut o eroare la plasarea comenzii!`, {
-        position: "top-center",
-      })
-    }
   }
 
   return (

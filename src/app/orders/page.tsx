@@ -1,6 +1,6 @@
 'use client'
 
-import OrdersList from '@/components/blocks/OrdersList'
+import OrdersTable from '@/components/cards/OrdersTable'
 import Container from '@/components/layout/Container'
 import { getToken } from '@/lib/localStorage'
 import { useRouter } from 'next/navigation'
@@ -15,7 +15,7 @@ export default function OrdersPage() {
 
   return (
     <Container>
-      <OrdersList />
+      <OrdersTable />
     </Container>
   )
 }

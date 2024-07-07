@@ -29,7 +29,7 @@ export function AddressForm({ control }: AddressFormProps) {
       <div className="grid grid-cols-2 gap-5">
         <FormField
           control={control}
-          name="firstname"
+          name="firstName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>
@@ -44,7 +44,7 @@ export function AddressForm({ control }: AddressFormProps) {
         />
         <FormField
           control={control}
-          name="lastname"
+          name="lastName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>

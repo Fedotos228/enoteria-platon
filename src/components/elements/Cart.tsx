@@ -15,7 +15,7 @@ export default function Cart() {
   const { products, quantity, isCartOpen } = useAppSelector(
     (state) => state.cart,
   )
-  const { clearCart, calculateShipping, toggleCart } = useActions()
+  const { clearCart, toggleCart } = useActions()
   const total = useSelector(selectCartTotal)
 
   useEffect(() => {

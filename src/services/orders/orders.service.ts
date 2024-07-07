@@ -1,5 +1,6 @@
 import { CheckoutFormSchemaType } from '@/components/forms/schemas/CheckoutFormSchema'
-import { instance } from '../api/axios'
+import { instance, loginInstance } from '../api/axios'
+import { ordersQuery } from './orders.qs'
 
 class OrdersService {
   async createOrder(order: CheckoutFormSchemaType) {
@@ -9,6 +10,12 @@ class OrdersService {
       }
     })
   }
+  async getOrders() {
+    return loginInstance.get(`/orders?${ordersQuery}`)
+  }
+  async getOrderById(id: number) {
+    return loginInstance.get(`/orders/${id}?populate=deep`)
+  } 
 }
 
 export const ordersService = new OrdersService()
