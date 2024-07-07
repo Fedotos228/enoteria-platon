@@ -11,8 +11,9 @@ import BlockRendererClient from "./BlockRendererClient";
 type ProductSingleDetailsProps = {
   title: string;
   slug: string;
-  price: number;
+  price_mdl: number;
   description: BlocksContent;
+  discount: number;
   details: {
     id: number;
     title: string;
@@ -26,7 +27,15 @@ export default function ProductSingleDetails({
 }: {
   product: ProductSingleDetailsProps;
 }) {
-  const { title, slug, price, description, details, subcategories } = product;
+  const {
+    title,
+    slug,
+    price_mdl,
+    description,
+    details,
+    subcategories,
+    discount,
+  } = product;
   const { addToCart } = useActions();
   const [quantity, setQuantity] = useState(1);
 
@@ -34,10 +43,35 @@ export default function ProductSingleDetails({
 
   const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1);
 
+  const price = product.discount
+    ? product.price_mdl - (product.price_mdl * product.discount) / 100
+    : product.price_mdl;
+
   return (
     <div>
-      <h4 className="mb-2">{title}</h4>
-      <h5 className="mb-3">{formatMDLPrice(price)}</h5>
+      <div className="mt-8 flex items-center justify-between gap-4">
+        <h4 className="mb-2">{title}</h4>
+        <h5
+          className={`mb-3 flex items-end gap-1 text-xl ${discount ? "text-bordo" : "text-foreground"}`}
+        >
+          {price_mdl && (
+            <>
+              {discount ? (
+                <>
+                  {formatMDLPrice(price)}
+                  <p
+                    className={`${discount && "text-lg text-foreground line-through opacity-50"}`}
+                  >
+                    {formatMDLPrice(discount ? price_mdl : price)}
+                  </p>
+                </>
+              ) : (
+                formatMDLPrice(price_mdl)
+              )}
+            </>
+          )}
+        </h5>
+      </div>
       <span className="text-sm text-green-500">In stock</span>
       {/* <span className="text-sm text-destructive">Out of stock</span> */}
       <div className="my-7 flex items-center justify-between">
@@ -60,7 +94,15 @@ export default function ProductSingleDetails({
             <Plus size={16} />
           </Button>
         </div>
-        <Button onClick={() => addToCart(product)}>Adaugă în coș</Button>
+        <Button
+          onClick={() =>
+            quantity > 1
+              ? addToCart({ ...product, quantity })
+              : addToCart(product)
+          }
+        >
+          Adaugă în coș
+        </Button>
       </div>
       <div>
         <h5 className="mb-5">Descriere</h5>

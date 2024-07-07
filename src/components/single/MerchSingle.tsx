@@ -17,7 +17,7 @@ export default function MerchSingle({ slug }: { slug: string }) {
 
   return (
     <Card className="p-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         {gallery.data !== null ? (
           <ProductGallery gallery={gallery.data} />
         ) : (
