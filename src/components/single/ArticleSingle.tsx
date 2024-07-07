@@ -11,10 +11,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Pagination } from 'swiper/modules'
+import Loader from '../elements/Loader'
 
 
 export default function ArticleSingle({ slug }: { slug: string }) {
-  const { data } = useGetArticleBySlug(slug)
+  const { data, isLoading } = useGetArticleBySlug(slug)
   const dateObj = new Date(data?.attributes?.publishedAt)
 
   const day = String(dateObj.getUTCDate()).padStart(2, '0')
@@ -22,6 +23,8 @@ export default function ArticleSingle({ slug }: { slug: string }) {
   const year = dateObj.getUTCFullYear()
 
   const formattedDate = `${day}.${month}.${year}`
+
+  if(isLoading) <Loader loading={isLoading} />
 
   return (
     <Card className='mt-7 p-10'>

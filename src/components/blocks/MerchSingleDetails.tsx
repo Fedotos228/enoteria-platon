@@ -1,43 +1,43 @@
-import { useActions } from "@/hooks/useActions";
-import { formatMDLPrice } from "@/lib/utils";
-import { useState } from "react";
-import { toast } from "sonner";
-import { Button } from "../ui/button";
+import { useActions } from "@/hooks/useActions"
+import { formatMDLPrice } from "@/lib/utils"
+import { useState } from "react"
+import { toast } from "sonner"
+import { Button } from "../ui/button"
 import {
   ColorTypes,
   ISelectedOptions,
   MerchSingleDetailsProps,
-} from "./models/merchSingle.types";
+} from "./models/merchSingle.types"
 
 export default function MerchSingleDetails({
   merch,
 }: {
-  merch: MerchSingleDetailsProps;
+  merch: MerchSingleDetailsProps
 }) {
   const [selectedOptions, setSelectedOptions] = useState<ISelectedOptions>({
     color: undefined,
     size: undefined,
-  });
-  const { addToCart } = useActions();
+  })
+  const { addToCart } = useActions()
 
   const handleOptionChange = (type: string, value: any) => {
-    setSelectedOptions((prev) => ({ ...prev, [type]: value }));
-  };
+    setSelectedOptions((prev) => ({ ...prev, [type]: value }))
+  }
 
   const handleAddToCart = () => {
     if (!selectedOptions.color) {
-      return toast.warning("Selectează o culoare");
+      return toast.warning("Selectează o culoare")
     }
 
     if (!selectedOptions.size) {
-      return toast.warning("Selectează o mărime");
+      return toast.warning("Selectează o mărime")
     }
 
     if (selectedOptions.color && selectedOptions.size) {
-      addToCart(merch);
-      return toast.success("Produsul a fost adăugat în coș");
+      addToCart(merch)
+      return toast.success("Produsul a fost adăugat în coș")
     }
-  };
+  }
 
   return (
     <div>
@@ -78,5 +78,5 @@ export default function MerchSingleDetails({
         Adaugă în coș
       </Button>
     </div>
-  );
+  )
 }

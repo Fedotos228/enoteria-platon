@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import * as ScrollArea from "@radix-ui/react-scroll-area";
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import React, { useState } from "react";
+import * as ScrollArea from "@radix-ui/react-scroll-area"
+import * as SelectPrimitive from "@radix-ui/react-select"
+import { ChevronDown, ChevronUp } from "lucide-react"
+import React, { useState } from "react"
 
 const Select = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & {
-    className?: string;
+    className?: string
   }
 >(({ children, className, ...props }, ref) => {
-  const [toggleChevron, setToggleChevron] = useState(false);
+  const [toggleChevron, setToggleChevron] = useState(false)
 
   const handleChevronView = () => {
-    setToggleChevron((prev) => !prev);
-  };
+    setToggleChevron((prev) => !prev)
+  }
 
   return (
     <SelectPrimitive.Root {...props} onOpenChange={handleChevronView}>
@@ -51,10 +51,10 @@ const Select = React.forwardRef<
         </SelectPrimitive.Content>
       </SelectPrimitive.Portal>
     </SelectPrimitive.Root>
-  );
-});
+  )
+})
 
-Select.displayName = SelectPrimitive.Root.displayName;
+Select.displayName = SelectPrimitive.Root.displayName
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
@@ -68,9 +68,10 @@ const SelectItem = React.forwardRef<
     >
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
-  );
-});
+  )
+})
 
-SelectItem.displayName = SelectPrimitive.Item.displayName;
+SelectItem.displayName = SelectPrimitive.Item.displayName
 
-export { Select, SelectItem };
+export { Select, SelectItem }
+

@@ -1,30 +1,33 @@
-"use client";
+"use client"
 
 import { useActions } from '@/hooks/useActions'
-import { useAppSelector } from "@/store/store";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Control, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { useEffect } from 'react';
+import { useAppSelector } from "@/store/store"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from 'react'
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
-import { AddressForm } from "./blocks/AddressForm";
-import { PaymentForm } from "./blocks/PaymentForm";
-import { Form } from "@/components/ui/form";
-import { Button } from "../ui/button";
+import { Form } from "@/components/ui/form"
+import useCreateOrder from '@/hooks/mutations/useCreateOrder'
+import { Button } from "../ui/button"
+import { AddressForm } from "./blocks/AddressForm"
+import { PaymentForm } from "./blocks/PaymentForm"
 import {
   CheckoutFormSchema,
   CheckoutFormSchemaType,
-  // PaymentFormSchemaType,
-  // AddressFormSchemaType,
-} from "./schemas/CheckoutFormSchema";
+} from "./schemas/CheckoutFormSchema"
+import { useSelector } from 'react-redux'
+import { selectCartTotal } from '@/store/slices/cart.slice'
 
 export function CheckoutForm() {
-  const { products, total, shipping } = useAppSelector((state) => state.cart);
-  const { clearCart } = useActions();
-  
+  const { mutate: createOrder, isPending, isSuccess, isError } = useCreateOrder()
+  const { products, shipping } = useAppSelector((state) => state.cart)
+  const total = useSelector(selectCartTotal)
+  const { clearCart } = useActions()
+
   const defaultValues: CheckoutFormSchemaType = {
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     address: "",
@@ -41,34 +44,35 @@ export function CheckoutForm() {
     totalPrice: 0,
   }
 
-
   const form = useForm<CheckoutFormSchemaType>({
     resolver: zodResolver(CheckoutFormSchema),
     defaultValues,
-  });
+  })
 
 
   useEffect(() => {
-    const totalPrice = total + shipping;
-    form.setValue('totalPrice', totalPrice);
-    form.setValue('shipping', shipping);
-    form.setValue('subTotalPrice', total);
-  }, [form, total, shipping]);
+    const totalPrice = total + shipping
+    form.setValue('totalPrice', totalPrice)
+    form.setValue('shipping', shipping)
+    form.setValue('subTotalPrice', total)
+  }, [form, total, shipping])
 
   function onSubmit(data: CheckoutFormSchemaType) {
-    if(products.length === 0) {
+    if (products.length === 0) {
       toast.error("Nu există produse în coșul de cumpărături!", {
         position: "top-center",
-      });
-    } else {
-      toast.success("Comanda a fost plasată cu succes!", {
-        position: "top-center",
-      });
+      })
     }
     // Add logic to send data here
-    console.log(data); 
-    clearCart();
-    form.reset(defaultValues);
+    let order = { ...data, products }
+
+    createOrder(order)
+
+    if (isSuccess) {
+      clearCart()
+      form.reset(defaultValues)
+    }
+
   }
 
   return (
@@ -77,12 +81,15 @@ export function CheckoutForm() {
         className="grid w-full grid-cols-1 py-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <AddressForm control={form.control}/>
+        <AddressForm control={form.control} />
         <PaymentForm control={form.control} />
         <Button className="ml-auto inline-block px-6" type="submit" size="sm">
-          Achită
+          {
+            isPending ? 'Se procesează...' : 'Achită'
+          }
+
         </Button>
       </form>
     </Form>
-  );
+  )
 }
