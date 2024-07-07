@@ -1,17 +1,15 @@
-"use client";
+"use client"
 
-import React from "react";
-import { useAppSelector } from "@/store/store";
-import CartProduct from "../cards/CartProduct";
-import { formatMDLPrice } from "@/lib/utils";
-import AcceptedCards from "../cards/AcceptedCards";
+import { formatMDLPrice } from "@/lib/utils"
+import { useAppSelector } from "@/store/store"
+import CartProduct from "../cards/CartProduct"
 
 export default function CartInfoCard() {
-  const { products, total, shipping } = useAppSelector((state) => state.cart);
+  const { products, total, shipping } = useAppSelector((state) => state.cart)
 
   const calculateTotalPrice = (subtotal: number, shipping: number) => {
-    return subtotal > 0 ? subtotal + shipping : 0;
-  };
+    return subtotal > 0 ? subtotal + shipping : 0
+  }
 
   return (
     <>
@@ -34,7 +32,6 @@ export default function CartInfoCard() {
         </div>
       </div>
       <div className="mt-4 grid gap-4 border-b-2 pb-4">
-        <AcceptedCards/>
         <div className="flex w-full justify-between font-light">
           <p>Sub-total</p>
           <p>{formatMDLPrice(total)}</p>
@@ -53,5 +50,5 @@ export default function CartInfoCard() {
         </div>
       </div>
     </>
-  );
+  )
 }

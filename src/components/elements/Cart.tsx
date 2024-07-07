@@ -1,36 +1,30 @@
-"use client";
+"use client"
 
-import { useActions } from "@/hooks/useActions";
-import { formatMDLPrice } from "@/lib/utils";
-import { selectCartTotal } from "@/store/slices/cart.slice";
-import { useAppSelector } from "@/store/store";
-import { ShoppingCart, X } from "lucide-react";
-import Link from "next/link";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import CartProduct from "../cards/CartProduct";
-import { Button } from "../ui/button";
+import { useActions } from "@/hooks/useActions"
+import { formatMDLPrice } from "@/lib/utils"
+import { selectCartTotal } from "@/store/slices/cart.slice"
+import { useAppSelector } from "@/store/store"
+import { ShoppingCart, X } from "lucide-react"
+import Link from "next/link"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import CartProduct from "../cards/CartProduct"
+import { Button } from "../ui/button"
 
 export default function Cart() {
   const { products, quantity, isCartOpen } = useAppSelector(
     (state) => state.cart,
-  );
-  const { clearCart, calculateShipping, toggleCart } = useActions();
-  const total = useSelector(selectCartTotal);
-
-  useEffect(() => {
-    calculateShipping();
-  }, [calculateShipping]);
+  )
+  const { clearCart, calculateShipping, toggleCart } = useActions()
+  const total = useSelector(selectCartTotal)
 
   useEffect(() => {
     if (isCartOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden")
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden")
     }
-  }, [isCartOpen]);
-
-  console.log(products);
+  }, [isCartOpen])
 
   return (
     <div>
@@ -51,15 +45,13 @@ export default function Cart() {
       <>
         <div
           onClick={() => toggleCart()}
-          className={`fixed inset-0 z-30 bg-opacity-75 backdrop-blur-md transition-all duration-300 ${
-            isCartOpen ? "visible opacity-100" : "invisible opacity-0"
-          }`}
+          className={`fixed inset-0 z-30 bg-opacity-75 backdrop-blur-md transition-all duration-300 ${isCartOpen ? "visible opacity-100" : "invisible opacity-0"
+            }`}
         ></div>
 
         <div
-          className={`pointer-events-none fixed inset-y-0 z-50 flex w-full max-w-full bg-background transition-all duration-300 xs:max-w-lg ${
-            isCartOpen ? "right-0" : "-right-full xs:-right-[512px]"
-          }`}
+          className={`pointer-events-none fixed inset-y-0 z-50 flex w-full max-w-full bg-background transition-all duration-300 xs:max-w-lg ${isCartOpen ? "right-0" : "-right-full xs:-right-[512px]"
+            }`}
         >
           <div className="pointer-events-auto flex h-full w-full flex-col overflow-y-scroll shadow-xl">
             <div className="flex-1 overflow-y-auto p-4 sm:px-6">
@@ -133,5 +125,5 @@ export default function Cart() {
         </div>
       </>
     </div>
-  );
+  )
 }

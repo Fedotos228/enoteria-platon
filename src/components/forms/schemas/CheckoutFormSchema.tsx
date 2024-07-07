@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const AddressFormSchema = z.object({
-  firstname: z
+  firstName: z
     .string()
     .min(3, { message: "Numele trebuie să aibă cel puțin 3 caractere" }),
-  lastname: z
+  lastName: z
     .string()
     .min(4, { message: "Prenumele trebuie să aibă cel puțin 4 caractere" }),
   email: z.string().email({ message: "Adresa de email nu este validă" }),
@@ -18,7 +18,7 @@ export const AddressFormSchema = z.object({
     .string()
     .min(2, { message: "Orașul trebuie să aibă cel puțin 2 caractere" }),
   country: z.enum(["moldova", "romania"]),
-});
+})
 
 export const CardPaypalPaymentSchema = z.object({
   cardNumber: z.string().min(16, {
@@ -36,7 +36,7 @@ export const CardPaypalPaymentSchema = z.object({
   cvv: z
     .string()
     .min(3, { message: "CVV-ul trebuie să aibă cel puțin 3 caractere" }),
-});
+})
 
 export const CashPaymentSchema = z.object({
   cardNumber: z.string().optional(),
@@ -44,7 +44,7 @@ export const CashPaymentSchema = z.object({
   expiryMonth: z.string().optional(),
   expiryYear: z.string().optional(),
   cvv: z.string().optional(),
-});
+})
 
 // export const PaymentFormSchema = z.object({
 //   paymentMethod: z.enum(["card", "paypal", "cash"]),
@@ -70,8 +70,8 @@ export const CheckoutFormSchema = z
         ...CardPaypalPaymentSchema.shape,
       }),
     ]),
-  );
+  )
 
 // export type PaymentFormSchemaType = z.infer<typeof PaymentFormSchema>;
 // export type AddressFormSchemaType = z.infer<typeof AddressFormSchema>;
-export type CheckoutFormSchemaType = z.infer<typeof CheckoutFormSchema>;
+export type CheckoutFormSchemaType = z.infer<typeof CheckoutFormSchema>
