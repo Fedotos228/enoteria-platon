@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
 
-export default function Grid({ children }: { children: React.ReactNode }) {
+export default function Grid({
+  children,
+  gridSize = 4,
+}: {
+  children: React.ReactNode;
+  gridSize?: number;
+}) {
   return (
-    <div className='grid grid-cols-4 gap-5'>
+    <div
+      className={`grid gap-4 md:gap-5`}
+      style={{ gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))` }}
+    >
       {children}
     </div>
-  )
+  );
 }
