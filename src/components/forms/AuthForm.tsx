@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -12,10 +12,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import useLogin from "@/hooks/mutations/useLogin";
-import { Loader2 } from "lucide-react";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import useLogin from "@/hooks/mutations/useLogin"
+import { Loader2 } from "lucide-react"
 
 const formSchema = z.object({
   identifier: z.string().min(2, {
@@ -24,10 +24,10 @@ const formSchema = z.object({
   password: z.string().min(2, {
     message: "Password must be at least 2 characters.",
   }),
-});
+})
 
 export function AuthForm() {
-  const { mutate: login, isPending } = useLogin();
+  const { mutate: login, isPending } = useLogin()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,17 +35,17 @@ export function AuthForm() {
       identifier: "",
       password: "",
     },
-  });
+  })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values);
+    login(values)
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto max-w-[450px] space-y-8"
+        className="mx-auto max-w-[450px] w-full space-y-8"
       >
         <FormField
           control={form.control}
@@ -78,5 +78,5 @@ export function AuthForm() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }

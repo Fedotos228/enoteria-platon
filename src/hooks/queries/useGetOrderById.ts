@@ -1,5 +1,5 @@
-import { ordersService } from "@/services/orders/orders.service";
-import { useQuery } from "@tanstack/react-query";
+import { ordersService } from "@/services/orders/orders.service"
+import { useQuery } from "@tanstack/react-query"
 
 export default function useGetOrderById(
   id: number,
@@ -10,5 +10,5 @@ export default function useGetOrderById(
     queryFn: () => ordersService.getOrderById(id),
     select: (data) => data.data.data,
     enabled,
-  });
+  })
 }

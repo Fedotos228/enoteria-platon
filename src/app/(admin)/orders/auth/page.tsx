@@ -1,12 +1,11 @@
-"use client";
+"use client"
 
-import { AuthForm } from "@/components/forms/AuthForm";
-import Container from "@/components/layout/Container";
+import { AuthForm } from "@/components/forms/AuthForm"
 
 export default function AuthPage() {
   return (
-    <Container className="pt-14">
+    <div className='flex items-center justify-center w-full h-screen'>
       <AuthForm />
-    </Container>
-  );
+    </div>
+  )
 }
