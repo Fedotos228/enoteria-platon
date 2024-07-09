@@ -3,20 +3,33 @@ import useGetCategories from "@/hooks/queries/useGetCategories"
 import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts"
 import { useActions } from "@/hooks/useActions"
 import useScreenSize from "@/hooks/useScreenSize"
+import { useAppSelector } from '@/store/store'
 import { SlidersHorizontal, TextSearch } from "lucide-react"
+import { useState } from 'react'
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet"
 
 export default function FilterSidebar() {
   const { data: category } = useGetCategories()
-  const { toggleCategory, setFilters } = useActions()
+  const { toggleCategory } = useActions()
+  const subcategory = useAppSelector(state => state.filter.subcategory)
   const { width } = useScreenSize()
   const { refetch } = useGetFilteredProducts()
+  const [openSheet, setOpenSheet] = useState(false)
 
   const handleSelectCategory = (slug: string) => {
     toggleCategory(slug)
+    if (width > 767) refetch()
+  }
+
+  const handleMobileSelectCategory = () => {
     refetch()
+    setOpenSheet(prev => !prev)
+  }
+
+  const handleSelectedCategory = (slug: string) => {
+    return subcategory.includes(slug) as boolean
   }
 
   return width > 767 ? (
@@ -61,7 +74,7 @@ export default function FilterSidebar() {
   ) : (
     <>
       <span></span>
-      <Sheet>
+      <Sheet open={openSheet} onOpenChange={() => setOpenSheet(prev => !prev)}>
         <SheetTrigger asChild>
           <Button variant="outline" className="gap-3 md:hidden">
             <SlidersHorizontal size={20} />
@@ -87,6 +100,7 @@ export default function FilterSidebar() {
                           onClick={() =>
                             toggleCategory(subcategory.attributes.slug)
                           }
+                          checked={handleSelectedCategory(subcategory.attributes.slug)}
                         />
                         <label
                           htmlFor={subcategory.attributes.slug}
@@ -105,7 +119,7 @@ export default function FilterSidebar() {
             ))}
           </div>
           <SheetFooter className="sticky bottom-0 flex-row gap-2">
-            <Button className="flex-1" onClick={() => refetch()}>
+            <Button className="flex-1" onClick={() => handleMobileSelectCategory()}>
               <TextSearch size={20} />
               Caută
             </Button>

@@ -33,8 +33,11 @@ export default function MerchSingleDetails({
       return toast.warning("Selectează o mărime")
     }
 
+
     if (selectedOptions.color && selectedOptions.size) {
-      addToCart(merch)
+      const merchOrder = { ...merch, ...selectedOptions }
+      addToCart(merchOrder)
+      setSelectedOptions({ color: undefined, size: undefined })
       return toast.success("Produsul a fost adăugat în coș")
     }
   }

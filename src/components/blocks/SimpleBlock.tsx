@@ -10,13 +10,13 @@ export default function SimpleBlock({ content }: any) {
 
   return (
     <Container>
-      <div className='flex items-center gap-5'>
+      <div className='grid grid-cols-1 gap-5 md:grid-cols-2 place-items-center'>
         {image && <Image
           src={imageStrapUrl(image, MediaType.Single)}
           alt={title}
           width={600}
           height={300}
-          className='max-w-[580px] w-full'
+          className='md:w-full'
         />}
         <div>
           <BlockRendererClient content={description} />
