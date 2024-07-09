@@ -43,8 +43,8 @@ export const formatMDLPrice = (price: number) => {
 export function dateFormater(data: string) {
   const date = new Date(data)
 
-  const year = date.getUTCFullYear()
-  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2)
-  const day = ("0" + date.getUTCDate()).slice(-2)
-  return `${day}.${month}.${year}`
+  const year = date.getUTCFullYear();
+  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+  const day = ("0" + date.getUTCDate()).slice(-2);
+  return `${day}.${month}.${year}`;
 }

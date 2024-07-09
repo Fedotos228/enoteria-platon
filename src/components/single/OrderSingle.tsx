@@ -1,18 +1,14 @@
 "use client";
 
-import React from "react";
-import Loader from "../elements/Loader";
 import useGetOrderById from "@/hooks/queries/useGetOrderById";
-import Grid from "../elements/Grid";
-import ProductCard from "../cards/ProductCard";
 import OrderProductCard from "../cards/OrderProductCard";
-
+import Grid from "../elements/Grid";
+import Loader from "../elements/Loader";
 
 export default function OrderSingle({ id }: { id: number }) {
-  const { data, isLoading } = useGetOrderById(id);
+  const { data, isLoading } = useGetOrderById(id, { enabled: true });
 
   if (isLoading) return <Loader loading={isLoading} />;
-  
 
   console.log(data);
   return (

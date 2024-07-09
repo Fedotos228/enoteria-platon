@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import useLogin from "@/hooks/mutations/useLogin";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   identifier: z.string().min(2, {
@@ -52,9 +52,9 @@ export function AuthForm() {
           name="identifier"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>identifier</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="identifier" {...field} />
+                <Input placeholder="Email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,16 +65,16 @@ export function AuthForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Parola</FormLabel>
               <FormControl>
-                <Input placeholder="password" {...field} />
+                <Input placeholder="Parola" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
-          {isPending ? <Loader2 className="animate-spin" /> : "Submit"}
+        <Button className="w-full" type="submit" disabled={isPending}>
+          {isPending && <Loader2 className="animate-spin" />} Loghează-te
         </Button>
       </form>
     </Form>
