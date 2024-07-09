@@ -6,17 +6,20 @@ import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
 import { ShoppingCart, X } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from 'next/navigation'
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import CartProduct from "../cards/CartProduct"
 import { Button } from "../ui/button"
 
-export default function Cart() {
+export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, scrolledHeader: boolean }) {
   const { products, quantity, isCartOpen } = useAppSelector(
     (state) => state.cart,
   )
   const { clearCart, toggleCart } = useActions()
   const total = useSelector(selectCartTotal)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     if (isCartOpen) {
@@ -34,7 +37,7 @@ export default function Cart() {
         size="icon"
         onClick={() => toggleCart()}
       >
-        <ShoppingCart />
+        <ShoppingCart color={menuOpen || scrolledHeader || !isHome ? 'black' : 'white'} className='duration-300' />
         {quantity > 0 && (
           <span className="absolute right-0 top-0 h-5 w-5 rounded-full bg-bordo text-center text-sm !text-white">
             {quantity}

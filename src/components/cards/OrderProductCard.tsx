@@ -1,13 +1,13 @@
-import React from "react";
-import { Card, CardFooter } from "../ui/card";
-import { imageStrapUrl, MediaType } from "@/lib/utils";
-import { CirclePercent } from "lucide-react";
-import Image from "next/image";
+import React from "react"
+import { Card, CardFooter } from "../ui/card"
+import { imageStrapUrl, MediaType } from "@/lib/utils"
+import { CirclePercent } from "lucide-react"
+import Image from "next/image"
 
 export default function OrderProductCard({ product }: { product: any }) {
-  if (!product) return null;
-  const { title, price_mdl, thumbnail, discount, quantity } = product;
-  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl;
+  if (!product) return null
+  const { title, price_mdl, thumbnail, discount, quantity } = product
+  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl
 
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
@@ -43,5 +43,5 @@ export default function OrderProductCard({ product }: { product: any }) {
         </div>
       </CardFooter>
     </Card>
-  );
+  )
 }

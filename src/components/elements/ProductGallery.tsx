@@ -28,7 +28,6 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : undefined
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-
         className="w-full !ml-0 !mr-0 mb-3"
       >
         {gallery?.map((image: any) => (
@@ -38,7 +37,7 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
               alt={image.attributes.url}
               width={580}
               height={475}
-              className='rounded-[6px]'
+              className='rounded-[6px] h-full w-full object-cover'
             />
           </SwiperSlide>
         ))}

@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import { useActions } from "@/hooks/useActions";
-import { MediaType, cn, imageStrapUrl } from "@/lib/utils";
-import { CirclePercent } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button, buttonVariants } from "../ui/button";
-import { Card, CardFooter } from "../ui/card";
+import { useActions } from "@/hooks/useActions"
+import { MediaType, cn, imageStrapUrl } from "@/lib/utils"
+import { CirclePercent } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button, buttonVariants } from "../ui/button"
+import { Card, CardFooter } from "../ui/card"
 
 const backgroundImage = {
   backgroundImage: "url(/images/bg.png)",
   backgroundSize: "cover",
   backgroundPosition: "center",
   overflow: "hidden",
-};
+}
 
 type ProductCardProps = {
-  product: any;
-  type: "product" | "merch";
-};
+  product: any
+  type: "product" | "merch"
+}
 
 export default function ProductCard({ product, type }: ProductCardProps) {
-  const { addToCart } = useActions();
-  if (!product) return null;
+  const { addToCart } = useActions()
+  if (!product) return null
 
-  const { title, price_mdl, thumbnail, discount, slug } = product.attributes;
+  const { title, price_mdl, thumbnail, discount, slug } = product.attributes
 
-  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl;
+  const price = discount ? price_mdl - (price_mdl * discount) / 100 : price_mdl
 
   //   const handleItemsCount = (id: string) => {
   // 	const item = productsInCart.find((item: any) => item._id === id)
@@ -74,27 +74,31 @@ export default function ProductCard({ product, type }: ProductCardProps) {
             </>
           )}
         </div>
-        {price_mdl ? (
-          <Button
-            className="relative z-10 ml-auto"
-            onClick={() => addToCart(product.attributes)}
-          >
-            Adaugă
-          </Button>
-        ) : (
-          <Link
-            href="/contacts"
-            className={`${cn(
-              buttonVariants({
-                variant: "default",
-              }),
-            )} relative z-10`}
-          >
-            Află prețul
-          </Link>
-        )}
+        {
+          type === 'product' ?
+            price_mdl ? (
+              <Button
+                className="relative z-10 ml-auto"
+                onClick={() => addToCart(product.attributes)}
+              >
+                Adaugă
+              </Button>
+            ) : (
+              <Link
+                href="/contacts"
+                className={`${cn(
+                  buttonVariants({
+                    variant: "default",
+                  }),
+                )} relative z-10`}
+              >
+                Află prețul
+              </Link>
+            )
+            : null
+        }
         {/* <Button className='bg-green-700'>Adauga (5) {handleItemsCount(product._id)}</Button> */}
       </CardFooter>
     </Card>
-  );
+  )
 }
