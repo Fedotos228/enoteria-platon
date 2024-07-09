@@ -56,7 +56,7 @@ export function ContactForm() {
 	return (
 		<Form {...form}>
 			<form
-				className='grid xs:grid-cols-2 gap-5 w-full md:w-[55%] py-10'
+				className='grid grid-cols-1 xs:grid-cols-2 gap-5 w-full md:w-[55%] py-5 xs:py-10'
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
@@ -83,7 +83,7 @@ export function ContactForm() {
 					control={form.control}
 					name='email'
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className='col-span-2 xs:col-span-1'>
 							<FormLabel>
 								Email{' '}
 								<span className='text-destructive'>*</span>
@@ -105,7 +105,7 @@ export function ContactForm() {
 					control={form.control}
 					name='phone'
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className='col-span-2 xs:col-span-1'>
 							<FormLabel>
 								Telefon{' '}
 								<span className='text-destructive'>*</span>

@@ -1,18 +1,14 @@
-"use client";
+"use client"
 
-import { useActions } from "@/hooks/useActions";
-import { useAppSelector } from "@/store/store";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { useSelector } from "react-redux";
-import useCreateOrder from "@/hooks/mutations/useCreateOrder";
+import useCreateOrder from "@/hooks/mutations/useCreateOrder"
+import { useActions } from "@/hooks/useActions"
+import { useAppSelector } from "@/store/store"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { toast } from "sonner"
 
-import {
-  CheckoutFormSchema,
-  CheckoutFormSchemaType,
-} from "./schemas/CheckoutFormSchema";
 import {
   Form,
   FormControl,
@@ -20,12 +16,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
-import { selectCartTotal } from "@/store/slices/cart.slice";
-import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { Label } from "@radix-ui/react-label";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { selectCartTotal } from "@/store/slices/cart.slice"
+import { Label } from "@radix-ui/react-label"
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
+import { Button } from "../ui/button"
+import {
+  CheckoutFormSchema,
+  CheckoutFormSchemaType,
+} from "./schemas/CheckoutFormSchema"
 
 export function CheckoutForm() {
   const {
@@ -33,10 +33,11 @@ export function CheckoutForm() {
     isPending,
     isSuccess,
     isError,
-  } = useCreateOrder();
-  const { products, shipping } = useAppSelector((state) => state.cart);
-  const total = useSelector(selectCartTotal);
-  const { clearCart } = useActions();
+    error
+  } = useCreateOrder()
+  const { products, shipping } = useAppSelector((state) => state.cart)
+  const total = useSelector(selectCartTotal)
+  const { clearCart } = useActions()
 
   const defaultValues: CheckoutFormSchemaType = {
     firstName: "",
@@ -50,35 +51,41 @@ export function CheckoutForm() {
     shipping: 0,
     subTotalPrice: 0,
     totalPrice: 0,
-  };
+  }
 
   const form = useForm<CheckoutFormSchemaType>({
     resolver: zodResolver(CheckoutFormSchema),
     defaultValues,
-  });
+  })
 
   useEffect(() => {
-    const totalPrice = total + shipping;
-    form.setValue("totalPrice", totalPrice);
-    form.setValue("shipping", shipping);
-    form.setValue("subTotalPrice", total);
-  }, [form, total, shipping]);
+    const totalPrice = total + shipping
+    form.setValue("totalPrice", totalPrice)
+    form.setValue("shipping", shipping)
+    form.setValue("subTotalPrice", total)
+  }, [form, total, shipping])
 
   function onSubmit(data: CheckoutFormSchemaType) {
     if (products.length === 0) {
       toast.error("Nu există produse în coșul de cumpărături!", {
         position: "top-center",
-      });
-      return; // Oprirea funcției onSubmit dacă nu există produse în coș
+      })
+      return // Oprirea funcției onSubmit dacă nu există produse în coș
     }
-    // Add logic to send data here
-    let order = { ...data, products };
-    console.log(order);
-    createOrder(order);
+
+    let order = { ...data, products, status: 'pre-order' }
+    createOrder(order)
 
     if (isSuccess) {
-      clearCart();
-      form.reset(defaultValues);
+      clearCart()
+      form.reset(defaultValues)
+    }
+    if (isError) {
+      if (products.length === 0) {
+        toast.error(`${error}`, {
+          position: "top-center",
+        })
+      }
     }
   }
 
@@ -301,5 +308,5 @@ export function CheckoutForm() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }

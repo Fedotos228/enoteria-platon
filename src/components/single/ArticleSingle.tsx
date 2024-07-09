@@ -24,18 +24,18 @@ export default function ArticleSingle({ slug }: { slug: string }) {
 
   const formattedDate = `${day}.${month}.${year}`
 
-  if(isLoading) <Loader loading={isLoading} />
+  if (isLoading) return <Loader loading={isLoading} />
 
   return (
-    <Card className='mt-7 p-10'>
+    <Card className='mt-7 p-5 md:p-10'>
       <h2 className='max-w-full'>{data?.attributes?.title}</h2>
       <time className='block text-gray-500 my-5' dateTime={formattedDate}>{formattedDate}</time>
       {data?.attributes?.image && <Image
         src={imageStrapUrl(data?.attributes?.image, MediaType.Single)}
         alt={data?.attributes?.slug}
-        width={800}
+        width={980}
         height={400}
-        className='mx-auto mb-8 h-56 md:h-96 object-cover rounded-lg'
+        className='mx-auto mb-8 h-96 object-cover rounded-lg'
       />}
       {data?.attributes?.body && <BlockRendererClient
         content={data?.attributes?.body}

@@ -124,6 +124,11 @@
     object-fit: cover;
   }
 
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: var(--bordo) !important;
+  }
+
   /* Background backdrop, show/hide based on slide-over state.
 
     Entering: "ease-in-out duration-500"

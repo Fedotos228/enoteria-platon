@@ -52,7 +52,7 @@ export default function Header() {
           screenWidth={width}
         />
         <div className="flex items-center gap-3">
-          <Cart />
+          <Cart menuOpen={menuOpen} scrolledHeader={scrolledHeader} />
           {width <= 767 && (
             <Button
               size="icon"

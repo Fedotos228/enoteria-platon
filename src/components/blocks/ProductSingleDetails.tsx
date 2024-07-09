@@ -1,31 +1,32 @@
-"use client";
+"use client"
 
-import { useActions } from "@/hooks/useActions";
-import { formatMDLPrice } from "@/lib/utils";
-import { type BlocksContent } from "@strapi/blocks-react-renderer";
-import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
-import { Button } from "../ui/button";
-import BlockRendererClient from "./BlockRendererClient";
+import { useActions } from "@/hooks/useActions"
+import { formatMDLPrice } from "@/lib/utils"
+import { type BlocksContent } from "@strapi/blocks-react-renderer"
+import { Minus, Plus } from "lucide-react"
+import { useState } from "react"
+import { Button } from "../ui/button"
+import BlockRendererClient from "./BlockRendererClient"
 
 type ProductSingleDetailsProps = {
-  title: string;
-  slug: string;
-  price_mdl: number;
-  description: BlocksContent;
-  discount: number;
+  title: string
+  slug: string
+  price_mdl: number
+  description: BlocksContent
+  discount: number
+  stock: boolean
   details: {
-    id: number;
-    title: string;
-    desc: string;
-  }[];
-  subcategories: any;
-};
+    id: number
+    title: string
+    desc: string
+  }[]
+  subcategories: any
+}
 
 export default function ProductSingleDetails({
   product,
 }: {
-  product: ProductSingleDetailsProps;
+  product: ProductSingleDetailsProps
 }) {
   const {
     title,
@@ -33,19 +34,19 @@ export default function ProductSingleDetails({
     price_mdl,
     description,
     details,
-    subcategories,
+    stock,
     discount,
-  } = product;
-  const { addToCart } = useActions();
-  const [quantity, setQuantity] = useState(1);
+  } = product
+  const { addToCart } = useActions()
+  const [quantity, setQuantity] = useState(1)
 
-  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1);
+  const increment = () => quantity < 999 && setQuantity((prev) => prev + 1)
 
-  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1);
+  const decrement = () => quantity > 1 && setQuantity((prev) => prev - 1)
 
   const price = product.discount
     ? product.price_mdl - (product.price_mdl * product.discount) / 100
-    : product.price_mdl;
+    : product.price_mdl
 
   return (
     <div>
@@ -72,7 +73,12 @@ export default function ProductSingleDetails({
           )}
         </h5>
       </div>
-      <span className="text-sm text-green-500">In stock</span>
+      {
+        stock ?
+          <span className="text-sm text-red-500">Indisponibil</span>
+          :
+          <span className="text-sm text-green-500">În stock</span>
+      }
       {/* <span className="text-sm text-destructive">Out of stock</span> */}
       <div className="my-7 flex items-center justify-between">
         <div className="flex w-fit items-center gap-2 rounded-md border">
@@ -121,5 +127,5 @@ export default function ProductSingleDetails({
         ))}
       </ul> */}
     </div>
-  );
+  )
 }
