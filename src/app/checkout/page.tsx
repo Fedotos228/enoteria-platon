@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import Introduction from "@/components/blocks/Introduction";
-import Container from "@/components/layout/Container";
-import CartInfo from "@/components/elements/CartInfo";
-import { CheckoutForm } from "@/components/forms/CheckoutForm";
-import { Card, CardContent } from "@/components/ui/card";
+import Introduction from "@/components/blocks/Introduction"
+import CartInfo from "@/components/elements/CartInfo"
+import { CheckoutForm } from "@/components/forms/CheckoutForm"
+import Container from "@/components/layout/Container"
+import { Card, CardContent } from "@/components/ui/card"
 
 
 export default function PageCheckout() {
@@ -13,8 +13,7 @@ export default function PageCheckout() {
     background: {
       data: null,
     },
-  };
-
+  }
 
   return (
     <div className="mb-20">
@@ -33,5 +32,5 @@ export default function PageCheckout() {
         </Card>
       </Container>
     </div>
-  );
+  )
 }
