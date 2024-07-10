@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/admin/:path*",
-      "destination": "http://api.enoteriaplaton.wine//admin/:path*"
+      "destination": "https://api.enoteriaplaton.wine/admin/:path*"
     }
   ]
 }
