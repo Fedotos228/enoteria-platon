@@ -3,21 +3,25 @@ import { z } from "zod";
 const AddressFormSchema = z.object({
   firstName: z
     .string()
-    .min(3, { message: "Numele trebuie să aibă cel puțin 3 caractere" }),
+    .nonempty({ message: "Numele este obligatoriu" }),
   lastName: z
     .string()
-    .min(4, { message: "Prenumele trebuie să aibă cel puțin 4 caractere" }),
-  email: z.string().email({ message: "Adresa de email nu este validă" }),
-  phone: z.string().min(12, {
-    message: "Numărul de telefon trebuie să aibă cel puțin 12 caractere",
-  }),
+    .nonempty({ message: "Prenumele este obligatoriu" }),
+  email: z
+    .string()
+    .nonempty({ message: "Adresa de email este obligatorie" })
+    .email({ message: "Adresa de email nu este validă" }),
+  phone: z
+    .string()
+    .min(12, {message: "Numărul de telefon trebuie să aibă cel puțin 12 caractere"}),
   address: z
     .string()
-    .min(5, { message: "Adresa trebuie să aibă cel puțin 5 caractere" }),
+    .nonempty({ message: "Adresa este obligatorie" }),
   city: z
     .string()
-    .min(2, { message: "Orașul trebuie să aibă cel puțin 2 caractere" }),
-  country: z.enum(["moldova", "romania"]),
+    .nonempty({ message: "Orașul este obligatoriu" }),
+  country: z
+    .enum(["moldova", "romania"])
 });
 
 export const CheckoutFormSchema = z.object({
