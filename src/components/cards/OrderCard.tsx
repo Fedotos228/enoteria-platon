@@ -50,8 +50,6 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
     toast.success("Id-ul comenzii a fost copiat în clipboard.")
   }
 
-  console.log(order)
-
   return (
     <div>
       <Card

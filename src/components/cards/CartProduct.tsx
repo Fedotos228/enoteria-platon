@@ -37,7 +37,7 @@ export default function CartProduct({ product }: any) {
               ) : null
             }
           </div>
-          <p>{formatMDLPrice(Number(price))}</p>
+          <p>{formatMDLPrice(Number(Math.round(price)))}</p>
         </div>
         {/* <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
           <span className="circle rosu"></span> Roșu

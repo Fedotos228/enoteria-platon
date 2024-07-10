@@ -44,7 +44,6 @@ export function ContactForm() {
 	})
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log(data)
 		toast.success(
 			'Mesajul a fost trimis cu succes! Veți fi contactat în cel mai scurt timp posibil.',
 			{
