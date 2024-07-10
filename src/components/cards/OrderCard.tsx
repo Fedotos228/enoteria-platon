@@ -163,12 +163,12 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 <dt className="text-muted-foreground">Customer</dt>
                 <dd>{order?.attributes?.firstName + " " + order?.attributes?.lastName}</dd>
               </div>
-              {/* <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Email</dt>
                 <dd>
                   <a href="mailto:">{order?.attributes?.email}</a>
                 </dd>
-              </div> */}
+              </div>
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Phone</dt>
                 <dd>
