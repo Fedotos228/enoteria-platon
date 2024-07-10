@@ -29,9 +29,13 @@ export default function CartProduct({ product }: any) {
         <div className="flex justify-between gap-2 font-medium">
           <div>
             <Link href={"/" + product.slug}>{product.title}</Link>
-            <p className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-              {product.size.name} / <span className='block w-4 h-4 rounded-full border ring-offset-1' style={{ backgroundColor: product.color.hex }}></span>
-            </p>
+            {
+              product.size || product.color ? (
+                <p className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+                  {product.size.name} / <span className='block w-4 h-4 rounded-full border ring-offset-1' style={{ backgroundColor: product.color.hex }}></span>
+                </p>
+              ) : null
+            }
           </div>
           <p>{formatMDLPrice(Number(price))}</p>
         </div>
