@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin/:path*",
+      "destination": "https://api.enoteriaplaton.wine/admin/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://api.enoteriaplaton.wine/uploads/:path*"
+    }
+  ]
+}
