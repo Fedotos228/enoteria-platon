@@ -2,12 +2,16 @@
 
 import { removeToken } from '@/lib/localStorage'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '../ui/button'
 
 export default function OrderHeader() {
   const pathname = usePathname()
-  const handleLogout = () => removeToken('token')
+  const { replace } = useRouter()
+  const handleLogout = () => {
+    removeToken('token')
+    replace('/order/auth')
+  }
 
   return (
     <header className='flex items-center justify-between p-6 bg-white'>

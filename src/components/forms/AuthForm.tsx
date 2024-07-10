@@ -67,7 +67,7 @@ export function AuthForm() {
             <FormItem>
               <FormLabel>Parola</FormLabel>
               <FormControl>
-                <Input placeholder="Parola" {...field} />
+                <Input placeholder="Parola" type='password' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
