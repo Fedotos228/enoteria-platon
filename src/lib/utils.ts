@@ -17,9 +17,9 @@ export function imageStrapUrl(image: any, type: MediaType) {
 
   switch (type) {
     case MediaType.Single:
-      return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url
+      return image?.data?.attributes?.url
     case MediaType.Multiple:
-      return process.env.NEXT_PUBLIC_BASE_URL + image?.attributes?.url
+      return image?.attributes?.url
   }
 }
 export const formatRONPrice = (price: number) => {
@@ -43,8 +43,8 @@ export const formatMDLPrice = (price: number) => {
 export function dateFormater(data: string) {
   const date = new Date(data)
 
-  const year = date.getUTCFullYear();
-  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-  const day = ("0" + date.getUTCDate()).slice(-2);
-  return `${day}.${month}.${year}`;
+  const year = date.getUTCFullYear()
+  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2)
+  const day = ("0" + date.getUTCDate()).slice(-2)
+  return `${day}.${month}.${year}`
 }

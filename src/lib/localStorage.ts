@@ -21,3 +21,7 @@ export function getToken() {
 export function setToken(token: string) {
   localStorage.setItem(TokenEnum.Token, token)
 }
+
+export function removeToken(token: string) {
+  localStorage.removeItem(token)
+}
