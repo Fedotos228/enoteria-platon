@@ -76,7 +76,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
               Data:{" "}
 
               {order?.attributes?.createdAt && formatDate(
-                new Date(order.createdAt),
+                new Date(order.attributes.createdAt),
                 "dd MMMM yyyy",
               )}
             </CardDescription>
@@ -151,16 +151,10 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 Shipping Information
               </div>
               <address className="grid gap-0.5 not-italic text-muted-foreground">
-                <span>Liam Johnson</span>
-                <span>1234 Main St.</span>
-                <span>Anytown, CA 12345</span>
+                <span>{order?.attributes?.address}</span>
+                <span>{order?.attributes?.city}</span>
+                <span>{order?.attributes?.country}</span>
               </address>
-            </div>
-            <div className="grid auto-rows-max gap-3">
-              <div className="font-semibold">Billing Information</div>
-              <div className="text-muted-foreground">
-                Same as shipping address
-              </div>
             </div>
           </div>
           <Separator className="my-4" />
@@ -169,18 +163,18 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
             <dl className="grid gap-3">
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Customer</dt>
-                <dd>Liam Johnson</dd>
+                <dd>{order?.attributes?.firstName + " " + order?.attributes?.lastName}</dd>
               </div>
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Email</dt>
                 <dd>
-                  <a href="mailto:">liam@acme.com</a>
+                  <a href="mailto:">{order?.attributes?.email}</a>
                 </dd>
-              </div>
+              </div> */}
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Phone</dt>
                 <dd>
-                  <a href="tel:">+1 234 567 890</a>
+                  <a href="tel:">{order?.attributes?.phone}</a>
                 </dd>
               </div>
             </dl>

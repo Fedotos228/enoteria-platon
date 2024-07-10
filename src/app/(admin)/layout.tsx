@@ -1,3 +1,4 @@
+import OrderHeader from '@/components/layout/OrderHeader'
 import "../globals.css"
 
 export default function AdminLayout({
@@ -5,5 +6,10 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <main className="flex-1">{children}</main>
+  return (
+    <main className="flex-1">
+      <OrderHeader />
+      {children}
+    </main>
+  )
 }

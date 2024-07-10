@@ -29,8 +29,6 @@ export function OrdersTable() {
     setSelectedOrder(id)
   }
 
-  console.log(selectedOrder)
-
   if (isLoading) return <Loader loading={isLoading} />
 
   return (
