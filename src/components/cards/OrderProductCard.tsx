@@ -1,8 +1,7 @@
-import React from "react"
-import { Card, CardFooter } from "../ui/card"
-import { imageStrapUrl, MediaType } from "@/lib/utils"
+import { MediaType, imageStrapUrl } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
 import Image from "next/image"
+import { Card, CardFooter } from "../ui/card"
 
 export default function OrderProductCard({ product }: { product: any }) {
   if (!product) return null
@@ -33,10 +32,10 @@ export default function OrderProductCard({ product }: { product: any }) {
         <div className="flex gap-1 font-semibold">
           {price_mdl && (
             <>
-              {discount && <p className="text-bordo">{price} lei</p>}
+              {discount && <p className="text-bordo">{Math.round(price)} lei</p>}
 
               <p className={`${discount && "line-through opacity-50"}`}>
-                {discount ? price_mdl : price} lei
+                {discount ? price_mdl : Math.round(price)} lei
               </p>
             </>
           )}

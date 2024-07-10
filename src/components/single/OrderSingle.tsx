@@ -1,16 +1,15 @@
-"use client";
+"use client"
 
-import useGetOrderById from "@/hooks/queries/useGetOrderById";
-import OrderProductCard from "../cards/OrderProductCard";
-import Grid from "../elements/Grid";
-import Loader from "../elements/Loader";
+import useGetOrderById from "@/hooks/queries/useGetOrderById"
+import OrderProductCard from "../cards/OrderProductCard"
+import Grid from "../elements/Grid"
+import Loader from "../elements/Loader"
 
 export default function OrderSingle({ id }: { id: number }) {
-  const { data, isLoading } = useGetOrderById(id, { enabled: true });
+  const { data, isLoading } = useGetOrderById(id, { enabled: true })
 
-  if (isLoading) return <Loader loading={isLoading} />;
+  if (isLoading) return <Loader loading={isLoading} />
 
-  console.log(data);
   return (
     <div className="my-5">
       <h1>
@@ -28,5 +27,5 @@ export default function OrderSingle({ id }: { id: number }) {
         ))}
       </Grid>
     </div>
-  );
+  )
 }
