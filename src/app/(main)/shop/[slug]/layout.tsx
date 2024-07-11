@@ -1,5 +1,6 @@
 import { fetchGenerateParams } from '@/lib/fetchGenerateParams'
 import { fetchSlugForMeta } from '@/lib/fetchSlugForMeta'
+import { MediaType, imageStrapUrl } from '@/lib/utils'
 import { Metadata, ResolvingMetadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
@@ -20,9 +21,10 @@ export async function generateMetadata(
 
   return {
     title: data.attributes.title,
-    // openGraph: {
-    // 	images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    description: data.attributes.description,
+    openGraph: {
+      images: [imageStrapUrl(data.attributes.thumbnail, MediaType.Single), ...previousImages],
+    },
   }
 }
 
