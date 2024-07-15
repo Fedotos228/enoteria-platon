@@ -10,18 +10,11 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@radix-ui/react-select"
 import {
-  ChevronLeft,
-  ChevronRight,
   Copy,
   CreditCard,
-  Truck,
+  Truck
 } from "lucide-react"
 import { Button } from "../ui/button"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "../ui/pagination"
 import { Skeleton } from "../ui/skeleton"
 
 import useGetOrderById from '@/hooks/queries/useGetOrderById'
@@ -215,7 +208,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
               )}
             </time>
           </div>
-          <Pagination className="ml-auto mr-0 w-auto">
+          {/* <Pagination className="ml-auto mr-0 w-auto">
             <PaginationContent>
               <PaginationItem>
                 <Button
@@ -238,7 +231,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 </Button>
               </PaginationItem>
             </PaginationContent>
-          </Pagination>
+          </Pagination> */}
         </CardFooter>
       </Card>
     </div>
