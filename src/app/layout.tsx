@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     site: "enoteriaplaton.wine",
     creator: "@enoteriaplaton",
   },
+  icons: [
+
+  ],
   openGraph: {
     type: "website",
     locale: "ro_RO",
