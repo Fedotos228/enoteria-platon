@@ -121,7 +121,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 <span className="text-muted-foreground">
                   Subtotal
                 </span>
-                <span>{formatMDLPrice(order?.attributes?.subTotalPrice)}</span>
+                <span>{formatMDLPrice(Number(order?.attributes?.subTotalPrice))}</span>
               </li>
               <li className="flex items-center justify-between">
                 <span className="text-muted-foreground">
@@ -131,7 +131,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
               </li>
               <li className="flex items-center justify-between font-semibold">
                 <span className="text-muted-foreground">Total</span>
-                <span>{formatMDLPrice(order?.attributes?.totalPrice)}</span>
+                <span>{formatMDLPrice(Number(order?.attributes?.totalPrice))}</span>
               </li>
             </ul>
           </div>
