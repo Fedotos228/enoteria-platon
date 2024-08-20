@@ -10,18 +10,11 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@radix-ui/react-select"
 import {
-  ChevronLeft,
-  ChevronRight,
   Copy,
   CreditCard,
-  Truck,
+  Truck
 } from "lucide-react"
 import { Button } from "../ui/button"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "../ui/pagination"
 import { Skeleton } from "../ui/skeleton"
 
 import useGetOrderById from '@/hooks/queries/useGetOrderById'
@@ -49,8 +42,6 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
     navigator.clipboard.writeText(id.toString())
     toast.success("Id-ul comenzii a fost copiat în clipboard.")
   }
-
-  console.log(order)
 
   return (
     <div>
@@ -130,7 +121,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 <span className="text-muted-foreground">
                   Subtotal
                 </span>
-                <span>{formatMDLPrice(order?.attributes?.subTotalPrice)}</span>
+                <span>{formatMDLPrice(Number(order?.attributes?.subTotalPrice))}</span>
               </li>
               <li className="flex items-center justify-between">
                 <span className="text-muted-foreground">
@@ -140,7 +131,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
               </li>
               <li className="flex items-center justify-between font-semibold">
                 <span className="text-muted-foreground">Total</span>
-                <span>{formatMDLPrice(order?.attributes?.totalPrice)}</span>
+                <span>{formatMDLPrice(Number(order?.attributes?.totalPrice))}</span>
               </li>
             </ul>
           </div>
@@ -165,12 +156,12 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 <dt className="text-muted-foreground">Customer</dt>
                 <dd>{order?.attributes?.firstName + " " + order?.attributes?.lastName}</dd>
               </div>
-              {/* <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Email</dt>
                 <dd>
                   <a href="mailto:">{order?.attributes?.email}</a>
                 </dd>
-              </div> */}
+              </div>
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Phone</dt>
                 <dd>
@@ -217,7 +208,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
               )}
             </time>
           </div>
-          <Pagination className="ml-auto mr-0 w-auto">
+          {/* <Pagination className="ml-auto mr-0 w-auto">
             <PaginationContent>
               <PaginationItem>
                 <Button
@@ -240,7 +231,7 @@ export default function OrderCard({ selectedOrder }: { selectedOrder: number }) 
                 </Button>
               </PaginationItem>
             </PaginationContent>
-          </Pagination>
+          </Pagination> */}
         </CardFooter>
       </Card>
     </div>

@@ -114,7 +114,7 @@ export default function ProductSingleDetails({
         <h5 className="mb-5">Descriere</h5>
         {details &&
           details.map((details) => (
-            <div key={details.id} className="mb-3 flex items-center gap-1">
+            <div key={details.id} className="mb-3 flex gap-1">
               <h6 className="w-full max-w-48">{details.title}</h6>
               <p>{details.desc}</p>
             </div>

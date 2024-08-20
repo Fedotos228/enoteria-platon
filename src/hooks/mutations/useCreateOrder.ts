@@ -9,7 +9,6 @@ export default function useCreateOrder() {
     mutationKey: ['createOrder'],
     mutationFn: (order: CheckoutFormSchemaType) => ordersService.createOrder(order),
     onSuccess(data) {
-      console.log(data)
       toast.success("Comanda a fost plasată cu succes!", {
         position: "top-center",
       })

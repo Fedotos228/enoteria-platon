@@ -1,10 +1,10 @@
 "use client"
 
 import { formatMDLPrice } from "@/lib/utils"
-import { useAppSelector } from "@/store/store"
-import CartProduct from "../cards/CartProduct"
-import { useSelector } from "react-redux"
 import { selectCartTotal } from "@/store/slices/cart.slice"
+import { useAppSelector } from "@/store/store"
+import { useSelector } from "react-redux"
+import CartProduct from "../cards/CartProduct"
 
 export default function CartInfoCard() {
   const { products, shipping } = useAppSelector((state) => state.cart)
@@ -38,7 +38,7 @@ export default function CartInfoCard() {
       <div className="mt-4 grid gap-4 border-b-2 pb-4">
         <div className="flex w-full justify-between font-light">
           <p>Sub-total</p>
-          <p>{formatMDLPrice(total)}</p>
+          <p>{formatMDLPrice(Math.round(total))}</p>
         </div>
         <div className="flex w-full justify-between font-light">
           <p>Livrare</p>
@@ -48,7 +48,7 @@ export default function CartInfoCard() {
       <div className="mt-4 border-b-2 pb-4">
         <div className="flex w-full justify-between text-base font-bold uppercase text-bordo">
           <p>Total</p>
-          <p>{formatMDLPrice(calculateTotalPrice(total, shipping))}</p>
+          <p>{formatMDLPrice(calculateTotalPrice(Math.round(total), shipping))}</p>
           {/* <p>{formatRONPrice(2452)}</p> */}
         </div>
       </div>

@@ -3,6 +3,7 @@ import { errorCatch } from '@/services/api/api.helper'
 import { ICredentials, authService } from '@/services/auth/auth.service'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 
 export default function useLogin() {
@@ -15,7 +16,10 @@ export default function useLogin() {
       replace('/orders')
     },
     onError(error) {
-      alert(errorCatch(error))
+      console.log(error)
+      toast.error(errorCatch(error), {
+        position: 'top-center'
+      })
     }
   })
 }
