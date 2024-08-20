@@ -17,7 +17,7 @@ const backgroundImage = {
 
 type ProductCardProps = {
   product: any
-  type: "product" | "merch"
+  type: "product" | "merch" | "inShop"
 }
 
 export default function ProductCard({ product, type }: ProductCardProps) {
@@ -35,6 +35,17 @@ export default function ProductCard({ product, type }: ProductCardProps) {
   // 	}
   // }
 
+  const linkType = (slug: string) => {
+    switch (type) {
+      case ("product"):
+        return `/shop/${slug}`
+      case ("merch"):
+        return `/shop/merch/${slug}`
+      case ("inShop"):
+        return `/${slug}`
+    }
+  }
+
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
       <div
@@ -47,6 +58,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
             alt={title}
             width={320}
             height={350}
+            className='h-full w-full object-contain'
           />
         )}
         {discount && (
@@ -57,7 +69,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         )}
       </div>
       <Link
-        href={type === "merch" ? `/shop/merch/${slug}` : `shop/${slug}`}
+        href={linkType(slug)}
         className="after:absolute after:inset-0"
       >
         <h6 className="m-4">{title}</h6>
