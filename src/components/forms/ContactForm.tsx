@@ -14,6 +14,7 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import useContactForm from '@/hooks/mutations/useContactForm'
 import { toast } from 'sonner'
 import { Textarea } from '../ui/textarea'
 
@@ -33,6 +34,7 @@ const FormSchema = z.object({
 })
 
 export function ContactForm() {
+	const { mutate, isPending } = useContactForm()
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -44,6 +46,8 @@ export function ContactForm() {
 	})
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
+		mutate(data)
+
 		toast.success(
 			'Mesajul a fost trimis cu succes! Veți fi contactat în cel mai scurt timp posibil.',
 			{
@@ -140,7 +144,7 @@ export function ContactForm() {
 					)}
 				/>
 				<Button className='xs:col-start-2' type='submit' size='lg'>
-					Trimite
+					{isPending ? 'Se trimite...' : 'Trimite'}
 				</Button>
 			</form>
 		</Form>

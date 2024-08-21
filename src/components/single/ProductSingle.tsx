@@ -16,18 +16,16 @@ export default function ProductSingle({ slug }: { slug: string }) {
   const { title, gallery, thumbnail, subcategories, description, price_mdl, details } = product?.attributes
 
 
-  const productGallery = [
-    imageStrapUrl(thumbnail, MediaType.Single),
-    ...gallery?.data.map((image: any) => imageStrapUrl(image, MediaType.Multiple))
-  ]
-
-  console.log(productGallery)
+  // const productGallery = [
+  //   imageStrapUrl(thumbnail, MediaType.Single),
+  //   ...gallery?.data.map((image: any) => imageStrapUrl(image, MediaType.Multiple))
+  // ]
 
   return (
     <Card className="p-4">
       <div className="grid gap-4 sm:grid-cols-2">
         {gallery.data !== null ? (
-          <ProductGallery gallery={productGallery} />
+          <ProductGallery gallery={gallery} />
         ) : (
           thumbnail && (
             <Image
