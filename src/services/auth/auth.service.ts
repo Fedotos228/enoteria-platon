@@ -2,7 +2,7 @@ import { axiosClassic } from '../api/axios'
 
 export interface ICredentials {
   identifier: string,
-  password: string
+  password: string,
 }
 
 class AuthService {
