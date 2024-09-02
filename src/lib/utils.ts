@@ -23,9 +23,9 @@ export function imageStrapUrl(image: any, type: MediaType) {
   // }
   switch (type) {
     case MediaType.Single:
-      return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url
+      return image?.data?.attributes?.url
     case MediaType.Multiple:
-      return process.env.NEXT_PUBLIC_BASE_URL + image?.attributes?.url
+      return image?.attributes?.url
   }
 }
 export const formatRONPrice = (price: number) => {
