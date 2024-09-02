@@ -72,7 +72,8 @@
       "validation": "Message cannot exceed 300 characters"
     },
     "successMessage": "The message has been successfully sent! You will be contacted as soon as possible.",
-    "submit": "Submit"
+    "submit": "Submit",
+    "sending": "Sending..."
   },
   "Cart": {
     "cart": "Cart",

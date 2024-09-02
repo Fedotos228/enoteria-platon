@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -17,7 +16,7 @@ import { Input } from '@/components/ui/input'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Textarea } from '../ui/textarea'
-import { createContactFormSchema, ContactFormSchemaType } from './schemas/ContactFormShema'
+import { ContactFormSchemaType, createContactFormSchema } from './schemas/ContactFormShema'
 
 export function ContactForm() {
 	const t = useTranslations("ContactForm")

@@ -72,7 +72,8 @@
       "validation": "Mesajul nu poate avea mai mult de 300 de caractere"
     },
     "succesMessage": "Mesajul a fost trimis cu succes! Veți fi contactat în cel mai scurt timp posibil.",
-    "submit": "Trimite"
+    "submit": "Trimite",
+    "sending": "Se Trimite..."
   },
   "Cart": {
     "cart": "Coşul",

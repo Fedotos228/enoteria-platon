@@ -19,7 +19,7 @@ const backgroundImage = {
 
 type ProductCardProps = {
   product: any
-  type: "product" | "merch"
+  type: "product" | "merch" | "inShop"
 }
 
 export default function ProductCard({ product, type }: ProductCardProps) {
@@ -37,6 +37,17 @@ export default function ProductCard({ product, type }: ProductCardProps) {
   // 		return `(${item.quantity})`
   // 	}
   // }
+
+  const linkType = (slug: string) => {
+    switch (type) {
+      case ("product"):
+        return `/shop/${slug}`
+      case ("merch"):
+        return `/shop/merch/${slug}`
+      case ("inShop"):
+        return `/${slug}`
+    }
+  }
 
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
@@ -70,10 +81,10 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         <div className="flex gap-1 font-semibold">
           {price_mdl && (
             <>
-              {discount && <p className="text-bordo">{price} lei</p>}
+              {discount && <p className="text-bordo">{Math.round(price)} lei</p>}
 
               <p className={`${discount && "line-through opacity-50"}`}>
-                {discount ? price_mdl : price} lei
+                {discount ? price_mdl : Math.round(price)} lei
               </p>
             </>
           )}

@@ -102,7 +102,7 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
               <div className="border-t p-4 sm:px-6">
                 <div className="flex justify-between font-medium">
                   <p>Subtotal</p>
-                  <p>{formatMDLPrice(total)}</p>
+                  <p>{formatMDLPrice(Math.round(total))}</p>
                   {/* <p>{formatRONPrice(2452)}</p> */}
                 </div>
                 <p className="mt-0.5 text-sm text-muted-foreground">

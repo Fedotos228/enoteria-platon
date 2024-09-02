@@ -42,6 +42,8 @@ const cartSlice = createSlice({
 
     clearCart: (state) => {
       state.products = []
+      state.quantity = 0
+      state.total = 0
     },
 
     // addCart: (state, action) => {
@@ -74,7 +76,6 @@ const cartSlice = createSlice({
       }
       state.quantity += action.payload.quantity || 1
 
-      console.log(state.quantity)
     },
 
     // increaseQuantity: (state, action) => {

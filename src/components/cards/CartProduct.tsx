@@ -4,10 +4,10 @@ import { useActions } from "@/hooks/useActions"
 import { localeUrl } from '@/lib/lang'
 import { MediaType, formatMDLPrice, imageStrapUrl } from "@/lib/utils"
 import { Minus, Plus } from "lucide-react"
+import { useTranslations } from 'next-intl'
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
-import { useTranslations } from 'next-intl'
 
 export default function CartProduct({ product }: any) {
   const t = useTranslations("Cart")
@@ -40,7 +40,7 @@ export default function CartProduct({ product }: any) {
               )
             }
           </div>
-          <p>{formatMDLPrice(Number(price))}</p>
+          <p>{formatMDLPrice(Number(Math.round(price)))}</p>
         </div>
         {/* <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
           <span className="circle rosu"></span> Roșu

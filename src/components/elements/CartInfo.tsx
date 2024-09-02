@@ -3,7 +3,10 @@
 import { formatMDLPrice } from "@/lib/utils"
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
+<<<<<<< HEAD
 import { useTranslations } from 'next-intl'
+=======
+>>>>>>> 0c0f928efc3b434eec09bc40d0103e0fa1137f92
 import { useSelector } from "react-redux"
 import CartProduct from "../cards/CartProduct"
 
@@ -39,8 +42,13 @@ export default function CartInfoCard() {
       </div>
       <div className="mt-4 grid gap-4 border-b-2 pb-4">
         <div className="flex w-full justify-between font-light">
+<<<<<<< HEAD
           <p>{t("subtotal")}</p>
           <p>{formatMDLPrice(total)}</p>
+=======
+          <p>Sub-total</p>
+          <p>{formatMDLPrice(Math.round(total))}</p>
+>>>>>>> 0c0f928efc3b434eec09bc40d0103e0fa1137f92
         </div>
         <div className="flex w-full justify-between font-light">
           <p>{t("shipping")}</p>
@@ -49,8 +57,13 @@ export default function CartInfoCard() {
       </div>
       <div className="mt-4 border-b-2 pb-4">
         <div className="flex w-full justify-between text-base font-bold uppercase text-bordo">
+<<<<<<< HEAD
           <p>{t("total")}</p>
           <p>{formatMDLPrice(calculateTotalPrice(total, shipping))}</p>
+=======
+          <p>Total</p>
+          <p>{formatMDLPrice(calculateTotalPrice(Math.round(total), shipping))}</p>
+>>>>>>> 0c0f928efc3b434eec09bc40d0103e0fa1137f92
           {/* <p>{formatRONPrice(2452)}</p> */}
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { errorCatch } from '@/services/api/api.helper'
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { Label } from "@radix-ui/react-label"
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
@@ -73,23 +74,23 @@ export function CheckoutForm() {
       toast.error("Nu există produse în coșul de cumpărături!", {
         position: "top-center",
       })
-      return // Oprirea funcției onSubmit dacă nu există produse în coș
+      return
+    }
+    if (isError) {
+      toast.error(`A apărut o eroare la plasarea comenzii! ${errorCatch(error)}`, {
+        position: "top-center",
+      })
+      return
     }
 
     let order = { ...data, products, status: 'pre-order' }
     createOrder(order)
 
-    if (isSuccess) {
-      clearCart()
-      form.reset(defaultValues)
-    }
-    if (isError) {
-      if (products.length === 0) {
-        toast.error(`${error}`, {
-          position: "top-center",
-        })
-      }
-    }
+    toast.success("Comanda a fost plasată cu succes!", {
+      position: "top-center",
+    })
+    clearCart()
+    form.reset(defaultValues)
   }
 
   return (
@@ -104,7 +105,7 @@ export function CheckoutForm() {
               {t("title")}
             </h2>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <FormField
               control={form.control}
               name="firstName"
@@ -233,16 +234,16 @@ export function CheckoutForm() {
                     >
                       <div className="flex items-center">
                         <RadioGroupItem
-                          value="moldova"
-                          id="Moldova"
+                          value="Moldova"
+                          id="moldova"
                           className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Moldova" className="cursor-pointer">
                           {t("country.moldova")}
                         </Label>
                         <RadioGroupItem
-                          value="romania"
-                          id="Romania"
+                          value="Romania"
+                          id="momania"
                           className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 ring-offset-2 ring-offset-black transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Romania" className="cursor-pointer">
