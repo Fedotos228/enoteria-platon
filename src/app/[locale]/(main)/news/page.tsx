@@ -1,13 +1,10 @@
-'use client'
-
 import Introduction from '@/components/blocks/Introduction'
 import NewsGrid from '@/components/blocks/NewsGrid'
 import Container from '@/components/layout/Container'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-
-export default function page() {
-	const t = useTranslations()
+export default async function page() {
+	const t = await getTranslations()
 	let content = {
 		title: t("SectionTitle.news"),
 		background: {

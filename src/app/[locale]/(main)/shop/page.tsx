@@ -6,11 +6,13 @@ import ShopGrid from "@/components/blocks/ShopGrid"
 import Container from "@/components/layout/Container"
 import { blocksService } from "@/services/blocks/blocks.service"
 import { useQuery } from "@tanstack/react-query"
+import { useLocale } from 'next-intl'
 
 export default function ShopPage() {
+  const locale = useLocale()
   const { data } = useQuery({
     queryKey: ["shop"],
-    queryFn: () => blocksService.getPage("shop"),
+    queryFn: () => blocksService.getPage("shop", locale),
     select: (data) => data.data.data.attributes,
   })
 
