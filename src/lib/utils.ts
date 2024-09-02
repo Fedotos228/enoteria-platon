@@ -23,7 +23,7 @@ export function imageStrapUrl(image: any, type: MediaType) {
   // }
   switch (type) {
     case MediaType.Single:
-      return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url
+      return image?.data?.attributes?.url
     case MediaType.Multiple:
       return image?.attributes?.url
   }
