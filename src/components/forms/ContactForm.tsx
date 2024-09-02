@@ -14,27 +14,17 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Textarea } from '../ui/textarea'
-
-const FormSchema = z.object({
-	fullname: z.string().min(4, {
-		message: 'Numele trebuie sa aiba cel putin 4 caractere',
-	}),
-	email: z.string().email({
-		message: 'Adresa de email nu este valida',
-	}),
-	phone: z.string().min(12, {
-		message: 'Numarul de telefon trebuie sa aiba cel putin 12 caractere',
-	}),
-	message: z.string().max(300, {
-		message: 'Mesajul nu poate avea mai mult de 300 de caractere',
-	}),
-})
+import { createContactFormSchema, ContactFormSchemaType } from './schemas/ContactFormShema'
 
 export function ContactForm() {
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
+	const t = useTranslations("ContactForm")
+	const ContactFormSchema = createContactFormSchema(t)
+
+	const form = useForm<ContactFormSchemaType>({
+		resolver: zodResolver(ContactFormSchema),
 		defaultValues: {
 			fullname: '',
 			email: '',
@@ -43,10 +33,9 @@ export function ContactForm() {
 		},
 	})
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log(data)
+	function onSubmit(data: ContactFormSchemaType) {
 		toast.success(
-			'Mesajul a fost trimis cu succes! Veți fi contactat în cel mai scurt timp posibil.',
+			t("successMessage"),
 			{
 				position: 'top-center',
 			},
@@ -65,13 +54,13 @@ export function ContactForm() {
 					render={({ field }) => (
 						<FormItem className='col-span-2'>
 							<FormLabel>
-								Numele, Prenumele{' '}
+								{t("fullname.label")}{' '}
 								<span className='text-destructive'>*</span>
 							</FormLabel>
 							<FormControl>
 								<Input
 									className='h-12'
-									placeholder='ex. Popescu Ion'
+									placeholder={t("fullname.placeholder")}
 									{...field}
 								/>
 							</FormControl>
@@ -85,7 +74,7 @@ export function ContactForm() {
 					render={({ field }) => (
 						<FormItem className='col-span-2 xs:col-span-1'>
 							<FormLabel>
-								Email{' '}
+								{t("email.label")}{' '}
 								<span className='text-destructive'>*</span>
 							</FormLabel>
 							<FormControl>
@@ -93,7 +82,7 @@ export function ContactForm() {
 									className='h-12'
 									inputMode='email'
 									type='email'
-									placeholder='ex. example@example.com'
+									placeholder={t("email.placeholder")}
 									{...field}
 								/>
 							</FormControl>
@@ -107,7 +96,7 @@ export function ContactForm() {
 					render={({ field }) => (
 						<FormItem className='col-span-2 xs:col-span-1'>
 							<FormLabel>
-								Telefon{' '}
+								{t("phone.label")}{' '}
 								<span className='text-destructive'>*</span>
 							</FormLabel>
 							<FormControl>
@@ -115,7 +104,7 @@ export function ContactForm() {
 									className='h-12'
 									inputMode='tel'
 									type='tel'
-									placeholder='ex. +37367525214'
+									placeholder={t("phone.placeholder")}
 									{...field}
 								/>
 							</FormControl>
@@ -128,11 +117,11 @@ export function ContactForm() {
 					name='message'
 					render={({ field }) => (
 						<FormItem className='col-span-2'>
-							<FormLabel>Mesaj</FormLabel>
+							<FormLabel>{t("message.label")}</FormLabel>
 							<FormControl>
 								<Textarea
 									className='resize-none'
-									placeholder='Maxim 200 de caractere.'
+									placeholder={t("phone.placeholder")}
 									{...field}
 								/>
 							</FormControl>
@@ -141,7 +130,7 @@ export function ContactForm() {
 					)}
 				/>
 				<Button className='xs:col-start-2' type='submit' size='lg'>
-					Trimite
+					{t("submit")}
 				</Button>
 			</form>
 		</Form>

@@ -8,7 +8,6 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 
-import { MediaType, imageStrapUrl } from '@/lib/utils'
 import Image from 'next/image'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
@@ -30,14 +29,14 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="w-full !ml-0 !mr-0 mb-3"
       >
-        {gallery?.map((image: any) => (
-          <SwiperSlide key={image.id} className='rounded-[6px]'>
+        {gallery?.map((image: string) => (
+          <SwiperSlide key={image} className='rounded-[6px]'>
             <Image
-              src={imageStrapUrl(image, MediaType.Multiple)}
-              alt={image.attributes.url}
+              src={image}
+              alt={image}
               width={580}
               height={475}
-              className='rounded-[6px] h-full w-full object-cover'
+              className='rounded-[6px] h-[475px] w-full object-contain'
             />
           </SwiperSlide>
         ))}
@@ -52,13 +51,13 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
         className="w-full"
       >
         {gallery?.map((image: any) => (
-          <SwiperSlide key={image.id} className='rounded-[6px]'>
+          <SwiperSlide key={image} className='rounded-[6px]'>
             <Image
-              src={imageStrapUrl(image, MediaType.Multiple)}
-              alt={image.id}
+              src={image}
+              alt={image}
               width={95}
               height={95}
-              className='rounded-[6px]'
+              className='rounded-[6px] h-[95px] w-full object-contain'
             />
           </SwiperSlide>
         ))}

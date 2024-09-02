@@ -1,8 +1,10 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
+import { localeUrl } from '@/lib/lang'
 import { MediaType, cn, imageStrapUrl } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
+import { useTranslations } from 'next-intl'
 import Image from "next/image"
 import Link from "next/link"
 import { Button, buttonVariants } from "../ui/button"
@@ -21,6 +23,7 @@ type ProductCardProps = {
 }
 
 export default function ProductCard({ product, type }: ProductCardProps) {
+  const t = useTranslations()
   const { addToCart } = useActions()
   if (!product) return null
 
@@ -47,6 +50,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
             alt={title}
             width={320}
             height={350}
+            className='h-[300px] w-full object-contain'
           />
         )}
         {discount && (
@@ -57,7 +61,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         )}
       </div>
       <Link
-        href={type === "merch" ? `/shop/merch/${slug}` : `shop/${slug}`}
+        href={localeUrl(type === "merch" ? `shop/merch/${slug}` : `shop/${slug}`)}
         className="after:absolute after:inset-0"
       >
         <h6 className="m-4">{title}</h6>
@@ -81,7 +85,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
                 className="relative z-10 ml-auto"
                 onClick={() => addToCart(product.attributes)}
               >
-                Adaugă
+                {t("productCard.addToCart")}
               </Button>
             ) : (
               <Link
@@ -92,7 +96,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
                   }),
                 )} relative z-10`}
               >
-                Află prețul
+                {t("productCard.seePrice")}
               </Link>
             )
             : null

@@ -1,10 +1,12 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
+import { localeUrl } from '@/lib/lang'
 import { formatMDLPrice } from "@/lib/utils"
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
 import { ShoppingCart, X } from "lucide-react"
+import { useLocale, useTranslations } from 'next-intl'
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { useEffect } from "react"
@@ -13,13 +15,15 @@ import CartProduct from "../cards/CartProduct"
 import { Button } from "../ui/button"
 
 export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, scrolledHeader: boolean }) {
+  const locale = useLocale()
+  const t = useTranslations("Cart")
   const { products, quantity, isCartOpen } = useAppSelector(
     (state) => state.cart,
   )
   const { clearCart, toggleCart } = useActions()
   const total = useSelector(selectCartTotal)
   const pathname = usePathname()
-  const isHome = pathname === '/'
+  const isHome = pathname === `/${locale}`
 
   useEffect(() => {
     if (isCartOpen) {
@@ -59,14 +63,13 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
           <div className="pointer-events-auto flex h-full w-full flex-col overflow-y-scroll shadow-xl">
             <div className="flex-1 overflow-y-auto p-4 sm:px-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-medium text-gray-900">Coşul</h2>
+                <h2 className="text-lg font-medium text-gray-900">{t("cart")}</h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => toggleCart()}
                 >
-                  <span className="sr-only">Close panel</span>
-
+                  <span className="sr-only">{t("close")}</span>
                   <X />
                 </Button>
               </div>
@@ -80,14 +83,14 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                   ) : (
                     <div className="my-auto">
                       <p className="mt-20 text-center text-xl font-medium !text-muted-foreground">
-                        Coșul este gol.
+                        {t("empty")}
                       </p>
 
                       <Button
                         className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground"
                         onClick={() => toggleCart()}
                       >
-                        Continuă cumpărăturile
+                        {t("continueShopping")}
                       </Button>
                     </div>
                   )}
@@ -103,14 +106,14 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                   {/* <p>{formatRONPrice(2452)}</p> */}
                 </div>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  Transportul și taxele calculate la finalizarea
+                  {t("calculateAll")}
                 </p>
                 <Button
                   className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground"
                   onClick={() => toggleCart()}
                 >
-                  <Link href="/checkout" className="!text-bordo-foreground">
-                    Finalizează comanda
+                  <Link href={localeUrl('checkout')} className="!text-bordo-foreground">
+                    {t("checkout")}
                   </Link>
                 </Button>
 
@@ -119,7 +122,7 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                   onClick={() => toggleCart()}
                   className="mt-3 w-full !text-bordo"
                 >
-                  Continuă cumpărăturile
+                  {t("continueShopping")}
                   <span aria-hidden="true"> &rarr;</span>
                 </Button>
               </div>

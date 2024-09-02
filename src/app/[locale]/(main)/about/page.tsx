@@ -6,14 +6,16 @@ import SimpleBlock from '@/components/blocks/SimpleBlock'
 import Loader from '@/components/elements/Loader'
 import { blocksService } from '@/services/blocks/blocks.service'
 import { useQuery } from '@tanstack/react-query'
+import { useLocale } from 'next-intl'
 export default function AbouPage() {
+	const locale = useLocale()
 	const { data, isLoading } = useQuery({
 		queryKey: ['about'],
-		queryFn: () => blocksService.getPage('about'),
+		queryFn: () => blocksService.getPage('about', locale),
 		select: data => data.data.data.attributes
 	})
 
-	if (isLoading) return <Loader loading={isLoading} />
+		; if (isLoading) return <Loader loading={isLoading} />
 
 	const sectionComponents: { [key: string]: React.ComponentType<any> } = {
 		'blocks.simple-block': SimpleBlock,

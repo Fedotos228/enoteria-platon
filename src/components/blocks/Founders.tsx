@@ -1,17 +1,22 @@
-"use client";
-import { MediaType, imageStrapUrl } from "@/lib/utils";
-import { blocksService } from "@/services/blocks/blocks.service";
-import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
-import Container from "../layout/Container";
-import BlockRendererClient from "./BlockRendererClient";
+"use client"
+import { MediaType, imageStrapUrl } from "@/lib/utils"
+import { blocksService } from "@/services/blocks/blocks.service"
+import { useQuery } from "@tanstack/react-query"
+import { useLocale } from 'next-intl'
+import Image from "next/image"
+import Loader from '../elements/Loader'
+import Container from "../layout/Container"
+import BlockRendererClient from "./BlockRendererClient"
 
 export default function Founders({ classname }: { classname?: string }) {
-  const { data: founder } = useQuery({
+  const locale = useLocale()
+  const { data: founder, isLoading } = useQuery({
     queryKey: ["founder"],
-    queryFn: () => blocksService.getFounder(),
+    queryFn: () => blocksService.getFounder(locale),
     select: (data) => data.data.data.attributes,
-  });
+  })
+
+  if (isLoading) return <Loader loading={isLoading} />
 
   return (
     <section className={classname}>
@@ -34,5 +39,5 @@ export default function Founders({ classname }: { classname?: string }) {
         </div>
       </Container>
     </section>
-  );
+  )
 }

@@ -15,6 +15,12 @@ export const isClient = typeof window !== "undefined"
 export function imageStrapUrl(image: any, type: MediaType) {
   if (!image) return ""
 
+  // switch (type) {
+  //   case MediaType.Single:
+  //     return image?.data?.attributes?.url
+  //   case MediaType.Multiple:
+  //     return image?.attributes?.url
+  // }
   switch (type) {
     case MediaType.Single:
       return process.env.NEXT_PUBLIC_BASE_URL + image?.data?.attributes?.url
@@ -43,8 +49,8 @@ export const formatMDLPrice = (price: number) => {
 export function dateFormater(data: string) {
   const date = new Date(data)
 
-  const year = date.getUTCFullYear();
-  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
-  const day = ("0" + date.getUTCDate()).slice(-2);
-  return `${day}.${month}.${year}`;
+  const year = date.getUTCFullYear()
+  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2)
+  const day = ("0" + date.getUTCDate()).slice(-2)
+  return `${day}.${month}.${year}`
 }

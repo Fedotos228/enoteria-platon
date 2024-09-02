@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { NAVIGATION_ITEMS } from "@/constants/navigation"
 import { X } from "lucide-react"
+import { useLocale, useTranslations } from 'next-intl'
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -15,6 +16,8 @@ export default function Navigation({
   setIsOpen,
   screenWidth,
 }: INavigationProps) {
+  const t = useTranslations("Navigation")
+  const locale = useLocale()
   const pathname = usePathname()
 
   return (
@@ -42,17 +45,15 @@ export default function Navigation({
         )}
         {NAVIGATION_ITEMS.map(
           (item, i) =>
-            item.href && (
-              <Link
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                key={i}
-                className={`text-lg text-foreground transition-colors duration-300 hover:text-bordo-hover md:text-base md:text-background md:text-white ${pathname === item.href ? "font-semibold !text-bordo" : ""
-                  }`}
-              >
-                {item.title}
-              </Link>
-            ),
+            <Link
+              href={t(`${item}.href`)}
+              onClick={() => setIsOpen(false)}
+              key={i}
+              className={`text-lg text-foreground transition-colors duration-300 hover:text-bordo-hover md:text-base md:text-background md:text-white ${pathname === t(`${item}.href`) ? "font-semibold !text-bordo" : ""
+                }`}
+            >
+              {t(`${item}.title`)}
+            </Link>
         )}
       </nav>
     </>

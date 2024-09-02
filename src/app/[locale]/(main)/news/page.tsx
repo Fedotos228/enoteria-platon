@@ -3,11 +3,13 @@
 import Introduction from '@/components/blocks/Introduction'
 import NewsGrid from '@/components/blocks/NewsGrid'
 import Container from '@/components/layout/Container'
+import { useTranslations } from 'next-intl'
 
 
 export default function page() {
+	const t = useTranslations()
 	let content = {
-		title: 'Noutati',
+		title: t("SectionTitle.news"),
 		background: {
 			data: null
 		}

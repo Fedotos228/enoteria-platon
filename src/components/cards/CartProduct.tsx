@@ -1,13 +1,16 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
+import { localeUrl } from '@/lib/lang'
 import { MediaType, formatMDLPrice, imageStrapUrl } from "@/lib/utils"
 import { Minus, Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
+import { useTranslations } from 'next-intl'
 
 export default function CartProduct({ product }: any) {
+  const t = useTranslations("Cart")
   const { removeProduct, increaseQuantity, decreaseQuantity } = useActions()
   const price = product.discount
     ? product.price_mdl - (product.price_mdl * product.discount) / 100
@@ -28,10 +31,14 @@ export default function CartProduct({ product }: any) {
       <div className="flex flex-1 flex-col">
         <div className="flex justify-between gap-2 font-medium">
           <div>
-            <Link href={"/" + product.slug}>{product.title}</Link>
-            <p className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
-              {product.size.name} / <span className='block w-4 h-4 rounded-full border ring-offset-1' style={{ backgroundColor: product.color.hex }}></span>
-            </p>
+            <Link href={localeUrl(product.slug)}>{product.title}</Link>
+            {
+              product.size && product.color && (
+                <p className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">
+                  {product.size.name} / <span className='block w-4 h-4 rounded-full border ring-offset-1' style={{ backgroundColor: product.color.hex }}></span>
+                </p>
+              )
+            }
           </div>
           <p>{formatMDLPrice(Number(price))}</p>
         </div>
@@ -62,7 +69,7 @@ export default function CartProduct({ product }: any) {
             className="!text-bordo"
             onClick={() => removeProduct(product.slug)}
           >
-            Remove
+            {t("remove")}
           </Button>
         </div>
       </div>

@@ -1,0 +1,139 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Navigation": {
+    "home": {
+      "title": "Home",
+      "href": "/"
+    },
+    "about": {
+      "title": "About us",
+      "href": "/en/about"
+    },
+    "shop": {
+      "title": "Shop",
+      "href": "/en/shop"
+    },
+    "news": {
+      "title": "News",
+      "href": "/en/news"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "href": "/en/contacts"
+    }
+  },
+  "heroButton": "Our Wines",
+  "aboutButton": "About us",
+  "productCard": {
+    "addToCart": "Add to cart",
+    "seePrice": "See price"
+  },
+  "NewsLetter": {
+    "title": "Subscribe for <br /> offer updates",
+    "description": "Get the latest news and updates from our team",
+    "email": "Get the latest news and updates from our team",
+    "subscribe": "Subscribe"
+  },
+  "SectionTitle": {
+    "shop": "Our wines",
+    "news": "News",
+    "merch": "Merchandise",
+    "nav": "Navigation",
+    "contacts": "Contacts"
+  },
+  "viewMore": "View more",
+  "Shop": {
+    "pagination": "Showing {total} of {pageSize} products",
+    "wines": "Wines",
+    "merch": "Merchandise"
+  },
+  "Copyright": "All rights reserved.",
+  "ContactForm": {
+    "fullname": {
+      "label": "Full Name",
+      "placeholder": "e.g. John Doe",
+      "validation": "Full name must have at least 4 characters"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "example@example.com",
+      "validation": "Email address is not valid"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "e.g. +1234567890",
+      "validation": "Phone number must have at least 12 characters"
+    },
+    "message": {
+      "label": "Message",
+      "placeholder": "Maximum 300 characters.",
+      "validation": "Message cannot exceed 300 characters"
+    },
+    "successMessage": "The message has been successfully sent! You will be contacted as soon as possible.",
+    "submit": "Submit"
+  },
+  "Cart": {
+    "cart": "Cart",
+    "empty": "Your cart is empty.",
+    "close": "Close",
+    "remove": "Remove",
+    "continueShopping": "Continue shopping",
+    "calculateAll": "Shipping and taxes calculated at checkout",
+    "checkout": "Checkout"
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "form": {
+      "title": "Delivery Details",
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "e.g. John",
+        "validation": "First name must have at least 3 characters"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "e.g. Doe",
+        "validation": "Last name must have at least 4 characters"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "example@example.com",
+        "validation": "Email address is not valid"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "e.g. +1234567890",
+        "validation": "Phone number must have at least 12 characters"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "e.g. 123 Main St",
+        "validation": "Address must have at least 5 characters"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "e.g. New York",
+        "validation": "City must have at least 2 characters"
+      },
+      "country": {
+        "title": "Country",
+        "moldova": "Moldova",
+        "romania": "Romania"
+      },
+      "payment": {
+        "title": "Payment",
+        "card": "Credit/Debit card",
+        "cash": "Cash"
+      }
+    },
+    "summary": {
+      "title": "In Cart",
+      "empty": "Your cart is empty",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total"
+    }
+  }
+}

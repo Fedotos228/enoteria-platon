@@ -1,0 +1,139 @@
+{
+  "HomePage": {
+    "title": "Salut Lume!"
+  },
+  "Navigation": {
+    "home": {
+      "title": "Acasă",
+      "href": "/"
+    },
+    "about": {
+      "title": "Despre noi",
+      "href": "/ro/about"
+    },
+    "shop": {
+      "title": "Shop",
+      "href": "/ro/shop"
+    },
+    "news": {
+      "title": "Noutăți",
+      "href": "/ro/news"
+    },
+    "contacts": {
+      "title": "Contacte",
+      "href": "/ro/contacts"
+    }
+  },
+  "heroButton": "Vinurile Noastre",
+  "aboutButton": "Despre noi",
+  "productCard": {
+    "addToCart": "Adaugă",
+    "seePrice": "Află prețul"
+  },
+  "NewsLetter": {
+    "title": "Abonați-vă pentru <br /> actualizările ofertei",
+    "description": "Obțineți cele mai recente știri și actualizări de la echipa noastră",
+    "email": "Adresa ta de email",
+    "subscribe": "Abonează-te"
+  },
+  "SectionTitle": {
+    "shop": "Vinurile noastre",
+    "news": "Noutăți",
+    "merch": "Merchandiseul",
+    "nav": "Navigatie",
+    "contacts": "Contacte"
+  },
+  "viewMore": "Vezi mai multe",
+  "Shop": {
+    "pagination": "Afișez {total} din {pageSize} de produse",
+    "wines": "Vinuri",
+    "merch": "Merchandise"
+  },
+  "Copyright": "Toate drepturile rezervate.",
+  "ContactForm": {
+    "fullname": {
+      "label": "Numele, Prenumele",
+      "placeholder": "ex. Popescu Ion",
+      "validation": "Numele trebuie sa aiba cel putin 4 caractere"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "example@example.com",
+      "validation": "Adresa de email nu este valida"
+    },
+    "phone": {
+      "label": "Telefon",
+      "placeholder": "ex. +37367525214",
+      "validation": "Numarul de telefon trebuie sa aiba cel putin 12 caractere"
+    },
+    "message": {
+      "label": "Mesaj",
+      "placeholder": "Maxim 300 de caractere.",
+      "validation": "Mesajul nu poate avea mai mult de 300 de caractere"
+    },
+    "succesMessage": "Mesajul a fost trimis cu succes! Veți fi contactat în cel mai scurt timp posibil.",
+    "submit": "Trimite"
+  },
+  "Cart": {
+    "cart": "Coşul",
+    "empty": "Coșul este gol.",
+    "close": "Închide",
+    "remove": "Șterge",
+    "continueShopping": "Continuă cumpărăturile",
+    "calculateAll": "Transportul și taxele calculate la finalizarea",
+    "checkout": "Finalizează comanda"
+  },
+  "Checkout": {
+    "title": "Finalizare comandă",
+    "form": {
+      "title": "Detalii de livrare",
+      "firstName": {
+        "label": "Numele",
+        "placeholder": "ex. Popescu",
+        "validation": "Numele trebuie să aibă cel puțin 3 caractere"
+      },
+      "lastName": {
+        "label": "Prenumele",
+        "placeholder": "ex. Ion",
+        "validation": "Prenumele trebuie să aibă cel puțin 4 caractere"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "example@example.com",
+        "validation": "Adresa de email nu este validă"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "ex. +37367525214",
+        "validation": "Numărul de telefon trebuie să aibă cel puțin 12 caractere"
+      },
+      "address": {
+        "label": "Adresa",
+        "placeholder": "ex. str. Mihai Eminescu 1",
+        "validation": "Adresa trebuie să aibă cel puțin 5 caractere"
+      },
+      "city": {
+        "label": "Orașul",
+        "placeholder": "ex. Chișinău",
+        "validation": "Orașul trebuie să aibă cel puțin 2 caractere"
+      },
+      "country": {
+        "title": "Țară",
+        "moldova": "Moldova",
+        "romania": "România"
+      },
+      "payment": {
+        "title": "Modalitatea de plata",
+        "card": "Card credit/debit",
+        "cash": "Numerar"
+      }
+    },
+    "summary": {
+      "title": "In Coș",
+      "empty": "Coșul este gol",
+      "subtotal": "Sub-total",
+      "shipping": "Livrare",
+      "total": "Total"
+    }
+  }
+}
