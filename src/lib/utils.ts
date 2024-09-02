@@ -15,6 +15,12 @@ export const isClient = typeof window !== "undefined"
 export function imageStrapUrl(image: any, type: MediaType) {
   if (!image) return ""
 
+  // switch (type) {
+  //   case MediaType.Single:
+  //     return image?.data?.attributes?.url
+  //   case MediaType.Multiple:
+  //     return image?.attributes?.url
+  // }
   switch (type) {
     case MediaType.Single:
       return image?.data?.attributes?.url

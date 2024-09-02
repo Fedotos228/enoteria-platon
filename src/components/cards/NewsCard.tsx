@@ -1,17 +1,18 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { MediaType, imageStrapUrl } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card"
+import { localeUrl } from '@/lib/lang'
+import { MediaType, imageStrapUrl } from "@/lib/utils"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function NewsCard({ post }: any) {
-  if (!post) return null;
+  if (!post) return null
 
-  const { title, slug, body, image } = post;
+  const { title, slug, body, image } = post
 
-  const description = body[0]?.children[0]?.text;
+  const description = body[0]?.children[0]?.text
 
   return (
-    <Link href={`/news/article/${slug}`}>
+    <Link href={localeUrl(`news/article/${slug}`)}>
       <Card className="h-[360px] border-0 shadow-xl transition-transform duration-300 hover:scale-[1.02]">
         {image && (
           <Image
@@ -27,6 +28,6 @@ export default function NewsCard({ post }: any) {
           <p className="line-clamp-3">{description}</p>
         </CardContent>
       </Card>
-    </Link>
-  );
+    </Link >
+  )
 }

@@ -12,11 +12,11 @@ const foundersQuery = qs.stringify(
 )
 
 class BlocksService {
-  async getFounder() {
-    return await instance.get(`/founder?${foundersQuery}`)
+  async getFounder(lang: string) {
+    return await instance.get(`/founder?${foundersQuery}&locale=${lang}`)
   }
-  async getPage(page: string) {
-    return await instance.get(`/${page}?populate=deep`)
+  async getPage(page: string, lang: string) {
+    return await instance.get(`/${page}?populate=deep&locale=${lang}`)
   }
 }
 

@@ -1,7 +1,9 @@
 import { Toaster } from "@/components/ui/sonner"
 import type { Metadata } from "next"
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 import { Onest } from "next/font/google"
-import "./globals.css"
+import './globals.css'
 import Providers from "./provider"
 
 const onest = Onest({ subsets: ["latin"] })
@@ -36,21 +38,26 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: {locale}
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode,
+  params: {locale: string};
 }>) {
+  const messages = await getMessages();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${onest.className} overflow-x-hidden`}>
         <Providers>
-          <div className="toaster">
-            <Toaster richColors position="top-center" theme="light" />
-          </div>
-          <div className="flex min-h-screen flex-col">
-            {children}
-          </div>
+          <NextIntlClientProvider messages={messages}>
+            <div className="toaster">
+              <Toaster richColors position="top-center" theme="light" />
+            </div>
+            <div className="flex min-h-screen flex-col">
+              {children}
+            </div>
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>

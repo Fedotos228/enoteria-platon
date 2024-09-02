@@ -3,10 +3,12 @@
 import { formatMDLPrice } from "@/lib/utils"
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
+import { useTranslations } from 'next-intl'
 import { useSelector } from "react-redux"
 import CartProduct from "../cards/CartProduct"
 
 export default function CartInfoCard() {
+  const t = useTranslations("Checkout.summary")
   const { products, shipping } = useAppSelector((state) => state.cart)
 
   const total = useSelector(selectCartTotal)
@@ -18,7 +20,7 @@ export default function CartInfoCard() {
   return (
     <>
       <div className="border-b-2 pb-4">
-        <h2 className="text-lg font-bold uppercase text-bordo">In Coș</h2>
+        <h2 className="text-lg font-bold uppercase text-bordo">{t("title")}</h2>
       </div>
       <div className="mt-4 border-b-2 pb-4">
         <div className="flow-root">
@@ -29,7 +31,7 @@ export default function CartInfoCard() {
               ))
             ) : (
               <p className="mt-4 pb-4 text-center text-muted-foreground">
-                Coșul este gol
+                {t("empty")}
               </p>
             )}
           </ul>
@@ -37,18 +39,18 @@ export default function CartInfoCard() {
       </div>
       <div className="mt-4 grid gap-4 border-b-2 pb-4">
         <div className="flex w-full justify-between font-light">
-          <p>Sub-total</p>
-          <p>{formatMDLPrice(Math.round(total))}</p>
+          <p>{t("subtotal")}</p>
+          <p>{formatMDLPrice(total)}</p>
         </div>
         <div className="flex w-full justify-between font-light">
-          <p>Livrare</p>
+          <p>{t("shipping")}</p>
           <p>{formatMDLPrice(shipping)}</p>
         </div>
       </div>
       <div className="mt-4 border-b-2 pb-4">
         <div className="flex w-full justify-between text-base font-bold uppercase text-bordo">
-          <p>Total</p>
-          <p>{formatMDLPrice(calculateTotalPrice(Math.round(total), shipping))}</p>
+          <p>{t("total")}</p>
+          <p>{formatMDLPrice(calculateTotalPrice(total, shipping))}</p>
           {/* <p>{formatRONPrice(2452)}</p> */}
         </div>
       </div>

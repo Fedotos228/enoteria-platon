@@ -1,18 +1,18 @@
 "use client"
 
+import FilterSidebar from "@/components/blocks/FilterSidebar"
 import Introduction from "@/components/blocks/Introduction"
-import MerchGrid from '@/components/blocks/MerchGrid'
-import MerchShopGrid from '@/components/blocks/MerchShopGrid'
 import ShopGrid from "@/components/blocks/ShopGrid"
-import ProductCard from '@/components/cards/ProductCard'
 import Container from "@/components/layout/Container"
 import { blocksService } from "@/services/blocks/blocks.service"
 import { useQuery } from "@tanstack/react-query"
+import { useLocale } from 'next-intl'
 
-export default function MerchPage() {
+export default function ShopPage() {
+  const locale = useLocale()
   const { data } = useQuery({
     queryKey: ["shop"],
-    queryFn: () => blocksService.getPage("merch"),
+    queryFn: () => blocksService.getPage("shop", locale),
     select: (data) => data.data.data.attributes,
   })
 
@@ -20,8 +20,11 @@ export default function MerchPage() {
     <>
       <Introduction content={data?.introdunction} />
       <Container>
-        <div className="mb-20 mt-10">
-          <MerchShopGrid />
+        <div className="mb-20 mt-10 grid gap-4 md:grid-cols-[200px_1fr] ml:grid-cols-[280px_1fr]">
+          <FilterSidebar />
+          <div>
+            <ShopGrid />
+          </div>
         </div>
       </Container>
     </>

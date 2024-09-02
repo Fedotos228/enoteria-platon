@@ -15,11 +15,13 @@ import {
 import { blocksService } from '@/services/blocks/blocks.service'
 import { useQuery } from '@tanstack/react-query'
 import { Mail, MapPin, PhoneCall } from 'lucide-react'
+import { useLocale } from 'next-intl'
 
 export default function ContactPage() {
+	const locale = useLocale()
 	const { data, isLoading } = useQuery({
 		queryKey: ['contact'],
-		queryFn: () => blocksService.getPage('contact'),
+		queryFn: () => blocksService.getPage('contact', locale),
 		select: data => data.data.data.attributes
 	})
 
@@ -48,7 +50,7 @@ export default function ContactPage() {
 						<Card className='bg-bordo w-full md:w-[45%] py-10'>
 							<CardHeader>
 								<CardTitle className='text-white'>
-									Informatii de contact
+									{data.title}
 								</CardTitle>
 							</CardHeader>
 							<CardContent className='gap-12 flex flex-col my-20'>

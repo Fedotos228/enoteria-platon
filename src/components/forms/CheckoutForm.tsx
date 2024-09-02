@@ -22,13 +22,15 @@ import { errorCatch } from '@/services/api/api.helper'
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { Label } from "@radix-ui/react-label"
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
+import { useTranslations } from 'next-intl'
 import { Button } from "../ui/button"
 import {
-  CheckoutFormSchema,
   CheckoutFormSchemaType,
+  createCheckoutFormSchema,
 } from "./schemas/CheckoutFormSchema"
 
 export function CheckoutForm() {
+  const t = useTranslations("Checkout.form")
   const {
     mutate: createOrder,
     isPending,
@@ -39,6 +41,7 @@ export function CheckoutForm() {
   const { products, shipping } = useAppSelector((state) => state.cart)
   const total = useSelector(selectCartTotal)
   const { clearCart } = useActions()
+  const CheckoutFormSchema = createCheckoutFormSchema(t)
 
   const defaultValues: CheckoutFormSchemaType = {
     firstName: "",
@@ -99,7 +102,7 @@ export function CheckoutForm() {
         <div className="mb-8">
           <div className="col-span-2 mb-8">
             <h2 className="text-lg font-bold uppercase text-bordo">
-              Adresa Poștala
+              {t("title")}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -109,12 +112,12 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Numele <span className="text-destructive">*</span>
+                    {t("firstName.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="h-12"
-                      placeholder="ex. Popescu"
+                      placeholder={t("firstName.placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -128,10 +131,10 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Prenumele <span className="text-destructive">*</span>
+                    {t("lastName.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input className="h-12" placeholder="ex. Ion" {...field} />
+                    <Input className="h-12" placeholder={t("lastName.placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -143,14 +146,14 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Email <span className="text-destructive">*</span>
+                    {t("email.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="h-12"
                       inputMode="email"
                       type="email"
-                      placeholder="ex. example@example.com"
+                      placeholder={t("email.placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -164,14 +167,14 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Telefon <span className="text-destructive">*</span>
+                    {t("phone.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="h-12"
                       inputMode="tel"
                       type="tel"
-                      placeholder="ex. +37367525214"
+                      placeholder={t("phone.placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -185,12 +188,12 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Adresă <span className="text-destructive">*</span>
+                    {t("address.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="h-12"
-                      placeholder="ex. Strada Nr., Bloc, Apartament"
+                      placeholder={t("address.placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -204,12 +207,12 @@ export function CheckoutForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Oraș <span className="text-destructive">*</span>
+                    {t("city.label")} <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="h-12"
-                      placeholder="ex. Chișinău"
+                      placeholder={t("city.placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -221,8 +224,8 @@ export function CheckoutForm() {
               control={form.control}
               name="country"
               render={({ field }) => (
-                <FormItem className="col-span-1 md:col-span-2">
-                  <FormLabel>Țară</FormLabel>
+                <FormItem className="col-span-2">
+                  <FormLabel>{t("country.title")}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       className="flex gap-3"
@@ -236,7 +239,7 @@ export function CheckoutForm() {
                           className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Moldova" className="cursor-pointer">
-                          Moldova
+                          {t("country.moldova")}
                         </Label>
                         <RadioGroupItem
                           value="Romania"
@@ -244,7 +247,7 @@ export function CheckoutForm() {
                           className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 ring-offset-2 ring-offset-black transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Romania" className="cursor-pointer">
-                          Romania
+                          {t("country.romania")}
                         </Label>
                       </div>
                     </RadioGroup>
@@ -256,8 +259,8 @@ export function CheckoutForm() {
               control={form.control}
               name="paymentMethod"
               render={({ field }) => (
-                <FormItem className="col-span-1 md:col-span-2">
-                  <FormLabel>Modalitatea de plata</FormLabel>
+                <FormItem className="col-span-2">
+                  <FormLabel>{t("payment.title")}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       className="flex gap-3"
@@ -272,17 +275,7 @@ export function CheckoutForm() {
                             className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                           />
                           <Label htmlFor="card" className="cursor-pointer">
-                            Card de credit/debit
-                          </Label>
-                        </div>
-                        <div className="flex items-center">
-                          <RadioGroupItem
-                            value="paypal"
-                            id="paypal"
-                            className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640] sm:ms-8"
-                          />
-                          <Label htmlFor="paypal" className="cursor-pointer">
-                            Paypal
+                            {t("payment.card")}
                           </Label>
                         </div>
                         <div className="flex items-center">
@@ -292,7 +285,7 @@ export function CheckoutForm() {
                             className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640] sm:ms-8"
                           />
                           <Label htmlFor="cash" className="cursor-pointer">
-                            Cash
+                            {t("payment.cash")}
                           </Label>
                         </div>
                       </div>

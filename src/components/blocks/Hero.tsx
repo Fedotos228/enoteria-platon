@@ -1,5 +1,6 @@
 import { MediaType, imageStrapUrl } from '@/lib/utils'
 import { BlocksContent } from '@strapi/blocks-react-renderer'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import BlockRendererClient from './BlockRendererClient'
@@ -17,6 +18,7 @@ type HeroProps = {
 }
 
 export default function Hero({ content }: { content: HeroProps }) {
+	const t = useTranslations()
 	if (!content) return null
 
 	const heroBackground = {
@@ -36,7 +38,7 @@ export default function Hero({ content }: { content: HeroProps }) {
 
 				<Button className='text-base w-fit mx-auto' size='lg'>
 					<Link href='/shop'>
-						Vinurile noastre
+						{t("heroButton")}
 					</Link>
 				</Button>
 			</div>

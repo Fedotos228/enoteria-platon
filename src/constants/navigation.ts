@@ -3,28 +3,7 @@ export interface INavigation {
 	href: string
 }
 
-export const NAVIGATION_ITEMS: INavigation[] = [
-	{
-		title: 'Acasă',
-		href: '/',
-	},
-	{
-		title: 'Despre noi',
-		href: '/about',
-	},
-	{
-		title: 'Shop',
-		href: '/shop',
-	},
-	{
-		title: 'Noutăți',
-		href: '/news',
-	},
-	{
-		title: 'Contacte',
-		href: '/contacts',
-	},
-]
+export const NAVIGATION_ITEMS: string[] = ["home", "about", "shop", "news", "contacts"]
 
 export const contacts: INavigation[] = [
 	{

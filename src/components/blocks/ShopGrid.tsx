@@ -1,18 +1,20 @@
-"use client";
+"use client"
 
-import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts";
-import { IPagination } from "@/types/strapi.types";
-import ProductCard from "../cards/ProductCard";
-import PaginationComponent from "../elements/PaginationComponent";
-import ShopToggler from "../elements/ShopToggler";
-import { Skeleton } from "../ui/skeleton";
+import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts"
+import { IPagination } from "@/types/strapi.types"
+import { useTranslations } from 'next-intl'
+import ProductCard from "../cards/ProductCard"
+import PaginationComponent from "../elements/PaginationComponent"
+import ShopToggler from "../elements/ShopToggler"
+import { Skeleton } from "../ui/skeleton"
 
 export default function ShopGrid() {
-  const { data, isLoading, isFetched } = useGetFilteredProducts();
-  const pagination: IPagination = data?.meta?.pagination;
-  const productsData = data?.data;
+  const { data, isLoading, isFetched } = useGetFilteredProducts()
+  const t = useTranslations("Shop")
+  const pagination: IPagination = data?.meta?.pagination
+  const productsData = data?.data
 
-  const loading = isLoading || !isFetched;
+  const loading = isLoading || !isFetched
 
   const loadingSkeleton = (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
@@ -20,7 +22,7 @@ export default function ShopGrid() {
         <Skeleton key={i} className="h-[400px] w-full" />
       ))}
     </div>
-  );
+  )
 
   const productsMap = (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
@@ -32,22 +34,22 @@ export default function ShopGrid() {
         />
       ))}
     </div>
-  );
+  )
 
   const productsNotFound = (
     <h3 className="mt-14 max-w-full text-center font-medium">
       Nu am găsit niciun produs
     </h3>
-  );
+  )
 
-  let content;
+  let content
 
   if (productsData?.length === 0) {
-    content = productsNotFound;
+    content = productsNotFound
   } else if (loading) {
-    content = loadingSkeleton;
+    content = loadingSkeleton
   } else {
-    content = productsMap;
+    content = productsMap
   }
 
   return (
@@ -56,7 +58,7 @@ export default function ShopGrid() {
         <ShopToggler />
         {pagination ? (
           <p>
-            Afișez {pagination?.total} din {pagination?.pageSize} de produse
+            {t("pagination", { total: pagination?.total, pageSize: pagination?.pageSize })}
           </p>
         ) : (
           <Skeleton className="h-6 w-48" />
@@ -69,5 +71,5 @@ export default function ShopGrid() {
         <PaginationComponent />
       )}
     </section>
-  );
+  )
 }

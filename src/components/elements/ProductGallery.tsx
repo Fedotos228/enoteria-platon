@@ -12,7 +12,7 @@ import Image from 'next/image'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
 type ProductGalleryProps = {
-  gallery: any
+  gallery: string[]
 }
 
 export default function ProductGallery({ gallery }: ProductGalleryProps) {
@@ -29,14 +29,14 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="w-full !ml-0 !mr-0 mb-3"
       >
-        {gallery?.map((image: any) => (
+        {gallery?.map((image: string) => (
           <SwiperSlide key={image} className='rounded-[6px]'>
             <Image
               src={image}
               alt={image}
               width={580}
               height={475}
-              className='rounded-[6px] h-full w-full object-cover'
+              className='rounded-[6px] h-[475px] w-full object-contain'
             />
           </SwiperSlide>
         ))}
@@ -57,7 +57,7 @@ export default function ProductGallery({ gallery }: ProductGalleryProps) {
               alt={image}
               width={95}
               height={95}
-              className='rounded-[6px]'
+              className='rounded-[6px] h-[95px] w-full object-contain'
             />
           </SwiperSlide>
         ))}

@@ -10,9 +10,7 @@ type ArticleSingleProps = {
 export default function ArticleSinglePage({ params }: ArticleSingleProps) {
 	return (
 		<Container className='max-w-[980px]'>
-			<ArticleSingle
-				slug={params.slug}
-			/>
+			<ArticleSingle slug={params.slug} />
 		</Container>
 	)
 }
