@@ -48,7 +48,9 @@
     "pagination": "Afișez {total} din {pageSize} de produse",
     "wines": "Vinuri",
     "merch": "Merchandise",
-    "noProductFound": "Nu am găsit niciun produs"
+    "noProductFound": "Nu am găsit niciun produs",
+    "filter": "Filtre",
+    "Caută": "Caută"
   },
   "Copyright": "Toate drepturile rezervate.",
   "ContactForm": {
