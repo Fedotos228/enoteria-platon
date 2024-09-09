@@ -38,7 +38,7 @@ export default function ShopGrid() {
 
   const productsNotFound = (
     <h3 className="mt-14 max-w-full text-center font-medium">
-      Nu am găsit niciun produs
+      {t("noProductFound")}
     </h3>
   )
 
