@@ -10,8 +10,8 @@ class MerchService {
     return await instance.get(`/merchandises?${allMerchQuery}`)
   }
 
-  async getMerchBySlug(slug: string) {
-    return await instance.get(`/merchandises/${slug}?${merchSlugQuery}`)
+  async getMerchBySlug(slug: string, lang: string) {
+    return await instance.get(`/merchandises/${slug}?${merchSlugQuery}&locale=${lang}`)
   }
 }
 
