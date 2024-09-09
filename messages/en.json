@@ -47,7 +47,8 @@
   "Shop": {
     "pagination": "Showing {total} of {pageSize} products",
     "wines": "Wines",
-    "merch": "Merchandise"
+    "merch": "Merchandise",
+    "noProductFound": "No product found"
   },
   "Copyright": "All rights reserved.",
   "ContactForm": {
