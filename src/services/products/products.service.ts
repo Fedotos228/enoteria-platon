@@ -8,8 +8,8 @@ class ProductsService {
   async getProductsBySlug(slug: string) {
     return instance.get(`/products/${slug}`)
   }
-  async getProductBySlug(slug: string) {
-    return instance.get(`/products/${slug}?${productBySlugQuery}`)
+  async getProductBySlug(slug: string, locale: string) {
+    return instance.get(`/products/${slug}?${productBySlugQuery}&locale=${locale}`)
   }
   async getProductsByCategory(category: string[]) {
     return instance.get(`/products?${productByCategoryQuery(category)}`)
