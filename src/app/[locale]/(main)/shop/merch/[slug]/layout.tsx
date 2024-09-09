@@ -1,16 +1,12 @@
 import { fetchGenerateParams } from '@/lib/fetchGenerateParams'
 import { fetchSlugForMeta } from '@/lib/fetchSlugForMeta'
+import { IParamsWithLocale, IParamsWithSlug } from '@/types/strapi.types'
 import { Metadata, ResolvingMetadata } from 'next'
+import { unstable_setRequestLocale } from 'next-intl/server'
 import type { PropsWithChildren } from 'react'
 
-export type ProductSiglePageProps = {
-  params: {
-    slug: string
-  }
-}
-
 export async function generateMetadata(
-  { params }: ProductSiglePageProps,
+  { params }: IParamsWithSlug,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug
@@ -34,6 +30,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function SingleMerchLayout({ children }: PropsWithChildren<unknown>) {
+export default function SingleMerchLayout({ children, params: {locale} }: PropsWithChildren<IParamsWithLocale>) {
+  unstable_setRequestLocale(locale);
   return children
 }

@@ -5,10 +5,10 @@ import Language from '@/components/elements/Language'
 import { Button } from "@/components/ui/button"
 import useScreenSize from "@/hooks/useScreenSize"
 import useScrollPosition from "@/hooks/useScrollPosition"
+import { Link } from '@/i18n/routing'
 import { Menu } from "lucide-react"
 import { useLocale } from 'next-intl'
 import Image from "next/image"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useRef, useState } from "react"
 import Navigation from "../../elements/navigation/Navigation"

@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { NAVIGATION_ITEMS } from "@/constants/navigation"
 import { X } from "lucide-react"
-import { useLocale, useTranslations } from 'next-intl'
-import Link from "next/link"
+import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 import { usePathname } from "next/navigation"
 
 interface INavigationProps {
@@ -17,7 +17,6 @@ export default function Navigation({
   screenWidth,
 }: INavigationProps) {
   const t = useTranslations("Navigation")
-  const locale = useLocale()
   const pathname = usePathname()
 
   return (

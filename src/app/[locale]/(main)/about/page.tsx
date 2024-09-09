@@ -7,6 +7,7 @@ import Loader from '@/components/elements/Loader'
 import { blocksService } from '@/services/blocks/blocks.service'
 import { useQuery } from '@tanstack/react-query'
 import { useLocale } from 'next-intl'
+
 export default function AbouPage() {
 	const locale = useLocale()
 	const { data, isLoading } = useQuery({

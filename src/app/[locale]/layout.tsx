@@ -1,41 +1,19 @@
 import { Toaster } from "@/components/ui/sonner"
+import { importMetadata } from '@/constants/metadata'
+import { routing } from '@/i18n/routing'
 import type { Metadata } from "next"
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 import { Onest } from "next/font/google"
 import './globals.css'
 import Providers from "./provider"
 
 const onest = Onest({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: {
-    default: "Enoteria Platon",
-    template: "%s | Enoteria Platon",
-  },
-  description: "A traditional winery & vineyard, enjoy the experience",
-  metadataBase: new URL("https://enoteriaplaton.wine"),
-  keywords: ['wine', 'winery', 'vineyard', 'experience', 'vin', 'vin traditional', 'vin rosu', 'vin alb', 'vin spumant', 'vin demisec', 'vin sec', 'vin dulce', 'vin de colectie', 'vin de soi', 'vin de casa', 'vin de calitate', 'vin de import', 'vin de export', 'vin romania', 'Platon', 'Alexandru Platon', 'Mihai Platon'],
-  twitter: {
-    card: "summary",
-    site: "enoteriaplaton.wine",
-    creator: "@enoteriaplaton",
-  },
-  icons: [
+export const metadata: Metadata = importMetadata
 
-  ],
-  openGraph: {
-    type: "website",
-    locale: "ro_RO",
-    images: [
-      {
-        url: "https://enoteriaplaton.wine/logos/logoPlaton.jpeg",
-        width: 800,
-        height: 600,
-        alt: "Enoteria Platon",
-      },
-    ]
-  },
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}));
 }
 
 export default async function RootLayout({
@@ -45,6 +23,8 @@ export default async function RootLayout({
   children: React.ReactNode,
   params: {locale: string};
 }>) {
+  unstable_setRequestLocale(locale);
+ 
   const messages = await getMessages();
   return (
     <html lang={locale}>

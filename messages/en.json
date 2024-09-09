@@ -48,7 +48,9 @@
     "pagination": "Showing {total} of {pageSize} products",
     "wines": "Wines",
     "merch": "Merchandise",
-    "noProductFound": "No product found"
+    "noProductFound": "No product found",
+    "filter": "Filter",
+    "find": "Find"
   },
   "Copyright": "All rights reserved.",
   "ContactForm": {

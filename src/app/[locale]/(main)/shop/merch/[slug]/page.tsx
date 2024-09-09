@@ -2,10 +2,10 @@
 
 import Introduction from "@/components/blocks/Introduction"
 import Container from "@/components/layout/Container"
-import { ProductSiglePageProps } from "./layout"
 import MerchSingle from '@/components/single/MerchSingle'
+import { IParamsWithSlug } from '@/types/strapi.types'
 
-export default function MerchSiglePage({ params }: ProductSiglePageProps) {
+export default function MerchSiglePage({ params }: IParamsWithSlug) {
   const title = params.slug
     .replace(/-/g, " ")
     .split(" ")

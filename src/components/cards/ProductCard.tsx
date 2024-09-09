@@ -1,12 +1,11 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
-import { localeUrl } from '@/lib/lang'
+import { Link } from '@/i18n/routing'
 import { MediaType, cn, imageStrapUrl } from "@/lib/utils"
 import { CirclePercent } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import Image from "next/image"
-import Link from "next/link"
 import { Button, buttonVariants } from "../ui/button"
 import { Card, CardFooter } from "../ui/card"
 
@@ -72,7 +71,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         )}
       </div>
       <Link
-        href={localeUrl(type === "merch" ? `shop/merch/${slug}` : `shop/${slug}`)}
+        href={type === "merch" ? `/shop/merch/${slug}` : `/shop/${slug}`}
         className="after:absolute after:inset-0"
       >
         <h6 className="m-4">{title}</h6>

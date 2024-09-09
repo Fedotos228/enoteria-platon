@@ -1,6 +1,6 @@
+import { Link } from '@/i18n/routing';
 import { MediaType, imageStrapUrl } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Socials({ socials }: { socials: any }) {
   if (!socials) return null;

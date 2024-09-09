@@ -5,12 +5,14 @@ import { useActions } from "@/hooks/useActions"
 import useScreenSize from "@/hooks/useScreenSize"
 import { useAppSelector } from '@/store/store'
 import { SlidersHorizontal, TextSearch } from "lucide-react"
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet"
 
 export default function FilterSidebar() {
+  const t = useTranslations("Shop")
   const { data: category } = useGetCategories()
   const { toggleCategory } = useActions()
   const subcategory = useAppSelector(state => state.filter.subcategory)
@@ -34,7 +36,9 @@ export default function FilterSidebar() {
 
   return width > 767 ? (
     <div>
-      <h4 className="mb-4">Filtre</h4>
+      <h4 className="mb-4">
+        {t("filter")}
+      </h4>
       <div>
         {category?.map((categorie: any) => (
           <div key={categorie.attributes.slug} className="mb-7">
@@ -78,7 +82,7 @@ export default function FilterSidebar() {
         <SheetTrigger asChild>
           <Button variant="outline" className="gap-3 md:hidden">
             <SlidersHorizontal size={20} />
-            Filtre
+            {t("filter")}
           </Button>
         </SheetTrigger>
         <SheetContent className="flex flex-col">
@@ -121,7 +125,7 @@ export default function FilterSidebar() {
           <SheetFooter className="sticky bottom-0 flex-row gap-2">
             <Button className="flex-1" onClick={() => handleMobileSelectCategory()}>
               <TextSearch size={20} />
-              Caută
+              {t("find")}
             </Button>
             {/* <Button variant="outline" size="icon" onClick={clearFilters}>
             <ListRestart size={20} />

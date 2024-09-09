@@ -31,7 +31,7 @@ export default function Home() {
         <About content={data?.simpleBlock} />
         <ProductsGrid />
         <Founders />
-        <NewsGrid sectionTitle={t("SectionTitle.news")} sectionLink={`${locale}/news`} />
+        <NewsGrid sectionTitle={t("SectionTitle.news")} sectionLink='/news' />
         <NewsLetter />
         <MerchGrid />
       </Container>

@@ -4,3 +4,15 @@ export interface IPagination {
   pageSize: number
   total: number
 } 
+
+export interface IParamsWithSlug {
+  params: {
+    slug: string
+  }
+}
+
+export interface IParamsWithLocale {
+  params: {
+    locale: string
+  }
+}

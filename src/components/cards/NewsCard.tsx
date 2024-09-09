@@ -1,8 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { localeUrl } from '@/lib/lang'
+import { Link } from '@/i18n/routing'
 import { MediaType, imageStrapUrl } from "@/lib/utils"
 import Image from "next/image"
-import Link from "next/link"
 
 export default function NewsCard({ post }: any) {
   if (!post) return null
@@ -12,7 +11,7 @@ export default function NewsCard({ post }: any) {
   const description = body[0]?.children[0]?.text
 
   return (
-    <Link href={localeUrl(`news/article/${slug}`)}>
+    <Link href={`/news/article/${slug}`}>
       <Card className="h-[360px] border-0 shadow-xl transition-transform duration-300 hover:scale-[1.02]">
         {image && (
           <Image
