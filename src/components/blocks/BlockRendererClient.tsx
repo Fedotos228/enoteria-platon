@@ -1,12 +1,12 @@
 "use client"
 
+import { Link } from '@/i18n/routing'
 import {
   BlocksRenderer,
   type BlocksContent,
 } from "@strapi/blocks-react-renderer"
 import { Damion } from 'next/font/google'
 import Image from 'next/image'
-import Link from 'next/link'
 
 const damion = Damion({
   weight: '400',

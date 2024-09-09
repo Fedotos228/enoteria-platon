@@ -1,9 +1,9 @@
 import { MediaType, imageStrapUrl } from '@/lib/utils'
 import { BlocksContent } from '@strapi/blocks-react-renderer'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 import { Button } from '../ui/button'
 import BlockRendererClient from './BlockRendererClient'
+import { Link } from '@/i18n/routing'
 
 type HeroProps = {
 	id: number

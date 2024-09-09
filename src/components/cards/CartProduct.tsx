@@ -1,12 +1,11 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
-import { localeUrl } from '@/lib/lang'
+import { Link } from '@/i18n/routing'
 import { MediaType, formatMDLPrice, imageStrapUrl } from "@/lib/utils"
 import { Minus, Plus } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "../ui/button"
 
 export default function CartProduct({ product }: any) {
@@ -31,7 +30,7 @@ export default function CartProduct({ product }: any) {
       <div className="flex flex-1 flex-col">
         <div className="flex justify-between gap-2 font-medium">
           <div>
-            <Link href={localeUrl(product.slug)}>{product.title}</Link>
+            <Link href={product.slug}>{product.title}</Link>
             {
               product.size && product.color && (
                 <p className="flex items-center gap-1 mt-1 text-sm text-muted-foreground">

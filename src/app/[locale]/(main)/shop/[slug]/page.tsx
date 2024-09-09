@@ -3,9 +3,9 @@
 import Introduction from "@/components/blocks/Introduction"
 import Container from "@/components/layout/Container"
 import ProductSingle from "@/components/single/ProductSingle"
-import { ProductSiglePageProps } from "./layout"
+import { IParamsWithSlug } from '@/types/strapi.types'
 
-export default function ProductSiglePage({ params }: ProductSiglePageProps) {
+export default function ProductSiglePage({ params }: IParamsWithSlug) {
   const title = params.slug
     .replace(/-/g, " ")
     .split(" ")

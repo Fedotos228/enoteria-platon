@@ -1,13 +1,12 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
-import { localeUrl } from '@/lib/lang'
+import { Link } from '@/i18n/routing'
 import { formatMDLPrice } from "@/lib/utils"
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
 import { ShoppingCart, X } from "lucide-react"
 import { useLocale, useTranslations } from 'next-intl'
-import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
@@ -112,7 +111,7 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                   className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground"
                   onClick={() => toggleCart()}
                 >
-                  <Link href={localeUrl('checkout')} className="!text-bordo-foreground">
+                  <Link href='checkout' className="!text-bordo-foreground">
                     {t("checkout")}
                   </Link>
                 </Button>
