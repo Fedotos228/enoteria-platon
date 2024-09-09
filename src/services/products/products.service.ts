@@ -2,17 +2,17 @@ import { instance } from '../api/axios'
 import { homeProductQuery, productByCategoryQuery, productBySlugQuery } from './product.qs'
 
 class ProductsService {
-  async getProducts() {
-    return instance.get(`/products?${homeProductQuery}`)
+  async getProducts(locale: string) {
+    return instance.get(`/products?${homeProductQuery}&locale=${locale}`)
   }
-  async getProductsBySlug(slug: string) {
-    return instance.get(`/products/${slug}`)
+  async getProductsBySlug(slug: string, locale: string) {
+    return instance.get(`/products/${slug}&locale=${locale}`)
   }
   async getProductBySlug(slug: string, locale: string) {
     return instance.get(`/products/${slug}?${productBySlugQuery}&locale=${locale}`)
   }
-  async getProductsByCategory(category: string[]) {
-    return instance.get(`/products?${productByCategoryQuery(category)}`)
+  async getProductsByCategory(category: string[], locale: string) {
+    return instance.get(`/products?${productByCategoryQuery(category)}&locale=${locale}`)
   }
 }
 
