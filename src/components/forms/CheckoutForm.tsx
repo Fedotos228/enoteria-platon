@@ -89,7 +89,7 @@ export function CheckoutForm() {
     toast.success("Comanda a fost plasată cu succes!", {
       position: "top-center",
     })
-    clearCart()
+    // clearCart()
     form.reset(defaultValues)
   }
 
@@ -234,7 +234,7 @@ export function CheckoutForm() {
                     >
                       <div className="flex items-center">
                         <RadioGroupItem
-                          value="Moldova"
+                          value="moldova"
                           id="moldova"
                           className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
@@ -242,7 +242,7 @@ export function CheckoutForm() {
                           {t("country.moldova")}
                         </Label>
                         <RadioGroupItem
-                          value="Romania"
+                          value="romania"
                           id="momania"
                           className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 ring-offset-2 ring-offset-black transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
