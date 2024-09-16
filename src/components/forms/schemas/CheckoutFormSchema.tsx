@@ -1,6 +1,9 @@
+'use client'
+
 import { z } from "zod"
 
 export function createCheckoutFormSchema(t: any) {
+
   const AddressFormSchema = z.object({
     firstName: z
       .string()
@@ -23,7 +26,8 @@ export function createCheckoutFormSchema(t: any) {
 
   return z.object({
     ...AddressFormSchema.shape,
-    paymentMethod: z.enum(["card", "paypal", "cash"]),
+    paymentMethod: z.enum(["15", "16", "17"]),
+    deliveryMethod: z.enum(["1", "2", "3"]),
     shipping: z.number(),
     subTotalPrice: z.number(),
     totalPrice: z.number(),
