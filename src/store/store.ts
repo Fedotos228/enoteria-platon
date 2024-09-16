@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 import { persistReducer } from "redux-persist"
 import createWebStorage from "redux-persist/lib/storage/createWebStorage"
 import { cartReducer } from './slices/cart.slice'
+import { countryReducer } from './slices/country.slice'
 import { filterReducer } from './slices/filter.slice'
 
 const createNoopStorage = () => {
@@ -27,12 +28,13 @@ const storage =
 const authPersistConfig = {
   key: 'enoteria-platon',
   storage: storage,
-  whitelist: ['cart'],
+  whitelist: ['cart', 'country'],
 }
 
 const rootReducer = combineReducers({
   filter: filterReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  country: countryReducer,
 })
 
 const persistedReducer = persistReducer(authPersistConfig, rootReducer)

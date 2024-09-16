@@ -8,6 +8,7 @@ import {
   selectCartTotal,
   toggleCart,
 } from "./slices/cart.slice"
+import { setCountry } from './slices/country.slice'
 import { setFilters, toggleCategory } from "./slices/filter.slice"
 
 const cartActions = {
@@ -26,7 +27,12 @@ const filterActions = {
   setFilters,
 }
 
+const countryActions = {
+  setCountry
+}
+
 export const rootActions = {
   ...cartActions,
   ...filterActions,
+  ...countryActions
 }

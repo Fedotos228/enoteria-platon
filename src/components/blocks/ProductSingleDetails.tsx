@@ -1,11 +1,13 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
-import { formatMDLPrice } from "@/lib/utils"
+import { Link } from '@/i18n/routing'
+import { cn, formatMDLPrice } from "@/lib/utils"
 import { type BlocksContent } from "@strapi/blocks-react-renderer"
 import { Minus, Plus } from "lucide-react"
+import { useTranslations } from 'next-intl'
 import { useState } from "react"
-import { Button } from "../ui/button"
+import { Button, buttonVariants } from "../ui/button"
 import BlockRendererClient from "./BlockRendererClient"
 
 type ProductSingleDetailsProps = {
@@ -37,6 +39,7 @@ export default function ProductSingleDetails({
     stock,
     discount,
   } = product
+  const t = useTranslations()
   const { addToCart } = useActions()
   const [quantity, setQuantity] = useState(1)
 
@@ -100,15 +103,30 @@ export default function ProductSingleDetails({
             <Plus size={16} />
           </Button>
         </div>
-        <Button
-          onClick={() =>
-            quantity > 1
-              ? addToCart({ ...product, quantity })
-              : addToCart(product)
-          }
-        >
-          Adaugă în coș
-        </Button>
+        {
+          price_mdl ? (
+            <Button
+              onClick={() =>
+                quantity > 1
+                  ? addToCart({ ...product, quantity })
+                  : addToCart(product)
+              }
+            >
+              Adaugă în coș
+            </Button>
+          ) : (
+            <Link
+                href="/contacts"
+                className={`${cn(
+                  buttonVariants({
+                    variant: "default",
+                  }),
+                )} relative z-10`}
+              >
+                {t("productCard.seePrice")}
+              </Link>
+          )
+        }
       </div>
       <div>
         <h5 className="mb-5">Descriere</h5>

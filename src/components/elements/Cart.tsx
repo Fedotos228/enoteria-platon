@@ -111,7 +111,7 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                   className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground"
                   onClick={() => toggleCart()}
                 >
-                  <Link href='checkout' className="!text-bordo-foreground">
+                  <Link href='/checkout' className="!text-bordo-foreground">
                     {t("checkout")}
                   </Link>
                 </Button>

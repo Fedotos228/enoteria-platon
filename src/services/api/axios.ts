@@ -9,9 +9,27 @@ const axiosOptions = {
   headers: getContentType(),
 }
 
+const CRMOptions = {
+  baseURL: process.env.NEXT_PUBLIC_WELLSEL_URL,
+  headers: getContentType(),
+}
+
 export const instance = axios.create(axiosOptions)
 
 export const axiosClassic = axios.create(axiosOptions)
+
+export const crmInstance = axios.create(CRMOptions)
+
+crmInstance.interceptors.request.use(config => {
+  const token = process.env.NEXT_PUBLIC_WELLSEL_TOKEN
+
+  if (config && config.headers && token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+
+  return config
+})
+
 
 instance.interceptors.request.use(config => {
   const token = process.env.NEXT_PUBLIC_STRAPI_TOKEN
