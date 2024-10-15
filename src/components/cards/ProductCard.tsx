@@ -80,7 +80,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
         <div className="flex gap-1 font-semibold">
           {price_mdl && (
             <>
-              {discount && <p className="text-bordo">{Math.round(price)} lei</p>}
+              {discount && <p className="text-bordo">{Math.round(price)} {t('currency')}</p>}
 
               <p className={`${discount && "line-through opacity-50"}`}>
                 {discount ? price_mdl : Math.round(price)} lei
