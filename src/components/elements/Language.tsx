@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Loader from './Loader'
 
 interface ILanguages {
@@ -18,11 +18,14 @@ const langs: ILanguages[] = [
   {
     lang: 'en',
     title: 'EN'
+  },
+  {
+    lang: 'ru',
+    title: 'RU'
   }
 ]
 
 export default function Language() {
-  const [lang, setLang] = useState(langs[0])
   const { replace } = useRouter()
   const pathname = usePathname()
   const locale = useLocale()

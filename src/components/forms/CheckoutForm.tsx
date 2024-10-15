@@ -92,8 +92,8 @@ export function CheckoutForm() {
     toast.success("Comanda a fost plasată cu succes!", {
       position: "top-center",
     })
-    clearCart()
-    form.reset(defaultValues)
+    // clearCart()
+    // form.reset(defaultValues)
   }
 
   return (
