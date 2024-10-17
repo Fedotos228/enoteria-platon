@@ -24,7 +24,7 @@ export function imageStrapUrl(image: any, type: MediaType) {
     }
   }
 
-  if(process.env.NODE_ENV === 'production') {}{
+  if(process.env.NODE_ENV === 'production'){
     switch (type) {
       case MediaType.Single:
         return image?.data?.attributes?.url
