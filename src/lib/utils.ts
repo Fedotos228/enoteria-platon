@@ -15,8 +15,6 @@ export const isClient = typeof window !== "undefined"
 export function imageStrapUrl(image: any, type: MediaType) {
   if (!image) return ""
 
-  console.log(process.env.NODE_ENV)
-
   if(process.env.NODE_ENV === 'development') {
     switch (type) {
       case MediaType.Single:

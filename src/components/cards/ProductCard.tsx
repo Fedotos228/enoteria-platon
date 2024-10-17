@@ -51,7 +51,6 @@ export default function ProductCard({ product, type }: ProductCardProps) {
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
       <div
-        style={backgroundImage}
         className="relative flex h-[230px] w-full items-center justify-center rounded-t-lg md:h-[280px]"
       >
         {thumbnail?.data?.attributes?.url && (
