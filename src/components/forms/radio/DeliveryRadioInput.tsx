@@ -23,8 +23,6 @@ export default function DeliveryRadioInput({ form }: any) {
   const { data: delivery, isLoading } = useGetDelivery()
   const t = useTranslations('Checkout.form')
 
-  console.log(delivery?.data)
-
   if (isLoading) return <Loader loading={isLoading} />
 
   return (
@@ -33,7 +31,7 @@ export default function DeliveryRadioInput({ form }: any) {
       name="deliveryMethod"
       render={({ field }) => (
         <FormItem className="col-span-2">
-          <FormLabel>{t("payment.title")}</FormLabel>
+          <FormLabel>{t("delivery.title")}</FormLabel>
           <FormControl>
             <RadioGroup
               className="flex gap-3"
@@ -45,7 +43,7 @@ export default function DeliveryRadioInput({ form }: any) {
                   delivery.data && delivery.data.map((item: IDeliveryMethods) => (
                     <div key={item.id} className="flex items-center">
                       <RadioGroupItem
-                        value={item.title}
+                        value={item.id.toString()}
                         id={item.id.toString()}
                         className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                       />

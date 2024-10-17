@@ -131,6 +131,9 @@
         "title": "Modalitatea de plata",
         "card": "Card credit/debit",
         "cash": "Numerar"
+      },
+      "delivery": {
+        "title": "Modalitatea de livrare"
       }
     },
     "summary": {

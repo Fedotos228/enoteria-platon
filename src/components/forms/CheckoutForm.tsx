@@ -36,13 +36,12 @@ export function CheckoutForm() {
   const {
     mutate: createOrder,
     isPending,
-    isSuccess,
     isError,
     error
   } = useCreateOrder()
+  const { clearCart } = useActions()
   const { products, shipping } = useAppSelector((state) => state.cart)
   const total = useSelector(selectCartTotal)
-  const { clearCart } = useActions()
   const CheckoutFormSchema = createCheckoutFormSchema(t)
 
   const defaultValues: CheckoutFormSchemaType = {
@@ -92,8 +91,8 @@ export function CheckoutForm() {
     toast.success("Comanda a fost plasată cu succes!", {
       position: "top-center",
     })
-    // clearCart()
-    // form.reset(defaultValues)
+    clearCart()
+    form.reset(defaultValues)
   }
 
   return (

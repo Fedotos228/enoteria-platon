@@ -51,7 +51,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
   return (
     <Card className="relative shadow transition-transform duration-300 hover:scale-[1.02]">
       <div
-        className="relative flex h-[230px] w-full items-center justify-center rounded-t-lg md:h-[280px]"
+        className="relative flex h-[230px] w-full items-center justify-center overflow-hidden rounded-t-lg md:h-[280px]"
       >
         {thumbnail?.data?.attributes?.url && (
           <Image
@@ -59,7 +59,7 @@ export default function ProductCard({ product, type }: ProductCardProps) {
             alt={title}
             width={320}
             height={350}
-            className='h-[300px] w-full object-contain'
+            className='h-[250px] w-full object-contain pb-2 border-b border-b-1 border-gray-200'
           />
         )}
         {discount && (
