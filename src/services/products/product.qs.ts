@@ -2,7 +2,7 @@ import qs from 'qs'
 
 export const homeProductQuery = qs.stringify(
   {
-    fields: ['title', 'slug', 'price_mdl', 'discount'],
+    fields: ['title', 'slug', 'price_mdl', 'discount', 'barcode'],
     populate: {
       thumbnail: {
         fields: ['url'],
@@ -24,7 +24,7 @@ export const productSlugQuery = qs.stringify({
 
 export const productBySlugQuery = qs.stringify(
   {
-    fields: ['title', 'slug', 'price_mdl', 'discount', 'description'],
+    fields: ['title', 'slug', 'price_mdl', 'discount', 'description', 'barcode'],
     populate: {
       thumbnail: {
         fields: ['url'],
@@ -45,7 +45,7 @@ export const productBySlugQuery = qs.stringify(
 
 export const productByCategoryQuery = (categories: string[]) => qs.stringify(
   {
-    fields: ['title', 'slug', 'price_mdl', 'discount'],
+    fields: ['title', 'slug', 'price_mdl', 'discount', 'barcode'],
     populate: {
       thumbnail: {
         fields: ['url'],

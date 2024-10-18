@@ -85,7 +85,7 @@ export function CheckoutForm() {
       return
     }
 
-    let order = { ...data, products, status: 'pre-order' }
+    let order = { ...data, products }
     createOrder(order)
 
     toast.success("Comanda a fost plasată cu succes!", {

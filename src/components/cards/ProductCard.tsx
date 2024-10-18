@@ -9,13 +9,6 @@ import Image from "next/image"
 import { Button, buttonVariants } from "../ui/button"
 import { Card, CardFooter } from "../ui/card"
 
-const backgroundImage = {
-  backgroundImage: "url(/images/bg.png)",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  overflow: "hidden",
-}
-
 type ProductCardProps = {
   product: any
   type: "product" | "merch" | "inShop"
