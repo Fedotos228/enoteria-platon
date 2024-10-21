@@ -88,12 +88,11 @@ export function CheckoutForm() {
 
     let order = { ...data, products }
 
-    console.log(order)
     createOrder(order)
 
     if(isSuccess) {
-      // clearCart()
-      // form.reset(defaultValues)
+      clearCart()
+      form.reset(defaultValues)
     }
   }
 
