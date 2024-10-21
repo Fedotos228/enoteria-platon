@@ -1,5 +1,6 @@
 import { useActions } from "@/hooks/useActions"
 import { formatMDLPrice } from "@/lib/utils"
+import { useTranslations } from 'next-intl'
 import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
@@ -14,6 +15,8 @@ export default function MerchSingleDetails({
 }: {
   merch: MerchSingleDetailsProps
 }) {
+  const merchTranslations = useTranslations("Toast.Merch")
+  const cartTranslations = useTranslations("Toast.Cart")
   const [selectedOptions, setSelectedOptions] = useState<ISelectedOptions>({
     color: undefined,
     size: undefined,
@@ -26,11 +29,11 @@ export default function MerchSingleDetails({
 
   const handleAddToCart = () => {
     if (!selectedOptions.color) {
-      return toast.warning("Selectează o culoare")
+      return toast.warning(merchTranslations("selectColor"))
     }
 
     if (!selectedOptions.size) {
-      return toast.warning("Selectează o mărime")
+      return toast.warning(merchTranslations("selectSize"))
     }
 
 
@@ -38,7 +41,7 @@ export default function MerchSingleDetails({
       const merchOrder = { ...merch, ...selectedOptions }
       addToCart(merchOrder)
       setSelectedOptions({ color: undefined, size: undefined })
-      return toast.success("Produsul a fost adăugat în coș")
+      return toast.success(cartTranslations("added"))
     }
   }
 
