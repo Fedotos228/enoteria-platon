@@ -18,7 +18,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { errorCatch } from '@/services/api/api.helper'
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { Label } from "@radix-ui/react-label"
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
@@ -74,13 +73,7 @@ export function CheckoutForm() {
 
   function onSubmit(data: CheckoutFormSchemaType) {
     if (products.length === 0) {
-      toast.error("Nu există produse în coșul de cumpărături!", {
-        position: "top-center",
-      })
-      return
-    }
-    if (isError) {
-      toast.error(`A apărut o eroare la plasarea comenzii! ${errorCatch(error)}`, {
+      toast.error(t("cartIsEmpty"), {
         position: "top-center",
       })
       return

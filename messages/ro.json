@@ -143,5 +143,22 @@
       "shipping": "Livrare",
       "total": "Total"
     }
+  },
+  "Toast": {
+    "Cart": {
+      "added": "Produsul a fost adăugat în coș"
+    },
+    "Checkout" :{
+      "cartIsEmpty": "Nu există produse în coșul de cumpărături!",
+      "error": "A apărut o eroare la plasarea comenzii!",
+      "success": "Comanda a fost plasată cu succes!"
+    },
+    "Merch": {
+      "selectColor": "Selectează o culoare",
+      "selectSize": "Selectează o mărime"
+    },
+    "Contact": {
+      "error": "A aparut o erroare"
+    }
   }
 }

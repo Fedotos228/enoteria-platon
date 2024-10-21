@@ -13,7 +13,7 @@ export default function Footer() {
   const locale = useLocale()
   const t = useTranslations()
   const currentYear = new Date().getFullYear()
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["contact"],
     queryFn: () => blocksService.getPage("contact", locale),
     select: (data) => data.data.data.attributes,
