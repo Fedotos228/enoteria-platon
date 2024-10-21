@@ -21,7 +21,7 @@ export function createCheckoutFormSchema(t: any) {
     city: z
       .string()
       .min(2, { message: t("city.validation") }),
-    country: z.enum(["moldova", "romania"],),
+    country: z.enum(["Moldova", "Romania"],),
   })
 
   return z.object({

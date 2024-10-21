@@ -37,6 +37,7 @@ export function CheckoutForm() {
     mutate: createOrder,
     isPending,
     isError,
+    isSuccess,
     error
   } = useCreateOrder()
   const { clearCart } = useActions()
@@ -51,12 +52,12 @@ export function CheckoutForm() {
     phone: "",
     address: "",
     city: "",
-    country: "moldova",
+    country: "Moldova",
     paymentMethod: "15",
+    deliveryMethod: "1",
     shipping: 0,
     subTotalPrice: 0,
     totalPrice: 0,
-    deliveryMethod: "1",
   }
 
   const form = useForm<CheckoutFormSchemaType>({
@@ -86,13 +87,14 @@ export function CheckoutForm() {
     }
 
     let order = { ...data, products }
+
+    console.log(order)
     createOrder(order)
 
-    toast.success("Comanda a fost plasată cu succes!", {
-      position: "top-center",
-    })
-    clearCart()
-    form.reset(defaultValues)
+    if(isSuccess) {
+      // clearCart()
+      // form.reset(defaultValues)
+    }
   }
 
   return (
@@ -236,16 +238,16 @@ export function CheckoutForm() {
                     >
                       <div className="flex items-center">
                         <RadioGroupItem
-                          value="moldova"
-                          id="moldova"
+                          value="Moldova"
+                          id="Moldova"
                           className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Moldova" className="cursor-pointer">
                           {t("country.moldova")}
                         </Label>
                         <RadioGroupItem
-                          value="romania"
-                          id="momania"
+                          value="Romania"
+                          id="Romania"
                           className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 ring-offset-2 ring-offset-black transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Romania" className="cursor-pointer">
