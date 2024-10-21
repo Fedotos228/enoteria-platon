@@ -24,6 +24,8 @@ import { Label } from "@radix-ui/react-label"
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
 import { useTranslations } from 'next-intl'
 import { Button } from "../ui/button"
+import DeliveryRadioInput from './radio/DeliveryRadioInput'
+import PaymentRadioInput from './radio/PaymentRadioInput'
 import {
   CheckoutFormSchemaType,
   createCheckoutFormSchema,
@@ -34,13 +36,13 @@ export function CheckoutForm() {
   const {
     mutate: createOrder,
     isPending,
-    isSuccess,
     isError,
+    isSuccess,
     error
   } = useCreateOrder()
+  const { clearCart } = useActions()
   const { products, shipping } = useAppSelector((state) => state.cart)
   const total = useSelector(selectCartTotal)
-  const { clearCart } = useActions()
   const CheckoutFormSchema = createCheckoutFormSchema(t)
 
   const defaultValues: CheckoutFormSchemaType = {
@@ -50,8 +52,9 @@ export function CheckoutForm() {
     phone: "",
     address: "",
     city: "",
-    country: "moldova",
-    paymentMethod: "card",
+    country: "Moldova",
+    paymentMethod: "15",
+    deliveryMethod: "1",
     shipping: 0,
     subTotalPrice: 0,
     totalPrice: 0,
@@ -83,14 +86,14 @@ export function CheckoutForm() {
       return
     }
 
-    let order = { ...data, products, status: 'pre-order' }
+    let order = { ...data, products }
+
     createOrder(order)
 
-    toast.success("Comanda a fost plasată cu succes!", {
-      position: "top-center",
-    })
-    clearCart()
-    form.reset(defaultValues)
+    if(isSuccess) {
+      clearCart()
+      form.reset(defaultValues)
+    }
   }
 
   return (
@@ -235,7 +238,7 @@ export function CheckoutForm() {
                       <div className="flex items-center">
                         <RadioGroupItem
                           value="Moldova"
-                          id="moldova"
+                          id="Moldova"
                           className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Moldova" className="cursor-pointer">
@@ -243,7 +246,7 @@ export function CheckoutForm() {
                         </Label>
                         <RadioGroupItem
                           value="Romania"
-                          id="momania"
+                          id="Romania"
                           className="me-1 ms-8 h-4 w-4 rounded-full border border-black/70 ring-offset-2 ring-offset-black transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
                         />
                         <Label htmlFor="Romania" className="cursor-pointer">
@@ -255,46 +258,8 @@ export function CheckoutForm() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="paymentMethod"
-              render={({ field }) => (
-                <FormItem className="col-span-2">
-                  <FormLabel>{t("payment.title")}</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      className="flex gap-3"
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
-                      <div className="flex flex-col sm:flex-row">
-                        <div className="flex items-center">
-                          <RadioGroupItem
-                            value="card"
-                            id="card"
-                            className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640]"
-                          />
-                          <Label htmlFor="card" className="cursor-pointer">
-                            {t("payment.card")}
-                          </Label>
-                        </div>
-                        <div className="flex items-center">
-                          <RadioGroupItem
-                            value="cash"
-                            id="cash"
-                            className="me-1 h-4 w-4 rounded-full border border-black/70 bg-origin-content transition-all data-[state=checked]:border-[white] data-[state=checked]:bg-[#3B3640] sm:ms-8"
-                          />
-                          <Label htmlFor="cash" className="cursor-pointer">
-                            {t("payment.cash")}
-                          </Label>
-                        </div>
-                      </div>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <DeliveryRadioInput form={form} />
+            <PaymentRadioInput form={form} />
           </div>
         </div>
         <Button className="ml-auto inline-block px-6" type="submit" size="sm">

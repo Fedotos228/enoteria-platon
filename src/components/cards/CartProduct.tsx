@@ -17,13 +17,13 @@ export default function CartProduct({ product }: any) {
 
   return (
     <li className="flex gap-4 py-6">
-      <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 xs:h-24 xs:w-24">
+      <div className="h-20 w-20 flex items-center justify-center flex-shrink-0 overflow-hidden rounded-md border border-gray-200 xs:h-24 xs:w-24">
         <Image
           src={imageStrapUrl(product.thumbnail, MediaType.Single)}
           alt={product.slug}
-          className="h-full w-full object-cover object-center"
-          width={80}
-          height={80}
+          className=" h-[80px] w-fit"
+          width={60}
+          height={60}
         />
       </div>
 

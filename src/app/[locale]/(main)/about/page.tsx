@@ -16,7 +16,7 @@ export default function AbouPage() {
 		select: data => data.data.data.attributes
 	})
 
-		; if (isLoading) return <Loader loading={isLoading} />
+	if (isLoading) return <Loader loading={isLoading} />
 
 	const sectionComponents: { [key: string]: React.ComponentType<any> } = {
 		'blocks.simple-block': SimpleBlock,

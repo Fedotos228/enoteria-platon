@@ -41,14 +41,14 @@ export default function FilterSidebar() {
       </h4>
       <div>
         {category?.map((categorie: any) => (
-          <div key={categorie.attributes.slug} className="mb-7">
+          <div key={categorie.id} className="mb-7">
             <h5 className="mb-3">{categorie.attributes.title}</h5>
 
             <ul>
               {categorie?.attributes?.subcategories.data.map(
                 (subcategory: any) => (
                   <li
-                    key={subcategory.attributes.slug}
+                    key={subcategory.id}
                     className="mb-3 flex items-center space-x-2"
                   >
                     <Checkbox
@@ -135,15 +135,4 @@ export default function FilterSidebar() {
       </Sheet>
     </>
   )
-}
-
-{
-  /* <li
-  className={` checkbox-control mb-2`}
-  key={subcategory.slug}
-
->
-  <input type='checkbox' id={subcategory.slug} onClick={() => handleSelectCategory(subcategory.slug)} />
-  <label className={` text-sm`} htmlFor={subcategory.slug}>{subcategory.name}</label>
-</li> */
 }

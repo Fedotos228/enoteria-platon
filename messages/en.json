@@ -2,6 +2,7 @@
   "HomePage": {
     "title": "Hello world!"
   },
+  "currency": "MDL",
   "Navigation": {
     "home": {
       "title": "Home",

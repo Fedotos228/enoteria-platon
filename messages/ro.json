@@ -2,6 +2,7 @@
   "HomePage": {
     "title": "Salut Lume!"
   },
+  "currency": "lei",
   "Navigation": {
     "home": {
       "title": "Acasă",
@@ -50,7 +51,7 @@
     "merch": "Merchandise",
     "noProductFound": "Nu am găsit niciun produs",
     "filter": "Filtre",
-    "Caută": "Caută"
+    "find": "Caută"
   },
   "Copyright": "Toate drepturile rezervate.",
   "ContactForm": {
@@ -130,6 +131,9 @@
         "title": "Modalitatea de plata",
         "card": "Card credit/debit",
         "cash": "Numerar"
+      },
+      "delivery": {
+        "title": "Modalitatea de livrare"
       }
     },
     "summary": {
