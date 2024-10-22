@@ -82,12 +82,14 @@ export function CheckoutForm() {
     let order = { ...data, products }
 
     createOrder(order)
+  }
 
+  useEffect(() => {
     if(isSuccess) {
       clearCart()
       form.reset(defaultValues)
     }
-  }
+  }, [isSuccess])
 
   return (
     <Form {...form}>
