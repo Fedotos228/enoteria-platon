@@ -140,5 +140,22 @@
       "shipping": "Shipping",
       "total": "Total"
     }
+  },
+  "Toast": {
+    "Cart": {
+      "added": "The product has been added to the cart"
+    },
+    "Checkout": {
+      "cartIsEmpty": "There are no products in the shopping cart!",
+      "error": "An error occurred while placing the order!",
+      "success": "The order has been successfully placed!"
+    },
+    "Merch": {
+      "selectColor": "Select a color",
+      "selectSize": "Select a size"
+    },
+    "Contact": {
+      "error": "An error occurred"
+    }
   }
 }
