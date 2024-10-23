@@ -13,6 +13,4 @@ export default function OrdersPage() {
   } else {
     return <OrdersTable />
   }
-
-  return
 }
