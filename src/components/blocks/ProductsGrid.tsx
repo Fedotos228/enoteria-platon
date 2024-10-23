@@ -80,7 +80,7 @@ export default function ProductsGrid({
       </Grid>
     </section>
   ) : (
-    data && data.length && (
+    data && (
       <section>
         <SectionHeader
           title={sectionTitle || "Vinurile noastre"}
@@ -88,11 +88,11 @@ export default function ProductsGrid({
         />
 
         <Grid gridSize={productsGrid.gridSize}>
-          {data
-            ?.slice(0, productsGrid.productsNumber)
-            .map((product: any) => (
+          {Array.isArray(data) && data
+            .slice(0, productsGrid.productsNumber)
+            .map((product) => (
               <ProductCard
-                key={product.attributes.slug}
+                key={product.id}
                 product={product}
                 type="product"
               />

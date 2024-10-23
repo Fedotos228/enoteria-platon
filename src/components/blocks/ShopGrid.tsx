@@ -1,7 +1,6 @@
 "use client"
 
 import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts"
-import { IPagination } from "@/types/strapi.types"
 import { useTranslations } from 'next-intl'
 import ProductCard from "../cards/ProductCard"
 import PaginationComponent from "../elements/PaginationComponent"
@@ -11,7 +10,7 @@ import { Skeleton } from "../ui/skeleton"
 export default function ShopGrid() {
   const { data, isLoading, isFetched } = useGetFilteredProducts()
   const t = useTranslations("Shop")
-  const pagination: IPagination = data?.meta?.pagination
+  const pagination = data?.meta?.pagination
   const productsData = data?.data
 
   const loading = isLoading || !isFetched
@@ -67,7 +66,7 @@ export default function ShopGrid() {
 
       {content}
 
-      {content !== productsNotFound && productsData > 8 && (
+      {content !== productsNotFound && productsData && productsData.length > 8 && (
         <PaginationComponent />
       )}
     </section>

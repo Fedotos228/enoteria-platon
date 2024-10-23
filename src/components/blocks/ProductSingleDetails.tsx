@@ -3,42 +3,29 @@
 import { useActions } from "@/hooks/useActions"
 import { Link } from '@/i18n/routing'
 import { cn, formatMDLPrice } from "@/lib/utils"
-import { type BlocksContent } from "@strapi/blocks-react-renderer"
+import { IProduct } from '@/types/data.types'
+import { BlocksContent } from '@strapi/blocks-react-renderer'
 import { Minus, Plus } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import { useState } from "react"
 import { Button, buttonVariants } from "../ui/button"
 import BlockRendererClient from "./BlockRendererClient"
 
-type ProductSingleDetailsProps = {
-  title: string
-  slug: string
-  price_mdl: number
-  description: BlocksContent
-  discount: number
-  stock: boolean
-  details: {
-    id: number
-    title: string
-    desc: string
-  }[]
-  subcategories: any
-}
 
 export default function ProductSingleDetails({
   product,
 }: {
-  product: ProductSingleDetailsProps
+  product: IProduct
 }) {
   const {
     title,
-    slug,
     price_mdl,
     description,
     details,
     stock,
     discount,
   } = product
+
   const t = useTranslations()
   const { addToCart } = useActions()
   const [quantity, setQuantity] = useState(1)
@@ -50,6 +37,9 @@ export default function ProductSingleDetails({
   const price = product.discount
     ? product.price_mdl - (product.price_mdl * product.discount) / 100
     : product.price_mdl
+
+
+  if (!product) return null
 
   return (
     <div>
@@ -116,15 +106,15 @@ export default function ProductSingleDetails({
             </Button>
           ) : (
             <Link
-                href="/contacts"
-                className={`${cn(
-                  buttonVariants({
-                    variant: "default",
-                  }),
-                )} relative z-10`}
-              >
-                {t("productCard.seePrice")}
-              </Link>
+              href="/contacts"
+              className={`${cn(
+                buttonVariants({
+                  variant: "default",
+                }),
+              )} relative z-10`}
+            >
+              {t("productCard.seePrice")}
+            </Link>
           )
         }
       </div>
@@ -138,7 +128,7 @@ export default function ProductSingleDetails({
             </div>
           ))}
       </div>
-      <BlockRendererClient content={description} />
+      <BlockRendererClient content={description || {} as BlocksContent} />
       {/* <ul>
         {subcategories?.data?.map((category: any) => (
           <li key={category?.attributes.slug}>{category.attributes.title}</li>

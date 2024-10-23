@@ -3,15 +3,24 @@ import { allMerchQuery, homeMerchQuery, merchSlugQuery } from './merch.qs'
 
 class MerchService {
   async getHomeMerch() {
-    return await instance.get(`/merchandises?${homeMerchQuery}`)
+    return await instance({
+      url: `/merchandises?${homeMerchQuery}`,
+      method: 'GET'
+    })
   }
 
   async getAllMerch() {
-    return await instance.get(`/merchandises?${allMerchQuery}`)
+    return await instance({
+      url: `/merchandises?${allMerchQuery}`,
+      method: 'GET'
+    })
   }
 
   async getMerchBySlug(slug: string, lang: string) {
-    return await instance.get(`/merchandises/${slug}?${merchSlugQuery}&locale=${lang}`)
+    return await instance({
+      url: `/merchandises/${slug}?${merchSlugQuery}&locale=${lang}`,
+      method: 'GET'
+    })
   }
 }
 

@@ -1,14 +1,14 @@
 "use client";
 
-import useGetNews from "@/hooks/queries/useGetNews";
-import useScreenSize from "@/hooks/useScreenSize";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import NewsCard from "../cards/NewsCard";
-import Grid from "../elements/Grid";
-import Loader from "../elements/Loader";
-import PaginationComponent from "../elements/PaginationComponent";
-import SectionHeader from "../elements/SectionHeader";
+import useGetNews from "@/hooks/queries/useGetNews"
+import useScreenSize from "@/hooks/useScreenSize"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
+import NewsCard from "../cards/NewsCard"
+import Grid from "../elements/Grid"
+import Loader from "../elements/Loader"
+import PaginationComponent from "../elements/PaginationComponent"
+import SectionHeader from "../elements/SectionHeader"
 
 interface INewsGrid {
   gridSize: number;
@@ -80,12 +80,12 @@ export default function NewsGrid({
       <SectionHeader title={sectionTitle} link={sectionLink} />
 
       <Grid gridSize={newsGrid.gridSize}>
-        {slicedNewsGrid.map((item: any) => (
+        {slicedNewsGrid && slicedNewsGrid.map((item: any) => (
           <NewsCard key={item?.attributes?.slug} post={item?.attributes} />
         ))}
       </Grid>
 
-      {newsPage && news.lenght > 8 && <PaginationComponent />}
+      {newsPage && Array.isArray(news) && news.length > 8 && <PaginationComponent />}
     </section>
   );
 }

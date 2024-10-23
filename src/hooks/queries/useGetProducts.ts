@@ -7,7 +7,7 @@ export default function useGetProducts() {
   
   return useQuery({
     queryKey: ['products'],
-    queryFn: async () => await productsService.getProducts(locale),
+    queryFn: () => productsService.getProducts(locale),
     select: (data) => data.data.data
   })
 }

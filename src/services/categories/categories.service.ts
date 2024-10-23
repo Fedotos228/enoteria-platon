@@ -3,7 +3,10 @@ import { categorieQuery } from './categories.qs'
 
 class CategorieService {
   async getCategories(locale: string) {
-    return instance.get(`/categories?${categorieQuery}$locale=${locale}`)
+    return instance({
+      url: `/categories?${categorieQuery}$locale=${locale}`,
+      method: 'GET',
+    })
   }
 }
 
