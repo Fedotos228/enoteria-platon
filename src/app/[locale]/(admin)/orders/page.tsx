@@ -11,7 +11,7 @@ export default function OrdersPage() {
   const { replace } = useRouter()
 
   if (!token) {
-    replace(`${locale}/orders/auth`)
+    replace(`orders/auth`)
   } else {
     return <OrdersTable />
   }

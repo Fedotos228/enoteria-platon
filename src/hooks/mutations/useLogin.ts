@@ -15,7 +15,7 @@ export default function useLogin() {
     mutationFn: (credentials: ICredentials) => authService.login(credentials),
     onSuccess(data) {
       localStorage.setItem(TokenEnum.Token, data.data.jwt)
-      replace(`${locale}/orders`)
+      replace(`/${locale}/orders`)
     },
     onError(error) {
       console.log(error)
