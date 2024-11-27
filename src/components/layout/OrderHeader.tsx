@@ -1,17 +1,19 @@
 'use client'
 
 import { removeToken } from '@/lib/localStorage'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '../ui/button'
 
 export default function OrderHeader() {
+  const locale = useLocale()
   const pathname = usePathname()
   const { replace } = useRouter()
   const handleLogout = () => {
     removeToken('token')
-    replace('/orders/auth')
+    replace(`/${locale}/orders/auth`)
   }
 
   return (

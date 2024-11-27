@@ -89,7 +89,7 @@ export function CheckoutForm() {
       clearCart()
       form.reset(defaultValues)
     }
-  }, [isSuccess])
+  }, [isSuccess, clearCart, form])
 
   return (
     <Form {...form}>

@@ -1,24 +1,46 @@
-export interface IProduct {
-  createdAt?: string
-  title: string
-  slug: string
-  description?: string
-  discount?: number
-  price: number
-  publishedAt?: string
-  thumbnail: string
-  gallery?: {
-    id: number
-    url: string
-  }[]
-  category: string
+import { BlocksContent } from '@strapi/blocks-react-renderer'
+import { IStrapiArrayResponse } from './strapi.types'
+
+type StrapiWithoutMetaType = Omit<IStrapiArrayResponse<{ id: number, url: string }>, 'meta'>
+
+type SubcategoryType = {
+  title: string,
+  slug: string,
+  category: IStrapiArrayResponse<SubcategoryType>
 }
 
-export interface INews {
+export interface IProduct {
+  title: string
+  slug: string
+  description?: BlocksContent
+  discount?: number
+  price_mdl: number
+  price_ron: number
+  stock: boolean
+  thumbnail: string
+  barcode: string
+  gallery?: StrapiWithoutMetaType
+  subcategories: SubcategoryType
+  details: Array<{
+    id: string,
+    title: string,
+    desc: string
+  }>
+
+
+
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+export interface IArticle {
   slug: string,
   title: string,
+  body: BlocksContent
   image: string,
-  description: string,
+  publishedAt: string
+  gallery: StrapiWithoutMetaType
 }
 
 export interface IMerch {
@@ -41,11 +63,10 @@ export interface IFounders {
   image: string,
 }
 
+type SubcategoryTypes = IStrapiArrayResponse<{slug: string, title: string}>
+
 export interface ICategory {
   slug: string,
   title: string
-  subcategories: {
-    slug: string,
-    name: string
-  }[]
+  subcategories: SubcategoryTypes
 }

@@ -9,7 +9,9 @@ export interface IContact {
 
 class ContactService {
   async mutateContact(data: IContact) {
-    return instance.post(`/contact-forms`, {
+    return instance({
+      url: `/contact-forms`,
+      method: 'POST',
       data: data
     })
   }

@@ -16,20 +16,24 @@ import Loader from '../elements/Loader'
 
 export default function ArticleSingle({ slug }: { slug: string }) {
   const { data, isLoading } = useGetArticleBySlug(slug)
-  const dateObj = new Date(data?.attributes?.publishedAt)
+  const publishedAt = data?.attributes?.publishedAt || ''
+  
+  function formattedDate(date: string) {
+    const dateObj = new Date(date)
 
-  const day = String(dateObj.getUTCDate()).padStart(2, '0')
-  const month = String(dateObj.getUTCMonth() + 1).padStart(2, '0')
-  const year = dateObj.getUTCFullYear()
-
-  const formattedDate = `${day}.${month}.${year}`
+    const day = String(dateObj.getUTCDate()).padStart(2, '0')
+    const month = String(dateObj.getUTCMonth() + 1).padStart(2, '0')
+    const year = dateObj.getUTCFullYear()
+  
+    return `${day}.${month}.${year}`
+  }
 
   if (isLoading) return <Loader loading={isLoading} />
 
   return (
     <Card className='mt-7 p-5 md:p-10'>
       <h2 className='max-w-full'>{data?.attributes?.title}</h2>
-      <time className='block text-gray-500 my-5' dateTime={formattedDate}>{formattedDate}</time>
+      <time className='block text-gray-500 my-5' dateTime={formattedDate(publishedAt)}>{formattedDate(publishedAt)}</time>
       {data?.attributes?.image && <Image
         src={imageStrapUrl(data?.attributes?.image, MediaType.Single)}
         alt={data?.attributes?.slug}

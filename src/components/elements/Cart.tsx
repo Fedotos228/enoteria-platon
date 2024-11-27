@@ -1,13 +1,12 @@
 "use client"
 
 import { useActions } from "@/hooks/useActions"
-import { Link } from '@/i18n/routing'
 import { formatMDLPrice } from "@/lib/utils"
 import { selectCartTotal } from "@/store/slices/cart.slice"
 import { useAppSelector } from "@/store/store"
 import { ShoppingCart, X } from "lucide-react"
 import { useLocale, useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import CartProduct from "../cards/CartProduct"
@@ -20,6 +19,7 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
     (state) => state.cart,
   )
   const { clearCart, toggleCart } = useActions()
+  const router = useRouter()
   const total = useSelector(selectCartTotal)
   const pathname = usePathname()
   const isHome = pathname === `/${locale}`
@@ -31,6 +31,14 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
       document.body.classList.remove("overflow-hidden")
     }
   }, [isCartOpen])
+
+  const checkoutLink = () => {
+    toggleCart()
+
+    setTimeout(() => {
+      router.push(`/${locale}/checkout`)
+    }, 500)
+  }
 
   return (
     <div>
@@ -107,14 +115,11 @@ export default function Cart({ menuOpen, scrolledHeader }: { menuOpen: boolean, 
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   {t("calculateAll")}
                 </p>
-                <Link 
-                  href='/checkout' 
-                  onClick={() => toggleCart()}
-                >
-                  <Button className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground">
-                    {t("checkout")}
-                  </Button>
-                </Link>
+
+                <Button onClick={() => checkoutLink()} className="mt-5 h-fit w-full px-6 py-3 text-base font-medium !text-bordo-foreground">
+                  {t("checkout")}
+                </Button>
+
 
                 <Button
                   variant="link"

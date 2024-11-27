@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query"
 import { useLocale, useTranslations } from 'next-intl'
 
 export default function Home() {
-  const t = useTranslations('')
+  const t = useTranslations('SectionTitle')
   const locale = useLocale()
   const { data, isLoading } = useQuery({
     queryKey: ["home"],
@@ -29,9 +29,9 @@ export default function Home() {
       <Hero content={data?.hero} />
       <Container>
         <About content={data?.simpleBlock} />
-        <ProductsGrid />
+        <ProductsGrid sectionLink={locale + '/shop'} />
         <Founders />
-        <NewsGrid sectionTitle={t("SectionTitle.news")} sectionLink='/news' />
+        <NewsGrid sectionTitle={t("news")} sectionLink='/news' />
         <NewsLetter />
         <MerchGrid />
       </Container>
