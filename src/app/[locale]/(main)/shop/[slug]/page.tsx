@@ -1,5 +1,6 @@
 "use client"
 
+import Introduction from "@/components/blocks/Introduction"
 import Container from "@/components/layout/Container"
 import ProductSingle from "@/components/single/ProductSingle"
 import { IParamsWithSlug } from '@/types/strapi.types'
@@ -18,11 +19,9 @@ export default function ProductSiglePage({ params }: IParamsWithSlug) {
     },
   }
 
-  console.log(content)
-
   return (
     <>
-      {/* <Introduction content={content} /> */}
+      <Introduction content={content} />
       <Container>
         <ProductSingle slug={params.slug} />
       </Container>

@@ -128,7 +128,8 @@ export default function ProductSingleDetails({
             </div>
           ))}
       </div>
-      <BlockRendererClient content={description || {} as BlocksContent} />
+
+      {description && <BlockRendererClient content={description || {} as BlocksContent} />}
       {/* <ul>
         {subcategories?.data?.map((category: any) => (
           <li key={category?.attributes.slug}>{category.attributes.title}</li>
