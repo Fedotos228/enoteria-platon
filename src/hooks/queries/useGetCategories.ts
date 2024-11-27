@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl'
 
 export default function useGetCategories() {
   const locale = useLocale()
+
   return useQuery({
     queryKey: ['categories'],
     queryFn: () => categoriesService.getCategories(locale),

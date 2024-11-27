@@ -63,11 +63,10 @@ export interface IFounders {
   image: string,
 }
 
+type SubcategoryTypes = IStrapiArrayResponse<{slug: string, title: string}>
+
 export interface ICategory {
   slug: string,
   title: string
-  subcategories: {
-    slug: string,
-    name: string
-  }[]
+  subcategories: SubcategoryTypes
 }

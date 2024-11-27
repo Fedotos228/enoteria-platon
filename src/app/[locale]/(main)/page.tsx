@@ -29,7 +29,7 @@ export default function Home() {
       <Hero content={data?.hero} />
       <Container>
         <About content={data?.simpleBlock} />
-        <ProductsGrid />
+        <ProductsGrid sectionLink={locale + '/shop'} />
         <Founders />
         <NewsGrid sectionTitle={t("news")} sectionLink='/news' />
         <NewsLetter />
