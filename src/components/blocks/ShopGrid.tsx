@@ -4,6 +4,7 @@ import useGetFilteredProducts from "@/hooks/queries/useGetFilteredProducts"
 import { useTranslations } from 'next-intl'
 import ProductCard from "../cards/ProductCard"
 import PaginationComponent from "../elements/PaginationComponent"
+import ProductCounter from '../elements/ProductCounter'
 import ShopToggler from "../elements/ShopToggler"
 import { Skeleton } from "../ui/skeleton"
 
@@ -46,7 +47,7 @@ export default function ShopGrid() {
   if (productsData?.length === 0) {
     content = productsNotFound
   } else if (loading) {
-    content = loadingSkeleton
+    setTimeout(() => {content = loadingSkeleton}, 1000)
   } else {
     content = productsMap
   }
@@ -55,13 +56,7 @@ export default function ShopGrid() {
     <section className="mt-0">
       <div className="mb-8 flex flex-col items-center justify-between gap-3 xs:flex-row">
         <ShopToggler />
-        {pagination ? (
-          <p>
-            {t("pagination", { total: pagination?.total, pageSize: pagination?.pageSize })}
-          </p>
-        ) : (
-          <Skeleton className="h-6 w-48" />
-        )}
+        <ProductCounter pagination={pagination} />
       </div>
 
       {content}
