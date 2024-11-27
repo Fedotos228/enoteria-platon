@@ -1,21 +1,26 @@
 export interface IStrapiObjectResponse<T> {
   data: {
-    id: number;
-    attributes: T;
-  };
+    id: number
+    attributes: T
+  }
   meta: {
-    pagination?: IPagination;
-  };
+    pagination?: IPagination
+  }
+}
+
+export interface IStrapiMappedResponse<T> {
+  id: number
+  attributes: T
 }
 
 export interface IStrapiArrayResponse<T> {
   data: Array<{
-    id: number;
-    attributes: T;
-  }>;
-  meta: {
-    pagination?: IPagination;
-  };
+    id: number
+    attributes: T
+  }>
+  meta?: {
+    pagination: IPagination
+  }
 }
 
 export interface IPagination {
@@ -23,7 +28,7 @@ export interface IPagination {
   pageSize: number
   pageCount: number
   total: number
-} 
+}
 
 export interface IParamsWithSlug {
   params: {
